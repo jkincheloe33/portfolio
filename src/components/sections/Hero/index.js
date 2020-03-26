@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
 import { theme } from '../../../global';
@@ -17,15 +17,24 @@ const Wrapper = styled.div`
   background-color: ${color.black};
 `;
 
-const Hero = () => (
-  <Wrapper>
-    <Canvas camera={{ position: [0, 0, 20] }}>
-      <ambientLight intensity={0.1} />
-      <Suspense fallback={null}>
-        <Model position={[0, -10, 0]} />
-      </Suspense>
-    </Canvas>
-  </Wrapper>
-);
+const Hero = () => {
+  const mouse = useRef([0, 0]);
+  const onMouseMove = useCallback(
+    ({ clientX: x, clientY: y }) =>
+      (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
+    []
+  );
+
+  return (
+    <Wrapper>
+      <Canvas camera={{ position: [0, 0, 15] }} onMouseMove={onMouseMove}>
+        <ambientLight intensity={0.1} />
+        <Suspense fallback={null}>
+          <Model mouse={mouse} position={[0, -10, 0]} rotation={[0.5, -2, 0]} />
+        </Suspense>
+      </Canvas>
+    </Wrapper>
+  );
+};
 
 export default Hero;
