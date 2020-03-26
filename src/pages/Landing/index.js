@@ -1,9 +1,6 @@
 import React from 'react';
+import { Hero } from '../../components';
 
-const Landing = () => {
-  return (
-    <h1>Base</h1>
-  );
-};
+const Landing = () => <Hero />;
 
 export default Landing;
