@@ -41,6 +41,12 @@ const Model = ({ mouse, ...props }) => {
         0 + mouse.current[0] / aspect / 500,
         0.05
       );
+
+      camera.rotation.x = lerp(
+        camera.rotation.x,
+        0 + mouse.current[1] / aspect / 200,
+        0.02
+      );
     }
   });
 
