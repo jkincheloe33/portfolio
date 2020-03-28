@@ -12,13 +12,13 @@ const slideIn = keyframes`
 `;
 
 const Title = styled(H1)`
-  animation: ${slideIn} 2000ms 1 forwards;
+  animation: ${slideIn} 3000ms 1 forwards;
   animation-delay: 4s;
   color: rgba(255, 255, 255, 0.6);
   left: 0;
   letter-spacing: 2vw;
   opacity: 0;
-  position: relative;
+  position: absolute;
   text-align: center;
   text-transform: lowercase;
   top: 50%;
