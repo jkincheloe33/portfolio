@@ -1,23 +1,37 @@
 import React, { Suspense, useCallback, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Canvas } from 'react-three-fiber';
 import { H1, theme } from '../../../global';
 import Model from './Model';
 
 const { color } = theme;
 
+const slideIn = keyframes`
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+`;
+
 const Title = styled(H1)`
-  color: rgba(255, 255, 255, 0.5);
+  animation: ${slideIn} 2000ms 1 forwards;
+  animation-delay: 4s;
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 900;
-  left: 0;
   letter-spacing: 2vw;
-  position: absolute;
-  top: 50%;
-  text-align: center;
+  opacity: 0;
+  position: relative;
   text-transform: lowercase;
-  transform: translateY(-50%);
   width: 100%;
   z-index: 1;
+`;
+
+const TitleWrapper = styled.div`
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+  right: 0;
+  top: 50%;
+  text-align: center;
+  transform: translateY(-50%);
 `;
 
 const Wrapper = styled.div`
@@ -37,7 +51,9 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <Title>Josh Kincheloe</Title>
+      <TitleWrapper>
+        <Title>Josh Kincheloe</Title>
+      </TitleWrapper>
       <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
