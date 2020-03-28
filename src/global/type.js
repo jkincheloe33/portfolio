@@ -14,7 +14,7 @@ const {
 
 export const H1 = styled.h1`
   color: ${p => (p.inverted ? color.white : color.black)};
-  font-family: ${fontFamily.helvetica};
+  font-family: ${fontFamily.kanit};
   font-size: ${fontSize.h1};
   font-style: ${fontStyle.normal};
   font-weight: ${fontWeight.black};
@@ -26,7 +26,7 @@ export const H1 = styled.h1`
 // prettier-ignore
 export const H2 = styled.h2`
   color: ${p => (p.inverted ? color.white : color.orange)};
-  font-family: ${fontFamily.helvetica};
+  font-family: ${fontFamily.kanit};
   font-size: ${fontSize.h2};
   font-style: ${fontStyle.normal};
   font-weight: ${fontWeight.black};
@@ -42,7 +42,7 @@ export const H2 = styled.h2`
 
 export const H3 = styled.h3`
   color: ${p => (p.inverted ? color.white : color.orange)};
-  font-family: ${fontFamily.helvetica};
+  font-family: ${fontFamily.kanit};
   font-size: ${fontSize.h3};
   font-style: ${fontStyle.normal};
   font-weight: ${fontWeight.black};
@@ -53,7 +53,7 @@ export const H3 = styled.h3`
 
 export const H4 = styled.h4`
   color: ${p => (p.inverted ? color.white : color.grey)};
-  font-family: ${fontFamily.helvetica};
+  font-family: ${fontFamily.kanit};
   font-size: ${fontSize.h4};
   font-style: ${fontStyle.normal};
   font-weight: ${fontWeight.regular};
@@ -64,7 +64,7 @@ export const H4 = styled.h4`
 
 export const H5 = styled.h5`
   color: ${p => (p.inverted ? color.white : color.grey)};
-  font-family: ${fontFamily.helvetica};
+  font-family: ${fontFamily.kanit};
   font-size: ${fontSize.h5};
   font-style: ${fontStyle.normal};
   font-weight: ${fontWeight.regular};
@@ -75,7 +75,7 @@ export const H5 = styled.h5`
 
 export const H6 = styled.h6`
   color: ${p => (p.inverted ? color.white : color.grey)};
-  font-family: ${fontFamily.helvetica};
+  font-family: ${fontFamily.kanit};
   font-size: ${fontSize.h6};
   font-style: ${fontStyle.normal};
   font-weight: ${fontWeight.regular};
@@ -87,7 +87,7 @@ export const H6 = styled.h6`
 // prettier-ignore
 export const P = styled.p`
   color: ${p => (p.inverted ? color.white : color.grey)};
-  font-family: ${fontFamily.helvetica};
+  font-family: ${fontFamily.kanit};
   font-size: ${fontSize.p};
   font-style: ${fontStyle.normal};
   font-weight: ${fontWeight.regular};

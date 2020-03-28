@@ -1,29 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { extend, useFrame, useThree } from 'react-three-fiber';
+import React, { useEffect, useState } from 'react';
+import { useFrame, useThree } from 'react-three-fiber';
 import lerp from 'lerp';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
-extend({ OrbitControls });
-
-export const Controls = () => {
-  const { camera, gl } = useThree();
-  const orbitRef = useRef(null);
-
-  useFrame(() => {
-    orbitRef.current.update();
-  });
-
-  return (
-    <orbitControls
-      args={[camera, gl.domElement]}
-      // enableZoom={false}
-      // maxPolarAngle={Math.PI / 3}
-      // minPolarAngle={Math.PI / 3}
-      ref={orbitRef}
-    />
-  );
-};
 
 const Model = ({ mouse, ...props }) => {
   const [model, setModel] = useState();

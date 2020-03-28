@@ -8,9 +8,9 @@ export const GlobalStyles = createGlobalStyle`
   body {
     overflow-x: hidden;
 
-    @import url('https://fonts.googleapis.com/css?family=Domine:400,700&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Kanit:400,900&display=swap');
     h1, h2, h3, h4, h5, h6, p, a {
-      font-family: 'Domine', serif;
+      font-family: 'Kanit', sans-serif;
     }
   }
   #root,

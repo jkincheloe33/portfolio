@@ -1,20 +1,30 @@
 import React, { Suspense, useCallback, useRef } from 'react';
 import styled from 'styled-components';
-import { Canvas as CanvasBase } from 'react-three-fiber';
-import { theme } from '../../../global';
+import { Canvas } from 'react-three-fiber';
+import { H1, theme } from '../../../global';
 import Model from './Model';
 
 const { color } = theme;
 
-const Canvas = styled(CanvasBase)`
-  canvas {
-    height: 100vh;
-    width: 100%;
-  }
+const Title = styled(H1)`
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 900;
+  left: 0;
+  letter-spacing: 2vw;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  text-transform: lowercase;
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 1;
 `;
 
 const Wrapper = styled.div`
   background-color: ${color.black};
+  height: 100vh;
+  position: relative;
+  width: 100%;
 `;
 
 const Hero = () => {
@@ -27,6 +37,7 @@ const Hero = () => {
 
   return (
     <Wrapper>
+      <Title>Josh Kincheloe</Title>
       <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>

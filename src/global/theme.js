@@ -47,7 +47,7 @@ export default {
     easeIn: 'cubic-bezier(0.08, 0.02, 0.06, 1)'
   },
   fontFamily: {
-    helvetica: 'Domine, serif'
+    kanit: 'Kanit, sans-serif'
   },
   fontSize: {
     h1: '64px',
