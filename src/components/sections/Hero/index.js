@@ -15,23 +15,15 @@ const Title = styled(H1)`
   animation: ${slideIn} 2000ms 1 forwards;
   animation-delay: 4s;
   color: rgba(255, 255, 255, 0.6);
-  font-weight: 900;
+  left: 0;
   letter-spacing: 2vw;
   opacity: 0;
   position: relative;
-  text-transform: lowercase;
-  width: 100%;
-  z-index: 1;
-`;
-
-const TitleWrapper = styled.div`
-  left: 0;
-  position: absolute;
-  overflow: hidden;
-  right: 0;
-  top: 50%;
   text-align: center;
+  text-transform: lowercase;
+  top: 50%;
   transform: translateY(-50%);
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
@@ -51,9 +43,7 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <TitleWrapper>
-        <Title>Josh Kincheloe</Title>
-      </TitleWrapper>
+      <Title>Josh Kincheloe</Title>
       <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
