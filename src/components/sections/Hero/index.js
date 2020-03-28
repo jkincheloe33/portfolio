@@ -27,10 +27,10 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <Canvas camera={{ position: [0, 0, 15] }} onMouseMove={onMouseMove}>
+      <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
-          <Model mouse={mouse} position={[0, -10, 0]} rotation={[0.5, -2, 0]} />
+          <Model mouse={mouse} position={[3, -9, 0]} rotation={[0.5, -2, 0]} />
         </Suspense>
       </Canvas>
     </Wrapper>

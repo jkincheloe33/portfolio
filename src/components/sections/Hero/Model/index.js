@@ -35,20 +35,27 @@ const Model = ({ mouse, ...props }) => {
   }, []);
 
   useFrame(() => {
-    if (camera) {
-      camera.rotation.y = lerp(
-        camera.rotation.y,
-        0 + mouse.current[0] / aspect / 500,
-        0.05
-      );
-
-      camera.rotation.x = lerp(
-        camera.rotation.x,
-        0 + mouse.current[1] / aspect / 200,
-        0.02
-      );
+    if (camera && camera.position.z > 15) {
+      camera.position.z = lerp(camera.position.z, 15, 0.03);
+      camera.rotation.y = lerp(camera.rotation.y, -0.5, 0.03);
     }
   });
+
+  // useFrame(() => {
+  //   if (camera) {
+  //     camera.rotation.y = lerp(
+  //       camera.rotation.y,
+  //       0 + mouse.current[0] / aspect / 500,
+  //       0.05
+  //     );
+
+  //     camera.rotation.x = lerp(
+  //       camera.rotation.x,
+  //       0 + mouse.current[1] / aspect / 200,
+  //       0.02
+  //     );
+  //   }
+  // });
 
   return model ? <primitive {...props} object={model.scene} /> : null;
 };
