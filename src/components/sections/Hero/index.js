@@ -54,6 +54,7 @@ const Hero = () => {
       <Title>Josh Kincheloe</Title>
       <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
+        {/* <fog attach="fog" args={['rgba(84, 255, 5, 0.1)', 5, 5]} /> */}
         <Suspense fallback={null}>
           <Model mouse={mouse} position={[0, -7, 0]} rotation={[0.5, -3, 0]} />
         </Suspense>
