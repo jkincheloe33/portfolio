@@ -42,12 +42,12 @@ const Hero = () => {
   return (
     <Wrapper>
       <Title>Josh Kincheloe</Title>
-      {/* <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
+      <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model mouse={mouse} position={[0, -7, 0]} rotation={[0.5, -3, 0]} />
         </Suspense>
-      </Canvas> */}
+      </Canvas>
     </Wrapper>
   );
 };
