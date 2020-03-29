@@ -17,6 +17,9 @@
     "styled-components": "^5.0.1",
     "three": "^0.115.0"
   },
+  "engines": {
+    "node": "12.11.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
