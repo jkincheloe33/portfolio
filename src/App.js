@@ -4,7 +4,7 @@ import { GlobalStyles } from './global';
 import { Landing } from './pages';
 
 const App = () => (
-  <Router basename="/exp">
+  <Router basename="/portfolio">
     <>
       <GlobalStyles />
       <Switch>
