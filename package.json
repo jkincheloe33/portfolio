@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "gh-pages": "^2.2.0",
     "gsap": "^3.2.6",
     "lerp": "^1.0.3",
     "polished": "^3.5.1",
