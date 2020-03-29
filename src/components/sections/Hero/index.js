@@ -25,10 +25,20 @@ const Title = styled(H1)`
 `;
 
 const Wrapper = styled.div`
-  height: 100vh;
-  margin-bottom: 80px;
+  min-height: 100vh;
+  margin-bottom: 200px;
   position: relative;
   width: 100%;
+
+  &::after {
+    background: linear-gradient(transparent, black);
+    bottom: 0;
+    content: '';
+    height: 200px;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
 `;
 
 const Hero = () => {
