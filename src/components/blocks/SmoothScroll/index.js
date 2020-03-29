@@ -14,6 +14,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
+  background: black;
   bottom: 0;
   height: 100%;
   left: 0;

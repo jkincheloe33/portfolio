@@ -33,15 +33,10 @@ const sizing = Array.from({ length: baseValue + 1 }, (x, i) => ({
 export default {
   color: {
     black: '#000000',
-    darkBlue: '#08152C',
-    green: '#8EA13F',
+    green: '#54ff05',
     grey: '#3C3C3C',
     orange: '#F7821B',
-    rust: '#AD4925',
-    silver: '#E5E3DF',
-    teal: '#9BBDAA',
-    white: '#FFFFFF',
-    yellow: '#F6D342'
+    white: '#FFFFFF'
   },
   easing: {
     easeIn: 'cubic-bezier(0.08, 0.02, 0.06, 1)'
