@@ -1,6 +1,14 @@
 import React from 'react';
-import { Hero } from '../../components';
+import { Hero, Intro } from '../../components';
+import data from './data';
 
-const Landing = () => <Hero />;
+const { intro } = data;
+
+const Landing = () => (
+  <>
+    <Hero />
+    <Intro {...intro} />
+  </>
+);
 
 export default Landing;
