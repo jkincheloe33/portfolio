@@ -9,7 +9,7 @@ const Model = ({ mouse, ...props }) => {
   const aspect = size.width / viewport.width;
 
   useEffect(() => {
-    new GLTFLoader().load('/obj/hero/scene.gltf', setModel);
+    new GLTFLoader().load('./obj/hero/scene.gltf', setModel);
   }, []);
 
   useFrame(() => {
