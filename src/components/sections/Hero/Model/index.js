@@ -3,14 +3,15 @@ import { useFrame, useThree } from 'react-three-fiber';
 import lerp from 'lerp';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Model = ({ mouse, ...props }) => {
+const Model = ({ mouse, setLoaded, ...props }) => {
   const [model, setModel] = useState();
   const { camera, size, viewport } = useThree();
   const aspect = size.width / viewport.width;
 
   useEffect(() => {
     new GLTFLoader().load('./obj/hero/scene.gltf', setModel);
-  }, []);
+    setLoaded(true);
+  }, [setLoaded]);
 
   useFrame(() => {
     if (camera && camera.position.z > 15) {

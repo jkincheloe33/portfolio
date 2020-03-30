@@ -33,6 +33,7 @@ const sizing = Array.from({ length: baseValue + 1 }, (x, i) => ({
 export default {
   color: {
     black: '#000000',
+    blue: '#4287f5',
     green: '#54ff05',
     grey: '#3C3C3C',
     orange: '#F7821B',

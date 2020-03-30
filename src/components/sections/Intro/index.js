@@ -26,7 +26,7 @@ const Content = styled.div`
 `;
 
 const Copy = styled(P)`
-  color: ${color.green};
+  color: ${color.blue};
   font-weight: bold;
   opacity: 0;
   padding-left: 80px;
@@ -36,12 +36,11 @@ const Copy = styled(P)`
 
 // prettier-ignore
 const ImageWrapper = styled.div`
-  /* filter: blur(4px); */
   max-width: ${setColumnSpanSize(9)};
 `;
 
 const Title = styled(H1)`
-  color: ${color.green};
+  color: ${color.blue};
   font-size: 100px;
   margin-bottom: 100px;
 `;
