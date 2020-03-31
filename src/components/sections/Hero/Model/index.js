@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useFrame, useThree } from 'react-three-fiber';
 import lerp from 'lerp';
+import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Model = ({ mouse, setLoaded, ...props }) => {
+const Model = ({ loaded, mouse, setLoaded, ...props }) => {
   const [model, setModel] = useState();
   const { camera, size, viewport } = useThree();
   const aspect = size.width / viewport.width;
+  const manager = new THREE.LoadingManager();
 
   useEffect(() => {
-    new GLTFLoader().load('./obj/hero/scene.gltf', setModel);
+    new GLTFLoader(manager).load('./obj/hero/scene.gltf', setModel);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  manager.onLoad = () => {
     setLoaded(true);
-  }, [setLoaded]);
+  };
 
   useFrame(() => {
-    if (camera && camera.position.z > 15) {
+    if (loaded && camera && camera.position.z > 15) {
       camera.position.z = lerp(camera.position.z, 15, 0.03);
       if (model) {
         model.scene.rotation.y = lerp(model.scene.rotation.y, -2.5, 0.03);

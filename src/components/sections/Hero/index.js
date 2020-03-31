@@ -1,10 +1,10 @@
 import React, { Suspense, useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Canvas } from 'react-three-fiber';
+import { Canvas as CanvasBase } from 'react-three-fiber';
 import { H1, shadeOf, theme } from '../../../global';
 import Model from './Model';
 
-const { color, easing } = theme;
+const { color } = theme;
 
 const slideIn = keyframes`
   0% { opacity: 0; }
@@ -14,6 +14,10 @@ const slideIn = keyframes`
 const spin = keyframes`
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+`;
+
+const Canvas = styled(CanvasBase)`
+  min-height: 100vh;
 `;
 
 // prettier-ignore
@@ -32,13 +36,13 @@ const Spinner = styled.div`
     content: '';
     height: 150px;
     width: 150px;
-
-    ${p => p.loaded && `
-      animation-play-state: paused;
-      transform: scale(0);
-      transition: transform 300ms ${easing.easeIn};
-    `}
   }
+
+  ${p => p.loaded && `
+    &::before {
+      display: none;
+    }
+  `}
 `;
 
 const SpinnerWrapper = styled.div`
@@ -49,14 +53,16 @@ const SpinnerWrapper = styled.div`
   pointer-events: ${p => (p.loaded ? 'none' : 'auto')};
   position: absolute;
   top: 0%;
-  transition: opacity 1000ms ${easing.easeIn};
+  transition: opacity 4000ms ease;
   width: 100%;
   z-index: 3;
 `;
 
+// prettier-ignore
 const Title = styled(H1)`
   animation: ${slideIn} 3000ms 1 forwards;
   animation-delay: 4s;
+  animation-play-state: paused;
   color: ${shadeOf(color.white, 0.6)};
   left: 0;
   letter-spacing: 2vw;
@@ -67,6 +73,10 @@ const Title = styled(H1)`
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
+
+  ${p => p.loaded && `
+    animation-play-state: running;
+  `}
 `;
 
 const Wrapper = styled.div`
@@ -98,13 +108,14 @@ const Hero = () => {
   return (
     <Wrapper>
       <SpinnerWrapper loaded={loaded}>
-        <Spinner />
+        <Spinner loaded={loaded} />
       </SpinnerWrapper>
-      <Title>Josh Kincheloe</Title>
+      <Title loaded={loaded}>Josh Kincheloe</Title>
       <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
+            loaded={loaded}
             mouse={mouse}
             position={[0, -7, 0]}
             rotation={[0.5, -3, 0]}
