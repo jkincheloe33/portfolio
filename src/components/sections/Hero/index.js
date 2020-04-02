@@ -1,10 +1,4 @@
-import React, {
-  Suspense,
-  useCallback,
-  useRef,
-  useState,
-  useEffect
-} from 'react';
+import React, { Suspense, useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
 import { H1, shadeOf, theme } from '../../../global';
