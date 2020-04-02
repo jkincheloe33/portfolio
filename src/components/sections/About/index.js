@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { theme } from '../../../global';
 import { Container as ContainerBase } from '../../blocks';
+import Background from './Background';
 import Meet, { meetHandler, MeetType } from './Meet';
 
 const { color, easing } = theme;
@@ -43,6 +44,7 @@ const About = ({ meet }) => {
 
   return (
     <Container>
+      <Background />
       <Meet {...meet} setRefs={setRefs} />
     </Container>
   );
