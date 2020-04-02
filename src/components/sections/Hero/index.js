@@ -1,4 +1,10 @@
-import React, { Suspense, useCallback, useRef, useState } from 'react';
+import React, {
+  Suspense,
+  useCallback,
+  useRef,
+  useState,
+  useEffect
+} from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
 import { H1, shadeOf, theme } from '../../../global';
@@ -6,14 +12,9 @@ import Model from './Model';
 
 const { color } = theme;
 
-const slideIn = keyframes`
+const fadeIn = keyframes`
   0% { opacity: 0; }
   100% { opacity: 1; }
-`;
-
-const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 `;
 
 const Canvas = styled(CanvasBase)`
@@ -21,33 +22,35 @@ const Canvas = styled(CanvasBase)`
 `;
 
 // prettier-ignore
-const Spinner = styled.div`
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
+const Progress = styled.div`
+  border: 2px solid ${color.white};
+  height: 20px;
+  overflow: hidden;
   position: relative;
-  width: 100%;
-
-  &::before {
-    animation: ${spin} 1s infinite;
-    border-top: 3px solid ${shadeOf(color.white, 0.8)};
-    border-radius: 50%;
-    content: '';
-    height: 150px;
-    width: 150px;
-  }
+  width: 50%;
 
   ${p => p.loaded && `
-    &::before {
-      display: none;
-    }
+    display: none;
   `}
 `;
 
-const SpinnerWrapper = styled.div`
-  background-color: ${color.black};
+const ProgressBar = styled.div`
+  background-color: ${color.white};
   height: 100%;
+  position: absolute;
+  right: 100%;
+  top: 0;
+  transform: translateX(-100%);
+  transition: transform 500ms ease;
+  width: 100%;
+`;
+
+const SpinnerWrapper = styled.div`
+  align-items: center;
+  background-color: ${color.black};
+  display: flex;
+  height: 100%;
+  justify-content: center;
   left: 0;
   opacity: ${p => (p.loaded ? 0 : 1)};
   pointer-events: ${p => (p.loaded ? 'none' : 'auto')};
@@ -60,7 +63,7 @@ const SpinnerWrapper = styled.div`
 
 // prettier-ignore
 const Title = styled(H1)`
-  animation: ${slideIn} 3000ms 1 forwards;
+  animation: ${fadeIn} 3000ms 1 forwards;
   animation-delay: 4s;
   animation-play-state: paused;
   color: ${shadeOf(color.white, 0.6)};
@@ -99,6 +102,7 @@ const Wrapper = styled.div`
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
   const mouse = useRef([0, 0]);
+  const progressRef = useRef(null);
   const onMouseMove = useCallback(
     ({ clientX: x, clientY: y }) =>
       (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
@@ -108,7 +112,9 @@ const Hero = () => {
   return (
     <Wrapper>
       <SpinnerWrapper loaded={loaded}>
-        <Spinner loaded={loaded} />
+        <Progress loaded={loaded}>
+          <ProgressBar ref={progressRef} />
+        </Progress>
       </SpinnerWrapper>
       <Title loaded={loaded}>Josh Kincheloe</Title>
       <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
@@ -118,6 +124,7 @@ const Hero = () => {
             loaded={loaded}
             mouse={mouse}
             position={[0, -7, 0]}
+            progressRef={progressRef}
             rotation={[0.5, -3, 0]}
             setLoaded={setLoaded}
           />
