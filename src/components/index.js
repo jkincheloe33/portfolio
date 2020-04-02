@@ -4,5 +4,5 @@ export { default as SmoothScroll } from './blocks/SmoothScroll';
 export { default as Youtube } from './blocks/Youtube';
 export { default as AspectRatio } from './elements/AspectRatio';
 export { default as Image, ImageType } from './elements/Image';
+export { default as About } from './sections/About';
 export { default as Hero } from './sections/Hero';
-export { default as Intro } from './sections/Intro';
