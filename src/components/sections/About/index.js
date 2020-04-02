@@ -1,12 +1,9 @@
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { theme } from '../../../global';
 import { Container as ContainerBase } from '../../blocks';
-import Background from './Background';
+import Background, { backgroundHandler } from './Background';
 import Meet, { meetHandler, MeetType } from './Meet';
-
-const { color, easing } = theme;
 
 const Container = styled(ContainerBase)`
   position: relative;
@@ -20,11 +17,13 @@ const About = ({ meet }) => {
   }, [refs]);
 
   function handleScroll(refs) {
+    const backgroundRefs = refs.filter(ref => ref.comp === 'Background');
     const meetRefs = refs.filter(ref => ref.comp === 'Meet');
     const refsCurrent = [...new Set(refs.map(ref => ref.ref.current && true))];
 
     if (refsCurrent.length === 1 && refsCurrent[0]) {
       document.addEventListener('scroll', () => {
+        backgroundHandler(backgroundRefs);
         meetHandler(meetRefs);
       });
     }
