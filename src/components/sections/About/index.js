@@ -9,6 +9,11 @@ const Container = styled(ContainerBase)`
   position: relative;
 `;
 
+const Placeholder = styled.div`
+  height: 700px;
+  width: 100%;
+`;
+
 const About = ({ background, meet }) => {
   const [refs, setRefs] = useReducer(selectedReducer, []);
 
@@ -45,6 +50,7 @@ const About = ({ background, meet }) => {
     <Container>
       <Background {...background} setRefs={setRefs} />
       <Meet {...meet} setRefs={setRefs} />
+      <Placeholder />
     </Container>
   );
 };

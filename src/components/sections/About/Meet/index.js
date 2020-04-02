@@ -13,7 +13,7 @@ import { setPayload } from '../utils';
 
 const { color, easing } = theme;
 
-const offset = 30;
+const offset = 40;
 
 const Content = styled.div`
   left: 0;
@@ -26,7 +26,7 @@ const Content = styled.div`
 `;
 
 const Copy = styled(P)`
-  color: ${color.blue};
+  color: ${color.white};
   font-weight: bold;
   opacity: 0;
   padding-left: 80px;
@@ -37,10 +37,22 @@ const Copy = styled(P)`
 // prettier-ignore
 const ImageWrapper = styled.div`
   max-width: ${setColumnSpanSize(9)};
+  position: relative;
+
+  &::before {
+    background-color: ${color.black};
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 `;
 
 const Title = styled(H1)`
-  color: ${color.blue};
+  color: ${color.white};
   font-size: 100px;
   margin-bottom: 100px;
 `;

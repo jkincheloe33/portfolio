@@ -11,7 +11,7 @@ const offset = 50;
 const Title = styled(H1)`
   color: ${p => (p.even ? color.white : color.yellow)};
   font-size: 200px;
-  line-height: 160px;
+  line-height: 180px;
   transform: ${p => (p.even ? `translateX(-${offset}%)` : `translateX(0)`)};
   white-space: nowrap;
 `;
