@@ -9,6 +9,7 @@ import {
   theme
 } from '../../../../global';
 import { Image, ImageType } from '../../../elements';
+import { setPayload } from '../utils';
 
 const { color, easing } = theme;
 
@@ -102,10 +103,7 @@ const Meet = ({ copy, image, setRefs, title }) => {
   ];
 
   useEffect(() => {
-    refs.forEach(ref => {
-      const payload = { payload: ref, type: 'create' };
-      setRefs(payload);
-    });
+    setPayload(refs, setRefs);
     // eslint-disable-next-line
   }, []);
 

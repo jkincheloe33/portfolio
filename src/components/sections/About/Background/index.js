@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -10,10 +11,16 @@ const Wrapper = styled.div`
   width: 120%;
 `;
 
-const Background = () => (
-  <Wrapper>
-    <h1>Base</h1>
-  </Wrapper>
-);
+const Background = ({ setRefs }) => {
+  return (
+    <Wrapper>
+      <h1>Base</h1>
+    </Wrapper>
+  );
+};
+
+Background.propTypes = {
+  setRefs: PropTypes.func
+};
 
 export default Background;

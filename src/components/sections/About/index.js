@@ -44,7 +44,7 @@ const About = ({ meet }) => {
 
   return (
     <Container>
-      <Background />
+      <Background setRefs={setRefs} />
       <Meet {...meet} setRefs={setRefs} />
     </Container>
   );
