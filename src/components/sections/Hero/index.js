@@ -35,7 +35,7 @@ const ProgressBar = styled.div`
   right: 100%;
   top: 0;
   transform: translateX(-100%);
-  transition: transform 500ms ease;
+  transition: transform 3500ms ease;
   width: 100%;
 `;
 

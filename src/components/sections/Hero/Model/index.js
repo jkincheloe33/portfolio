@@ -23,7 +23,7 @@ const Model = ({ loaded, mouse, progressRef, setLoaded, ...props }) => {
     if (loaded === total)
       setTimeout(() => {
         setLoaded(true);
-      }, 500);
+      }, 3500);
   };
 
   useFrame(() => {
