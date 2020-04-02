@@ -37,7 +37,8 @@ export default {
     green: '#54ff05',
     grey: '#3C3C3C',
     orange: '#F7821B',
-    white: '#FFFFFF'
+    white: '#FFFFFF',
+    yellow: '#e1ad01'
   },
   easing: {
     easeIn: 'cubic-bezier(0.08, 0.02, 0.06, 1)'

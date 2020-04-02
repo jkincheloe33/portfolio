@@ -50,6 +50,7 @@ const Wrapper = styled.div`
   justify-content: flex-end;
   padding: 80px 0;
   position: relative;
+  z-index: 1;
 `;
 
 const meetEnum = {
@@ -71,7 +72,7 @@ export const meetHandler = meetRefs => {
   if (scroll < height && scroll > 0) {
     const percentage = ((height - scroll) / (height * 3)) * 100;
     contentRef.style.transform = `translateX(${-offset + percentage}%)`;
-    imageRef.style.opacity = (height - scroll) / (height * 3);
+    imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
     if (scroll < height / 2) {
       copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;

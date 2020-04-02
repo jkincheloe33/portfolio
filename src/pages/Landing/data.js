@@ -1,5 +1,12 @@
 export default {
   about: {
+    background: {
+      titles: [
+        'Lorem Ipsum Solor. Lorem Ipsum Solor.',
+        'Lorem Ipsum Solor. Lorem Ipsum Solor.',
+        'Lorem Ipsum Solor. Lorem Ipsum Solor.'
+      ]
+    },
     meet: {
       copy:
         '30 year old musician and developer currently living in Nashville. I enjoy music, traveling and the ocassional face mask night with my wife.',
