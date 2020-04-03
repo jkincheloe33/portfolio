@@ -86,7 +86,7 @@ export const H6 = styled.h6`
 
 // prettier-ignore
 export const P = styled.p`
-  color: ${p => (p.inverted ? color.white : color.grey)};
+  color: ${color.white};
   font-family: ${fontFamily.kanit};
   font-size: ${fontSize.p};
   font-style: ${fontStyle.normal};

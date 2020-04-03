@@ -3,18 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Container as ContainerBase } from '../../blocks';
 import Background, { backgroundHandler, BackgroundType } from './Background';
+import Details, { DetailsType } from './Details';
 import Meet, { meetHandler, MeetType } from './Meet';
 
 const Container = styled(ContainerBase)`
   position: relative;
 `;
 
-const Placeholder = styled.div`
-  height: 700px;
-  width: 100%;
-`;
-
-const About = ({ background, meet }) => {
+const About = ({ background, details, meet }) => {
   const [refs, setRefs] = useReducer(selectedReducer, []);
 
   useEffect(() => {
@@ -50,13 +46,14 @@ const About = ({ background, meet }) => {
     <Container>
       <Background {...background} setRefs={setRefs} />
       <Meet {...meet} setRefs={setRefs} />
-      <Placeholder />
+      <Details {...details} setRefs={setRefs} />
     </Container>
   );
 };
 
 About.propTypes = {
   background: PropTypes.shape(BackgroundType).isRequired,
+  details: PropTypes.shape(DetailsType).isRequired,
   meet: PropTypes.shape(MeetType).isRequired
 };
 

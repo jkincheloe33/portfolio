@@ -7,6 +7,11 @@ export default {
         'Lorem Ipsum Solor. Lorem Ipsum Solor.'
       ]
     },
+    details: {
+      copy:
+        'Sed pretium elit in massa ultrices, eu eleifend neque dignissim. Quisque consectetur convallis dolor non fermentum. Vestibulum tempor felis tortor, eget dignissim sapien pretium vel. In ut pretium lorem.',
+      image: './img/me4.jpg'
+    },
     meet: {
       copy:
         '30 year old musician and developer currently living in Nashville. I enjoy music, traveling and the ocassional face mask night with my wife.',

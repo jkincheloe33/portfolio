@@ -10,6 +10,7 @@ const { color } = theme;
 
 const Wrapper = styled.div`
   background-color: ${color.black};
+  overflow: hidden;
 `;
 
 const Landing = () => (
