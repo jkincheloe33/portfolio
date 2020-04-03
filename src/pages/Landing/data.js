@@ -10,7 +10,7 @@ export default {
     details: {
       copy:
         'Sed pretium elit in massa ultrices, eu eleifend neque dignissim. Quisque consectetur convallis dolor non fermentum. Vestibulum tempor felis tortor, eget dignissim sapien pretium vel. In ut pretium lorem.',
-      image: './img/me4.jpg'
+      image: './img/me4.JPG'
     },
     meet: {
       copy:
