@@ -111,7 +111,7 @@ const Hero = () => {
         </Progress>
       </SpinnerWrapper>
       <Title loaded={loaded}>Josh Kincheloe</Title>
-      <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
+      {/* <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
@@ -123,7 +123,7 @@ const Hero = () => {
             setLoaded={setLoaded}
           />
         </Suspense>
-      </Canvas>
+      </Canvas> */}
     </Wrapper>
   );
 };

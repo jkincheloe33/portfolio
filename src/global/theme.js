@@ -44,7 +44,7 @@ export default {
     easeIn: 'cubic-bezier(0.08, 0.02, 0.06, 1)'
   },
   fontFamily: {
-    kanit: 'Kanit, sans-serif'
+    poppins: 'Poppins, sans-serif'
   },
   fontSize: {
     h1: '64px',
@@ -54,7 +54,7 @@ export default {
     h5: '14px',
     h6: '12px',
     label: '16px',
-    p: '18px'
+    p: '16px'
   },
   fontStyle: {
     inherit: 'inherit',

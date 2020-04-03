@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
   getColumnSpanSize,
-  H1,
+  H2,
   P,
   setColumnSpanSize,
   theme
@@ -13,11 +13,11 @@ import { setPayload } from '../utils';
 
 const { color, easing } = theme;
 
-const offset = 40;
+const offset = 20;
 
 const Content = styled.div`
   left: 0;
-  max-width: ${getColumnSpanSize(6)}px;
+  max-width: ${getColumnSpanSize(5)}px;
   position: absolute;
   top: 140px;
   transform: translateX(-${offset}%);
@@ -27,16 +27,15 @@ const Content = styled.div`
 
 const Copy = styled(P)`
   color: ${color.white};
-  font-weight: bold;
   opacity: 0;
-  padding-left: 80px;
-  transform: translateY(${offset * 2}%);
+  padding-right: 50px;
+  transform: translateY(${offset * 3}%);
   transition: all 2000ms ${easing.easeIn};
 `;
 
 // prettier-ignore
 const ImageWrapper = styled.div`
-  max-width: ${setColumnSpanSize(9)};
+  max-width: ${setColumnSpanSize(8)};
   position: relative;
 
   &::before {
@@ -51,10 +50,26 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const Title = styled(H1)`
+const Title = styled(H2)`
   color: ${color.white};
-  font-size: 100px;
-  margin-bottom: 100px;
+  display: inline-block;
+  font-size: 75px;
+  font-style: italic;
+  line-height: 60px;
+  margin-bottom: 45px;
+  padding: 0 50px 30px 0;
+  position: relative;
+  text-transform: lowercase;
+
+  &::before {
+    background-color: ${color.white};
+    bottom: 0;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -89,8 +104,9 @@ export const meetHandler = meetRefs => {
     if (scroll < height / 2) {
       copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
     } else {
-      copyRef.style.cssText += `opacity: 0; transform: translateY(${offset *
-        2}%);`;
+      copyRef.style.cssText += `opacity: 0; transform: translateY(${
+        offset * 3
+      }%);`;
     }
   }
 };
@@ -123,7 +139,7 @@ const Meet = ({ copy, image, setRefs, title }) => {
   return (
     <Wrapper ref={refs[0].ref}>
       <Content ref={refs[1].ref}>
-        <Title as="h2">{title}</Title>
+        <Title>{title}</Title>
         <Copy ref={refs[2].ref}>{copy}</Copy>
       </Content>
       <ImageWrapper ref={refs[3].ref}>
