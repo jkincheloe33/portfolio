@@ -34,7 +34,19 @@ const Copy = styled(P)`
   transition: all 2000ms ${easing.easeIn};
 
   span {
-    text-decoration: line-through;
+    position: relative;
+
+    &::before {
+      background-color: ${color.yellow};
+      content: '';
+      height: 5px;
+      left: 50%;
+      opacity: 0.85;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 110%;
+    }
   }
 `;
 
