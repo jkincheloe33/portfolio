@@ -8,13 +8,11 @@ export default {
       ]
     },
     details: {
-      copy:
-        'Sed pretium elit in massa ultrices, eu eleifend neque dignissim. Quisque consectetur convallis dolor non fermentum. Vestibulum tempor felis tortor, eget dignissim sapien pretium vel. In ut pretium lorem.',
+      copy: `I won't sit here and recite keywords like <span>responsive design</span> | <span>problem solver</span> | <span>attention to detail</span> blah blah blah. Those should all go without saying. Instead, I built this page to showcase some of the things I'm capable of. (Also why are we still talking about responsive design in 2020 like it's a feature and optional...)`,
       image: './img/me4.JPG'
     },
     meet: {
-      copy:
-        'Quisque eu facilisis nibh, aliquam mollis nunc. Sed quis facilisis nunc, a venenatis sem. Nullam ullamcorper euismod libero id cursus. Praesent mollis blandit arcu quis imperdiet. Praesent vulputate nunc tincidunt, blandit justo consequat, condimentum sem. Mauris rutrum nulla vel sodales cursus. Nam commodo vehicula ante vel placerat. Vestibulum id est sapien.',
+      copy: `Josh here. I'm a musician & developer currently <span>living</span> quarantining in Nashville. Married and father of two cats. I enjoy music, travel and the ocassional face mask. On a more technical note, I enjoy all things frontend, and love to create create fun interactive experiences that bring pages to life.`,
       image: {
         alt: 'Josh in a bathtub with a wine glass',
         src: './img/me.jpg'

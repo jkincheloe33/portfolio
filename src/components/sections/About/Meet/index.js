@@ -5,6 +5,7 @@ import {
   getColumnSpanSize,
   H2,
   P,
+  parseContent,
   setColumnSpanSize,
   theme
 } from '../../../../global';
@@ -29,8 +30,12 @@ const Copy = styled(P)`
   color: ${color.white};
   opacity: 0;
   padding-right: 50px;
-  transform: translateY(${offset * 3}%);
+  transform: translateY(${offset}px);
   transition: all 2000ms ${easing.easeIn};
+
+  span {
+    text-decoration: line-through;
+  }
 `;
 
 // prettier-ignore
@@ -105,7 +110,7 @@ export const meetHandler = meetRefs => {
       copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
     } else {
       copyRef.style.cssText += `opacity: 0; transform: translateY(${
-        offset * 3
+        offset * 2
       }%);`;
     }
   }
@@ -140,7 +145,7 @@ const Meet = ({ copy, image, setRefs, title }) => {
     <Wrapper ref={refs[0].ref}>
       <Content ref={refs[1].ref}>
         <Title>{title}</Title>
-        <Copy ref={refs[2].ref}>{copy}</Copy>
+        <Copy dangerouslySetInnerHTML={parseContent(copy)} ref={refs[2].ref} />
       </Content>
       <ImageWrapper ref={refs[3].ref}>
         <Image {...image} />

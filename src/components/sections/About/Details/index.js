@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { P, setColumnSpanSize, theme } from '../../../../global';
+import { P, parseContent, setColumnSpanSize, theme } from '../../../../global';
 
 const { color } = theme;
 
 const Copy = styled(P)`
   margin-left: 30px;
-  max-width: ${setColumnSpanSize(4)};
+  max-width: ${setColumnSpanSize(6)};
   padding-top: 20px;
   position: relative;
 
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 const Details = ({ copy, image, setRefs }) => (
   <Wrapper>
     <ImageWrapper url={image} />
-    <Copy>{copy}</Copy>
+    <Copy dangerouslySetInnerHTML={parseContent(copy)} />
   </Wrapper>
 );
 
