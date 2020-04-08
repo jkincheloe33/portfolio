@@ -14,7 +14,7 @@ const Title = styled(H1)`
   display: flex;
   flex: 0 0 33%;
   font-size: 200px;
-  line-height: 180px;
+  line-height: 225px;
   overflow: hidden;
   white-space: nowrap;
 
