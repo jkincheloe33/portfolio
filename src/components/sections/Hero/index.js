@@ -1,7 +1,7 @@
 import React, { Suspense, useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
-import { H1, P, shadeOf, theme } from '../../../global';
+import { H1, shadeOf, theme } from '../../../global';
 import Loading from './Loading';
 import Model from './Model';
 
@@ -16,26 +16,6 @@ const Canvas = styled(CanvasBase)`
   min-height: 100vh;
   opacity: ${p => (p.animating ? 0 : 1)};
   transition: opacity 2000ms ${easing.easeIn};
-`;
-
-const LoadingText = styled(P)`
-  color: ${color.white};
-`;
-
-const SpinnerWrapper = styled.div`
-  align-items: center;
-  background-color: ${color.black};
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  opacity: ${p => (p.objectLoaded || p.animating ? 0 : 1)};
-  pointer-events: ${p => (p.objectLoaded ? 'none' : 'auto')};
-  position: absolute;
-  top: 0%;
-  transition: opacity 4000ms ease;
-  width: 100%;
-  z-index: 3;
 `;
 
 // prettier-ignore
@@ -88,11 +68,6 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <SpinnerWrapper animating={animating} objectLoaded={objectLoaded}>
-        <LoadingText>
-          loading <span>...</span>
-        </LoadingText>
-      </SpinnerWrapper>
       <Loading animating={animating} setAnimating={setAnimating} />
       <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
       <Canvas

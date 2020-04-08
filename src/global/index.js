@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   body,
   html {
-    background-color: black;
+    background-color: black !important;
   }
   #root,
   body,

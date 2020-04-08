@@ -5,6 +5,8 @@ import { H1, theme } from '../../../../global';
 
 const { color, easing } = theme;
 
+const delay = 200;
+
 // prettier-ignore
 const Title = styled(H1)`
   align-items: center;
@@ -21,8 +23,8 @@ const Title = styled(H1)`
     overflow: hidden;
     opacity: 0;
     position: relative;
-    transform: rotateZ(3deg) translateY(165%);
-    transition: all 1500ms ${easing.easeIn};
+    transform: rotateZ(5deg) translateY(165%);
+    transition: all 2500ms ${easing.easeIn};
 
     &::before,
     &::after {
@@ -33,7 +35,7 @@ const Title = styled(H1)`
       position: absolute;
       top: 0;
       transform: ${p => (p.loaded ? 'translateX(101%)' : 'translateX(-101%)')};
-      transition: transform 1500ms cubic-bezier(.95,.02,.52,.82);
+      transition: transform 1500ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
       transition-delay: 3000ms;
       width: 100%;
     }
@@ -41,6 +43,24 @@ const Title = styled(H1)`
     &::after {
       background-color: ${color.black};
       transform: ${p => (p.loaded ? 'translateX(1%)' : 'translateX(-201%)')};
+    }
+  }
+
+  &:nth-of-type(2) span {
+    transition-delay: ${delay}ms;
+
+    &::before,
+    &::after {
+      transition-delay: ${3000 + (delay * 2)}ms;
+    }
+  }
+
+  &:nth-of-type(3) span {
+    transition-delay: ${delay * 2}ms;
+
+    &::before,
+    &::after {
+      transition-delay: ${3000 + (delay * 3)}ms;
     }
   }
 
