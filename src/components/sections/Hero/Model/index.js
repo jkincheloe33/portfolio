@@ -4,7 +4,13 @@ import lerp from 'lerp';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Model = ({ loaded, mouse, progressRef, setLoaded, ...props }) => {
+const Model = ({
+  objectLoaded,
+  mouse,
+  progressRef,
+  setObjectLoaded,
+  ...props
+}) => {
   const [model, setModel] = useState();
   const { camera, size, viewport } = useThree();
   const aspect = size.width / viewport.width;
@@ -15,19 +21,20 @@ const Model = ({ loaded, mouse, progressRef, setLoaded, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  manager.onProgress = function(item, loaded, total) {
+  manager.onProgress = function (item, objectLoaded, total) {
     if (progressRef.current) {
-      progressRef.current.style.transform = `translateX(${(loaded / total) *
-        100}%)`;
+      progressRef.current.style.transform = `translateX(${
+        (objectLoaded / total) * 100
+      }%)`;
     }
-    if (loaded === total)
+    if (objectLoaded === total)
       setTimeout(() => {
-        setLoaded(true);
+        setObjectLoaded(true);
       }, 3500);
   };
 
   useFrame(() => {
-    if (loaded && camera && camera.position.z > 15) {
+    if (objectLoaded && camera && camera.position.z > 15) {
       camera.position.z = lerp(camera.position.z, 15, 0.03);
       if (model) {
         model.scene.rotation.y = lerp(model.scene.rotation.y, -2.5, 0.03);

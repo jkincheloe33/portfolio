@@ -2,6 +2,7 @@ import React, { Suspense, useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
 import { H1, shadeOf, theme } from '../../../global';
+import Loading from './Loading';
 import Model from './Model';
 
 const { color } = theme;
@@ -23,7 +24,7 @@ const Progress = styled.div`
   position: relative;
   width: 50%;
 
-  ${p => p.loaded && `
+  ${p => p.objectLoaded && `
     display: none;
   `}
 `;
@@ -46,8 +47,8 @@ const SpinnerWrapper = styled.div`
   height: 100%;
   justify-content: center;
   left: 0;
-  opacity: ${p => (p.loaded ? 0 : 1)};
-  pointer-events: ${p => (p.loaded ? 'none' : 'auto')};
+  opacity: ${p => (p.objectLoaded ? 0 : 1)};
+  pointer-events: ${p => (p.objectLoaded ? 'none' : 'auto')};
   position: absolute;
   top: 0%;
   transition: opacity 4000ms ease;
@@ -71,7 +72,7 @@ const Title = styled(H1)`
   transform: translateY(-50%);
   width: 100%;
 
-  ${p => p.loaded && `
+  ${p => p.objectLoaded && `
     animation-play-state: running;
   `}
 `;
@@ -94,7 +95,8 @@ const Wrapper = styled.div`
 `;
 
 const Hero = () => {
-  const [loaded, setLoaded] = useState(false);
+  const [animating, setAnimating] = useState(true);
+  const [objectLoaded, setObjectLoaded] = useState(false);
   const mouse = useRef([0, 0]);
   const progressRef = useRef(null);
   const onMouseMove = useCallback(
@@ -105,25 +107,26 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <SpinnerWrapper loaded={loaded}>
-        <Progress loaded={loaded}>
+      {/* <SpinnerWrapper objectLoaded={objectLoaded}>
+        <Progress objectLoaded={objectLoaded}>
           <ProgressBar ref={progressRef} />
         </Progress>
-      </SpinnerWrapper>
-      <Title loaded={loaded}>Josh Kincheloe</Title>
-      <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
+      </SpinnerWrapper> */}
+      <Loading setAnimating={setAnimating} />
+      <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
+      {/* <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
-            loaded={loaded}
+            objectLoaded={objectLoaded}
             mouse={mouse}
             position={[0, -7, 0]}
             progressRef={progressRef}
             rotation={[0.5, -3, 0]}
-            setLoaded={setLoaded}
+            setObjectLoaded={setObjectLoaded}
           />
         </Suspense>
-      </Canvas>
+      </Canvas> */}
     </Wrapper>
   );
 };
