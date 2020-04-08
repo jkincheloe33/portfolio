@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { H1, theme } from '../../../../global';
 
 const { color, easing } = theme;
 
 const delay = 200;
+
+const flash = keyframes`
+  0% { opacity: 1; }
+  50% { opacity: 0.25; }
+  100% { opacity: 1; }
+`;
 
 // prettier-ignore
 const Title = styled(H1)`
@@ -34,14 +40,16 @@ const Title = styled(H1)`
       left: 0;
       position: absolute;
       top: 0;
-      transform: ${p => (p.objectLoaded ? 'translateX(101%)' : 'translateX(-101%)')};
+      transform: ${p =>
+        p.objectLoaded ? 'translateX(101%)' : 'translateX(-101%)'};
       transition: transform 1500ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
       width: 100%;
     }
 
     &::after {
       background-color: ${color.black};
-      transform: ${p => (p.objectLoaded ? 'translateX(1%)' : 'translateX(-201%)')};
+      transform: ${p =>
+        p.objectLoaded ? 'translateX(1%)' : 'translateX(-201%)'};
     }
   }
 
@@ -55,6 +63,8 @@ const Title = styled(H1)`
   }
 
   &:nth-of-type(3) span {
+    animation: ${flash} 2000ms linear infinite;
+    animation-delay: 2500ms;
     transition-delay: ${delay * 2}ms;
 
     &::before,
@@ -69,6 +79,14 @@ const Title = styled(H1)`
     span {
       opacity: 1;
       transform: rotateZ(0) translateY(0);
+    }
+  `}
+
+  ${p =>
+    p.objectLoaded &&
+    `
+    span {
+      animation-play-state: paused;
     }
   `}
 `;
@@ -106,7 +124,7 @@ const Loading = ({ animating, objectLoaded }) => {
         <span>Be</span>
       </Title>
       <Title loaded={loaded} objectLoaded={objectLoaded}>
-        <span>Loading</span>
+        <span>Loading...</span>
       </Title>
     </Wrapper>
   );

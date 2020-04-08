@@ -32,6 +32,11 @@ const Model = ({
     }
   };
 
+  useEffect(() => {
+    if (ready) return (document.body.style = 'overflow-y: auto;');
+    document.body.style = 'overflow-y: hidden;';
+  }, [ready]);
+
   useFrame(() => {
     if (objectLoaded && ready && camera && camera.position.z > 15) {
       camera.position.z = lerp(camera.position.z, 15, 0.03);
