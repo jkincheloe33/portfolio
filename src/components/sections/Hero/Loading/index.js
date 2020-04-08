@@ -55,29 +55,33 @@ const Title = styled(H1)`
 `;
 
 const Wrapper = styled.div`
+  background-color: ${color.black};
   display: flex;
   flex-direction: column;
   height: 100%;
   left: 0;
+  opacity: ${p => (p.animating ? 1 : 0)};
   padding-left: 20px;
+  pointer-events: ${p => (p.animating ? 'auto' : 'none')};
   position: absolute;
   top: 0;
+  transition: opacity 2000ms ease;
   width: 100%;
   z-index: 4;
 `;
 
-const Loading = ({ setAnimating }) => {
+const Loading = ({ animating, setAnimating }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     setLoaded(true);
     setTimeout(() => {
       setAnimating(false);
-    }, 4500);
+    }, 5000);
   }, [setAnimating]);
 
   return (
-    <Wrapper>
+    <Wrapper animating={animating}>
       <Title loaded={loaded}>
         <span>Josh</span>
       </Title>
@@ -92,6 +96,7 @@ const Loading = ({ setAnimating }) => {
 };
 
 Loading.propTypes = {
+  animating: PropTypes.bool.isRequired,
   setAnimating: PropTypes.func.isRequired
 };
 

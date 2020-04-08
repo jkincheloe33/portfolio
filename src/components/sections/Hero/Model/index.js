@@ -5,9 +5,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const Model = ({
+  animating,
   objectLoaded,
   mouse,
-  progressRef,
   setObjectLoaded,
   ...props
 }) => {
@@ -22,11 +22,6 @@ const Model = ({
   }, []);
 
   manager.onProgress = function (item, objectLoaded, total) {
-    if (progressRef.current) {
-      progressRef.current.style.transform = `translateX(${
-        (objectLoaded / total) * 100
-      }%)`;
-    }
     if (objectLoaded === total)
       setTimeout(() => {
         setObjectLoaded(true);
@@ -34,7 +29,7 @@ const Model = ({
   };
 
   useFrame(() => {
-    if (objectLoaded && camera && camera.position.z > 15) {
+    if (objectLoaded && !animating && camera && camera.position.z > 15) {
       camera.position.z = lerp(camera.position.z, 15, 0.03);
       if (model) {
         model.scene.rotation.y = lerp(model.scene.rotation.y, -2.5, 0.03);

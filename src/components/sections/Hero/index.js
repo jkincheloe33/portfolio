@@ -1,11 +1,11 @@
 import React, { Suspense, useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
-import { H1, shadeOf, theme } from '../../../global';
+import { H1, P, shadeOf, theme } from '../../../global';
 import Loading from './Loading';
 import Model from './Model';
 
-const { color } = theme;
+const { color, easing } = theme;
 
 const fadeIn = keyframes`
   0% { opacity: 0; }
@@ -14,30 +14,12 @@ const fadeIn = keyframes`
 
 const Canvas = styled(CanvasBase)`
   min-height: 100vh;
+  opacity: ${p => (p.animating ? 0 : 1)};
+  transition: opacity 2000ms ${easing.easeIn};
 `;
 
-// prettier-ignore
-const Progress = styled.div`
-  border: 2px solid ${color.white};
-  height: 20px;
-  overflow: hidden;
-  position: relative;
-  width: 50%;
-
-  ${p => p.objectLoaded && `
-    display: none;
-  `}
-`;
-
-const ProgressBar = styled.div`
-  background-color: ${color.white};
-  height: 100%;
-  position: absolute;
-  right: 100%;
-  top: 0;
-  transform: translateX(-100%);
-  transition: transform 3500ms ease;
-  width: 100%;
+const LoadingText = styled(P)`
+  color: ${color.white};
 `;
 
 const SpinnerWrapper = styled.div`
@@ -47,7 +29,7 @@ const SpinnerWrapper = styled.div`
   height: 100%;
   justify-content: center;
   left: 0;
-  opacity: ${p => (p.objectLoaded ? 0 : 1)};
+  opacity: ${p => (p.objectLoaded || p.animating ? 0 : 1)};
   pointer-events: ${p => (p.objectLoaded ? 'none' : 'auto')};
   position: absolute;
   top: 0%;
@@ -98,7 +80,6 @@ const Hero = () => {
   const [animating, setAnimating] = useState(true);
   const [objectLoaded, setObjectLoaded] = useState(false);
   const mouse = useRef([0, 0]);
-  const progressRef = useRef(null);
   const onMouseMove = useCallback(
     ({ clientX: x, clientY: y }) =>
       (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
@@ -107,26 +88,30 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      {/* <SpinnerWrapper objectLoaded={objectLoaded}>
-        <Progress objectLoaded={objectLoaded}>
-          <ProgressBar ref={progressRef} />
-        </Progress>
-      </SpinnerWrapper> */}
-      <Loading setAnimating={setAnimating} />
+      <SpinnerWrapper animating={animating} objectLoaded={objectLoaded}>
+        <LoadingText>
+          loading <span>...</span>
+        </LoadingText>
+      </SpinnerWrapper>
+      <Loading animating={animating} setAnimating={setAnimating} />
       <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
-      {/* <Canvas camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
+      <Canvas
+        animating={animating}
+        camera={{ position: [0, 0, 100] }}
+        onMouseMove={onMouseMove}
+      >
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
+            animating={animating}
             objectLoaded={objectLoaded}
             mouse={mouse}
             position={[0, -7, 0]}
-            progressRef={progressRef}
             rotation={[0.5, -3, 0]}
             setObjectLoaded={setObjectLoaded}
           />
         </Suspense>
-      </Canvas> */}
+      </Canvas>
     </Wrapper>
   );
 };
