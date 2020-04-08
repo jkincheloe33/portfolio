@@ -34,15 +34,14 @@ const Title = styled(H1)`
       left: 0;
       position: absolute;
       top: 0;
-      transform: ${p => (p.loaded ? 'translateX(101%)' : 'translateX(-101%)')};
+      transform: ${p => (p.objectLoaded ? 'translateX(101%)' : 'translateX(-101%)')};
       transition: transform 1500ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
-      transition-delay: 3000ms;
       width: 100%;
     }
 
     &::after {
       background-color: ${color.black};
-      transform: ${p => (p.loaded ? 'translateX(1%)' : 'translateX(-201%)')};
+      transform: ${p => (p.objectLoaded ? 'translateX(1%)' : 'translateX(-201%)')};
     }
   }
 
@@ -51,7 +50,7 @@ const Title = styled(H1)`
 
     &::before,
     &::after {
-      transition-delay: ${3000 + (delay * 2)}ms;
+      transition-delay: ${delay * 2}ms;
     }
   }
 
@@ -60,7 +59,7 @@ const Title = styled(H1)`
 
     &::before,
     &::after {
-      transition-delay: ${3000 + (delay * 3)}ms;
+      transition-delay: ${delay * 3}ms;
     }
   }
 
@@ -86,30 +85,28 @@ const Wrapper = styled.div`
   position: absolute;
   top: 0;
   transition: opacity 2000ms ease;
+  transition-delay: 2500ms;
   width: 100%;
   z-index: 4;
 `;
 
-const Loading = ({ animating, setAnimating }) => {
+const Loading = ({ animating, objectLoaded }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     setLoaded(true);
-    setTimeout(() => {
-      setAnimating(false);
-    }, 5000);
-  }, [setAnimating]);
+  }, []);
 
   return (
     <Wrapper animating={animating}>
-      <Title loaded={loaded}>
-        <span>Josh</span>
-      </Title>
-      <Title loaded={loaded}>
-        <span>Kincheloe</span>
-      </Title>
-      <Title loaded={loaded}>
+      <Title loaded={loaded} objectLoaded={objectLoaded}>
         <span>Portfolio</span>
+      </Title>
+      <Title loaded={loaded} objectLoaded={objectLoaded}>
+        <span>Be</span>
+      </Title>
+      <Title loaded={loaded} objectLoaded={objectLoaded}>
+        <span>Loading</span>
       </Title>
     </Wrapper>
   );
@@ -117,7 +114,7 @@ const Loading = ({ animating, setAnimating }) => {
 
 Loading.propTypes = {
   animating: PropTypes.bool.isRequired,
-  setAnimating: PropTypes.func.isRequired
+  objectLoaded: PropTypes.bool.isRequired
 };
 
 export default Loading;

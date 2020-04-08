@@ -5,12 +5,13 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const Model = ({
-  animating,
   objectLoaded,
   mouse,
+  setAnimating,
   setObjectLoaded,
   ...props
 }) => {
+  const [ready, setReady] = useState(false);
   const [model, setModel] = useState();
   const { camera, size, viewport } = useThree();
   const aspect = size.width / viewport.width;
@@ -22,14 +23,17 @@ const Model = ({
   }, []);
 
   manager.onProgress = function (item, objectLoaded, total) {
-    if (objectLoaded === total)
+    if (objectLoaded === total) {
+      setAnimating(false);
+      setObjectLoaded(true);
       setTimeout(() => {
-        setObjectLoaded(true);
-      }, 3500);
+        setReady(true);
+      }, 2500);
+    }
   };
 
   useFrame(() => {
-    if (objectLoaded && !animating && camera && camera.position.z > 15) {
+    if (objectLoaded && ready && camera && camera.position.z > 15) {
       camera.position.z = lerp(camera.position.z, 15, 0.03);
       if (model) {
         model.scene.rotation.y = lerp(model.scene.rotation.y, -2.5, 0.03);

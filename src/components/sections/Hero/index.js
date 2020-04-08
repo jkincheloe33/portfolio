@@ -68,7 +68,11 @@ const Hero = () => {
 
   return (
     <Wrapper>
-      <Loading animating={animating} setAnimating={setAnimating} />
+      <Loading
+        animating={animating}
+        objectLoaded={objectLoaded}
+        setAnimating={setAnimating}
+      />
       <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
       <Canvas
         animating={animating}
@@ -78,11 +82,11 @@ const Hero = () => {
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
-            animating={animating}
             objectLoaded={objectLoaded}
             mouse={mouse}
             position={[0, -7, 0]}
             rotation={[0.5, -3, 0]}
+            setAnimating={setAnimating}
             setObjectLoaded={setObjectLoaded}
           />
         </Suspense>
