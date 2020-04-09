@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { About, Hero } from '../../components';
+import { About, Contact, Hero } from '../../components';
 import { theme } from '../../global';
 import data from './data';
 
@@ -17,6 +17,7 @@ const Landing = () => (
   <Wrapper>
     <Hero />
     <About {...about} />
+    <Contact />
   </Wrapper>
 );
 
