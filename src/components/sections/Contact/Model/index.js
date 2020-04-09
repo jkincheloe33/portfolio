@@ -6,8 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const Model = ({ mouse, ...props }) => {
   const [model, setModel] = useState();
-  const { camera, size, viewport } = useThree();
-  const aspect = size.width / viewport.width;
+  const { camera } = useThree();
   const manager = new THREE.LoadingManager();
 
   useEffect(() => {
