@@ -1,7 +1,7 @@
 import React, { Suspense, useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
-import { H1, shadeOf, theme } from '../../../global';
+import { H1, media, shadeOf, theme } from '../../../global';
 import Loading from './Loading';
 import Model from './Model';
 
@@ -54,6 +54,14 @@ const Wrapper = styled.div`
     position: absolute;
     right: 0;
   }
+
+  @media only screen and (max-width: 1272px) {
+    margin-bottom: 100px;
+  }
+
+  ${media.down.md`
+    margin-bottom: 50px;
+  `}
 `;
 
 const Hero = () => {
@@ -74,7 +82,7 @@ const Hero = () => {
         setAnimating={setAnimating}
       />
       <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
-      {/* <Canvas
+      <Canvas
         animating={animating}
         camera={{ position: [0, 0, 100] }}
         onMouseMove={onMouseMove}
@@ -90,7 +98,7 @@ const Hero = () => {
             setObjectLoaded={setObjectLoaded}
           />
         </Suspense>
-      </Canvas> */}
+      </Canvas>
     </Wrapper>
   );
 };

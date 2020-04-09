@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {
   getColumnSpanSize,
   H2,
+  media,
   P,
   parseContent,
   setColumnSpanSize,
@@ -24,6 +25,19 @@ const Content = styled.div`
   transform: translateX(-${offset}%);
   width: 100%;
   z-index: 1;
+
+  @media only screen and (max-width: 1272px) {
+    max-width: ${getColumnSpanSize(7)}px;
+    opacity: 0;
+    transform: translateY(${offset * 2}px);
+    transition: all 2000ms ${easing.easeIn};
+  }
+
+  ${media.down.md`
+    position: relative;
+    top: 0;
+    transform: translateY(${offset}px);
+  `}
 `;
 
 const Copy = styled(P)`
@@ -48,6 +62,11 @@ const Copy = styled(P)`
       width: 110%;
     }
   }
+
+  ${media.down.md`
+    padding-left: 25px;
+    padding-right: 0;
+  `}
 `;
 
 // prettier-ignore
@@ -65,12 +84,16 @@ const ImageWrapper = styled.div`
     top: 0;
     width: 100%;
   }
+
+  ${media.down.md`
+    max-width: none;
+    transform: translateY(-10vw);
+  `}
 `;
 
 const Title = styled(H2)`
   color: ${color.white};
   display: inline-block;
-  font-size: 75px;
   font-style: italic;
   line-height: 60px;
   margin-bottom: 45px;
@@ -87,6 +110,15 @@ const Title = styled(H2)`
     position: absolute;
     width: 100%;
   }
+
+  ${media.down.sm`
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+  `}
+
+  ${media.up.sm`
+    font-size: 75px;
+  `}
 `;
 
 const Wrapper = styled.div`
@@ -95,6 +127,11 @@ const Wrapper = styled.div`
   padding: 80px 0;
   position: relative;
   z-index: 1;
+
+  ${media.down.md`
+    display: block;
+    padding-top: 40px;
+  `}
 `;
 
 const meetEnum = {
@@ -114,18 +151,61 @@ export const meetHandler = (meetRefs, desktop) => {
   const height = compRef.getBoundingClientRect().height;
   const scroll = compRef.getBoundingClientRect().top;
 
-  if (scroll < height && scroll > 0) {
-    const percentage = ((height - scroll) / (height * 3)) * 100;
-    if (width > 1272)
+  if (scroll > 0) {
+    if (width > 1272 && scroll < height) {
+      const percentage = ((height - scroll) / (height * 3)) * 100;
+      // content container scroll animation
       contentRef.style.transform = `translateX(${-offset + percentage}%)`;
-    imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
-    if (scroll < height / 2) {
-      copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
+      // image animation
+      imageRef.style.opacity = (height - scroll) / (height * 0.75);
+
+      // paragraph text animation
+      if (scroll < height / 2) {
+        copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
+      } else {
+        copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
+      }
+    } else if (width < 768) {
+      const mobileHeight = height - 100;
+
+      // content container scroll animation
+      if (scroll < mobileHeight) {
+        contentRef.style.cssText += `opacity: 1; transform: translateY(0);`;
+      } else if (scroll > mobileHeight) {
+        contentRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
+      }
+
+      // image animation
+      imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
+
+      // paragraph text animation
+      if (scroll < mobileHeight / 1.15) {
+        copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
+      } else {
+        copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
+      }
     } else {
-      copyRef.style.cssText += `opacity: 0; transform: translateY(${
-        offset * 2
-      }%);`;
+      const mobileHeight = height + 75;
+
+      // content container scroll animation
+      if (scroll < mobileHeight) {
+        contentRef.style.cssText += `opacity: 1; transform: translateY(0);`;
+      } else if (scroll > mobileHeight) {
+        contentRef.style.cssText += `opacity: 0; transform: translateY(${
+          offset * 2
+        }%);`;
+      }
+
+      // image animation
+      imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
+
+      // paragraph text animation
+      if (scroll < mobileHeight / 2) {
+        copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
+      } else {
+        copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
+      }
     }
   }
 };

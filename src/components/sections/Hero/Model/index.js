@@ -33,8 +33,8 @@ const Model = ({
   };
 
   useEffect(() => {
-    if (ready) return (document.body.style = 'overflow-y: auto;');
-    document.body.style = 'overflow-y: hidden;';
+    if (ready) document.body.style = 'overflow-y: auto;';
+    if (!ready) document.body.style = 'overflow-y: hidden;';
   }, [ready]);
 
   useFrame(() => {
