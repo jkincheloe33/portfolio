@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { H1, theme } from '../../../../global';
+import { H1, media, theme, getColumnSpanSize } from '../../../../global';
 
 const { color, easing } = theme;
 
@@ -18,9 +18,7 @@ const Title = styled(H1)`
   align-items: center;
   color: white;
   display: flex;
-  flex: 0 0 33%;
-  font-size: 200px;
-  line-height: 225px;
+  line-height: 72px;
   overflow: hidden;
   white-space: nowrap;
 
@@ -89,6 +87,18 @@ const Title = styled(H1)`
       animation-play-state: paused;
     }
   `}
+
+  ${media.down.lg`
+    margin: 10px auto;
+    max-width: ${getColumnSpanSize(5)}px;
+    width: 100%;
+  `}
+
+  ${media.up.lg`
+    flex: 0 0 33%;
+    font-size: 200px;
+    line-height: 225px;
+  `}
 `;
 
 const Wrapper = styled.div`
@@ -106,6 +116,10 @@ const Wrapper = styled.div`
   transition-delay: 2500ms;
   width: 100%;
   z-index: 4;
+
+  ${media.down.lg`
+    justify-content: center;
+  `}
 `;
 
 const Loading = ({ animating, objectLoaded }) => {
@@ -118,10 +132,10 @@ const Loading = ({ animating, objectLoaded }) => {
   return (
     <Wrapper animating={animating}>
       <Title loaded={loaded} objectLoaded={objectLoaded}>
-        <span>Portfolio</span>
+        <span>Welcome.</span>
       </Title>
       <Title loaded={loaded} objectLoaded={objectLoaded}>
-        <span>Be</span>
+        <span>Page</span>
       </Title>
       <Title loaded={loaded} objectLoaded={objectLoaded}>
         <span>Loading...</span>
