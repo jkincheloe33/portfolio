@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { P, parseContent, setColumnSpanSize, theme } from '../../../../global';
+import {
+  media,
+  P,
+  parseContent,
+  setColumnSpanSize,
+  theme
+} from '../../../../global';
 
 const { color } = theme;
 
@@ -20,6 +26,11 @@ const Copy = styled(P)`
     top: 0;
     width: 100%;
   }
+
+  ${media.down.md`
+    margin: 40px 0 0;
+    max-width: none;
+  `}
 `;
 
 const ImageWrapper = styled.div`
@@ -31,13 +42,21 @@ const ImageWrapper = styled.div`
   opacity: 0.95;
   position: relative;
   width: 100%;
+
+  ${media.down.md`
+    height: 60vw;
+    max-width: none;
+  `}
 `;
 
 const Wrapper = styled.div`
-  align-items: flex-end;
-  display: flex;
   margin-top: 200px;
   padding-bottom: 200px;
+
+  ${media.up.md`
+    align-items: flex-end;
+    display: flex;
+  `}
 `;
 
 const Details = ({ copy, image, setRefs }) => (

@@ -23,10 +23,14 @@ const Title = styled(H1)`
 
 const Wrapper = styled.div`
   bottom: 0;
-  left: -10%;
+  left: -50%;
   position: absolute;
-  width: 120%;
+  width: 200%;
   z-index: 0;
+
+  ${media.down.md`
+    bottom: 500px;
+  `}
 `;
 
 const backgroundEnum = {
@@ -48,8 +52,8 @@ export const backgroundHandler = refs => {
   titleTwo.style.transform = `translateX(-${scrolled}px)`;
   titleThree.style.transform = `translateX(calc(${scrolled}px - ${offset}%))`;
 
-  if (width < 667) {
-    compRef.style.transform = `translateY(-${scrolled * 2}px) rotateZ(-5deg)`;
+  if (width < 768) {
+    compRef.style.transform = `translateY(-${scrolled}px) rotateZ(-5deg)`;
   } else if (width < 959) {
     compRef.style.transform = `translateY(-${scrolled + 150}px) rotateZ(-5deg)`;
   } else {
