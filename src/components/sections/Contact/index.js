@@ -1,10 +1,14 @@
 import React, { Suspense, useCallback, useRef } from 'react';
 import styled from 'styled-components';
-import { Canvas } from 'react-three-fiber';
+import { Canvas as CanvasBase } from 'react-three-fiber';
 import { theme } from '../../../global';
 import Model from './Model';
 
 const { color } = theme;
+
+const Canvas = styled(CanvasBase)`
+  min-height: 100vh;
+`;
 
 const Wrapper = styled.div`
   min-height: 100vh;
