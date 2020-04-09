@@ -15,6 +15,12 @@ const About = ({ background, details, meet }) => {
 
   useEffect(() => {
     handleScroll(refs);
+
+    window.addEventListener('resize', handleScroll(refs));
+    return () => {
+      window.removeEventListener('resize', handleScroll(refs));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs]);
 
   function handleScroll(refs) {

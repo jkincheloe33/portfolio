@@ -104,18 +104,20 @@ const meetEnum = {
   IMAGE: 3
 };
 
-export const meetHandler = meetRefs => {
+export const meetHandler = (meetRefs, desktop) => {
   const compRef = meetRefs[meetEnum.COMP_REF].ref.current;
   const contentRef = meetRefs[meetEnum.CONTENT].ref.current;
   const copyRef = meetRefs[meetEnum.COPY].ref.current;
   const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
+  const width = window.innerWidth;
 
   const height = compRef.getBoundingClientRect().height;
   const scroll = compRef.getBoundingClientRect().top;
 
   if (scroll < height && scroll > 0) {
     const percentage = ((height - scroll) / (height * 3)) * 100;
-    contentRef.style.transform = `translateX(${-offset + percentage}%)`;
+    if (width > 1272)
+      contentRef.style.transform = `translateX(${-offset + percentage}%)`;
     imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
     if (scroll < height / 2) {
