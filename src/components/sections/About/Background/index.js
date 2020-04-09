@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { H1, theme } from '../../../../global';
+import { H1, media, theme } from '../../../../global';
 import { setPayload } from '../utils';
 
 const { color } = theme;
@@ -10,10 +10,15 @@ const offset = 50;
 
 const Title = styled(H1)`
   color: ${p => (p.even ? color.white : color.yellow)};
-  font-size: 200px;
-  line-height: 180px;
+  font-size: 100px;
+  line-height: 85px;
   transform: ${p => (p.even ? `translateX(-${offset}%)` : `translateX(0)`)};
   white-space: nowrap;
+
+  ${media.up.lg`
+    font-size: 200px;
+    line-height: 180px;
+  `}
 `;
 
 const Wrapper = styled.div`
@@ -36,12 +41,20 @@ export const backgroundHandler = refs => {
   const titleOne = refs[backgroundEnum.TITLE_ONE].ref.current;
   const titleTwo = refs[backgroundEnum.TITLE_TWO].ref.current;
   const titleThree = refs[backgroundEnum.TITLE_THREE].ref.current;
+  const width = window.innerWidth;
 
   const scrolled = window.pageYOffset * 0.3;
-  compRef.style.transform = `translateY(-${scrolled}px) rotateZ(-5deg)`;
   titleOne.style.transform = `translateX(calc(${scrolled}px - ${offset}%))`;
   titleTwo.style.transform = `translateX(-${scrolled}px)`;
   titleThree.style.transform = `translateX(calc(${scrolled}px - ${offset}%))`;
+
+  if (width < 667) {
+    compRef.style.transform = `translateY(-${scrolled * 2}px) rotateZ(-5deg)`;
+  } else if (width < 959) {
+    compRef.style.transform = `translateY(-${scrolled + 150}px) rotateZ(-5deg)`;
+  } else {
+    compRef.style.transform = `translateY(-${scrolled}px) rotateZ(-5deg)`;
+  }
 };
 
 const Background = ({ setRefs, titles }) => {
