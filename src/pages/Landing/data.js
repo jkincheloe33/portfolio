@@ -23,12 +23,18 @@ export default {
   contact: {
     icons: [
       {
-        alt: 'Email icon',
-        src: './img/mail.png'
+        image: {
+          alt: 'Email icon',
+          src: './img/mail.png'
+        },
+        link: 'mailto:jkincheloe33@gmail.com'
       },
       {
-        alt: 'LinkedIn icon',
-        src: './img/linkedin.png'
+        image: {
+          alt: 'LinkedIn icon',
+          src: './img/linkedin.png'
+        },
+        link: 'https://www.linkedin.com/in/joshkincheloe/'
       }
     ]
   }

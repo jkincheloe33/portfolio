@@ -13,12 +13,31 @@ const Anchor = styled.a`
     margin-left: 50px;
     margin-right: 0;
   }
+
+  ${media.down.lg`
+    margin-right: 25px;
+
+    &:last-of-type {
+      margin-left: 25px;
+      margin-right: 0;
+    }
+  `}
 `;
 
 const Icon = styled(Image)`
   background-color: ${color.yellow};
   border-radius: 50%;
+  transform: scale(1);
+  transition: transform 500ms ${easing.easeIn};
   width: 150px;
+
+  &:hover {
+    transform: scale(1.25);
+  }
+
+  ${media.down.lg`
+    width: 90px;
+  `}
 `;
 
 const Line = styled.div`
@@ -40,6 +59,12 @@ const Line = styled.div`
     transition-delay: 2000ms;
     width: 50%;
   }
+
+  ${media.down.lg`
+    &::before {
+      width: 85%;
+    }
+  `}
 `;
 
 const Social = styled.div`
@@ -109,7 +134,6 @@ const Wrapper = styled.div`
 const Contact = ({ icons }) => {
   const [animate, setAnimate] = useState(false);
   const compRef = useRef(null);
-  const titleRef = useRef(null);
 
   useEffect(() => {
     handleScroll();
@@ -125,7 +149,6 @@ const Contact = ({ icons }) => {
     if (compRef.current) {
       document.addEventListener('scroll', () => {
         const ref = compRef.current;
-        // const height = ref.getBoundingClientRect().height;
         const scroll = ref.getBoundingClientRect().top;
 
         if (!animate && scroll < 800) {
@@ -137,14 +160,14 @@ const Contact = ({ icons }) => {
 
   return (
     <Wrapper ref={compRef}>
-      <Title animate={animate} ref={titleRef}>
+      <Title animate={animate}>
         <span>Let's Party</span>
       </Title>
       <Line animate={animate} />
       <Social>
         {icons.map((icon, i) => (
-          <Anchor href="/">
-            <Icon {...icon} key={i} />
+          <Anchor href={icon.link} key={i} target="_blank">
+            <Icon {...icon.image} />
           </Anchor>
         ))}
       </Social>

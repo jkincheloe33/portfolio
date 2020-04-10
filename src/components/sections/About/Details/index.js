@@ -27,6 +27,10 @@ const Copy = styled(P)`
     width: 100%;
   }
 
+  span {
+    font-style: italic;
+  }
+
   ${media.down.md`
     margin: 40px 0 0;
     max-width: none;
