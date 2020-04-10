@@ -4,7 +4,7 @@ import { About, Contact, Hero } from '../../components';
 import { theme } from '../../global';
 import data from './data';
 
-const { about } = data;
+const { about, contact } = data;
 
 const { color } = theme;
 
@@ -17,7 +17,7 @@ const Landing = () => (
   <Wrapper>
     <Hero />
     <About {...about} />
-    <Contact />
+    <Contact {...contact} />
   </Wrapper>
 );
 

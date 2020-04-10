@@ -83,7 +83,7 @@ const Hero = () => {
         setAnimating={setAnimating}
       />
       <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
-      <Canvas
+      {/* <Canvas
         animating={animating}
         camera={{ position: [0, 0, 100] }}
         onMouseMove={onMouseMove}
@@ -99,7 +99,7 @@ const Hero = () => {
             rotation={[0.2, 0.4, 0]}
           />
         </Suspense>
-      </Canvas>
+      </Canvas> */}
     </Wrapper>
   );
 };

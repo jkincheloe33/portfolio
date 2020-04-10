@@ -1,14 +1,59 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Image, ImageType } from '../../../components';
 import { H1, media, theme } from '../../../global';
 
 const { color, easing } = theme;
+
+const Anchor = styled.a`
+  margin-right: 50px;
+
+  &:last-of-type {
+    margin-left: 50px;
+    margin-right: 0;
+  }
+`;
+
+const Icon = styled(Image)`
+  background-color: ${color.yellow};
+  border-radius: 50%;
+  width: 150px;
+`;
+
+const Line = styled.div`
+  margin: 60px 0;
+  overflow: hidden;
+  padding-top: 20px;
+  position: relative;
+
+  &::before {
+    background-color: ${color.white};
+    content: '';
+    height: 20px;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: ${p =>
+      p.animate ? 'translate(-50%, 0)' : 'translate(-50%, 100%)'};
+    transition: transform 1000ms ${easing.easeIn};
+    transition-delay: 2000ms;
+    width: 50%;
+  }
+`;
+
+const Social = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+`;
 
 // prettier-ignore
 const Title = styled(H1)`
   color: ${p => p.animate ? color.yellow : color.white};
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
   overflow: hidden;
   position: relative;
   text-align: center;
@@ -56,12 +101,12 @@ const Title = styled(H1)`
 `;
 
 const Wrapper = styled.div`
-  padding-bottom: 200px;
+  margin-bottom: 50px;
   position: relative;
   width: 100%;
 `;
 
-const Contact = () => {
+const Contact = ({ icons }) => {
   const [animate, setAnimate] = useState(false);
   const compRef = useRef(null);
   const titleRef = useRef(null);
@@ -89,15 +134,26 @@ const Contact = () => {
       });
     }
   };
-  console.log(animate);
 
   return (
     <Wrapper ref={compRef}>
       <Title animate={animate} ref={titleRef}>
         <span>Let's Party</span>
       </Title>
+      <Line animate={animate} />
+      <Social>
+        {icons.map((icon, i) => (
+          <Anchor href="/">
+            <Icon {...icon} key={i} />
+          </Anchor>
+        ))}
+      </Social>
     </Wrapper>
   );
+};
+
+Contact.propTypes = {
+  icons: PropTypes.arrayOf(PropTypes.shape(ImageType)).isRequired
 };
 
 export default Contact;

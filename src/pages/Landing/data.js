@@ -19,5 +19,17 @@ export default {
       },
       title: 'Hello, It Me.'
     }
+  },
+  contact: {
+    icons: [
+      {
+        alt: 'Email icon',
+        src: './img/mail.png'
+      },
+      {
+        alt: 'LinkedIn icon',
+        src: './img/linkedin.png'
+      }
+    ]
   }
 };
