@@ -17,7 +17,7 @@ const Landing = () => (
   <Wrapper>
     <Hero />
     <About {...about} />
-    <Contact />
+    {/* <Contact /> */}
   </Wrapper>
 );
 

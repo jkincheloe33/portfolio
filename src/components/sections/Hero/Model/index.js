@@ -13,12 +13,12 @@ const Model = ({
 }) => {
   const [ready, setReady] = useState(false);
   const [model, setModel] = useState();
-  const { camera, size, viewport } = useThree();
-  const aspect = size.width / viewport.width;
+  const [scroll, setScroll] = useState(false);
+  const { camera } = useThree();
   const manager = new THREE.LoadingManager();
 
   useEffect(() => {
-    new GLTFLoader(manager).load('./obj/hero/scene.gltf', setModel);
+    new GLTFLoader(manager).load('./obj/cloud/scene.gltf', setModel);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,24 +38,17 @@ const Model = ({
   }, [ready]);
 
   useFrame(() => {
-    if (objectLoaded && ready && camera && camera.position.z > 15) {
-      camera.position.z = lerp(camera.position.z, 15, 0.03);
+    if (objectLoaded && ready && camera && !scroll) {
+      camera.position.z = lerp(camera.position.z, 0, 0.03);
       if (model) {
-        model.scene.rotation.y = lerp(model.scene.rotation.y, -2.5, 0.03);
+        model.scene.rotation.y = lerp(model.scene.rotation.y, -0.6, 0.03);
       }
     }
-    if (camera.position.z < 15.5) {
-      camera.rotation.y = lerp(
-        camera.rotation.y,
-        0 + mouse.current[0] / aspect / 100,
-        0.005
-      );
 
-      camera.rotation.x = lerp(
-        camera.rotation.x,
-        0 + mouse.current[1] / aspect / 100,
-        0.005
-      );
+    if (!scroll && camera.position.z < 0.5) setScroll(true);
+
+    if (scroll) {
+      camera.position.z = lerp(camera.position.z, window.scrollY / 150, 0.025);
     }
   });
 

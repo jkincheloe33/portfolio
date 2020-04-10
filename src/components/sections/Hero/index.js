@@ -20,10 +20,10 @@ const Canvas = styled(CanvasBase)`
 
 // prettier-ignore
 const Title = styled(H1)`
-  animation: ${fadeIn} 3000ms 1 forwards;
+  animation: ${fadeIn} 4000ms 1 forwards;
   animation-delay: 4s;
   animation-play-state: paused;
-  color: ${shadeOf(color.white, 0.6)};
+  color: ${shadeOf(color.yellow, 0.9)};
   left: 0;
   letter-spacing: 2vw;
   opacity: 0;
@@ -33,6 +33,7 @@ const Title = styled(H1)`
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
+  z-index: 1;
 
   ${p => p.objectLoaded && `
     animation-play-state: running;
@@ -90,12 +91,12 @@ const Hero = () => {
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
-            objectLoaded={objectLoaded}
             mouse={mouse}
-            position={[0, -7, 0]}
-            rotation={[0.5, -3, 0]}
+            objectLoaded={objectLoaded}
             setAnimating={setAnimating}
             setObjectLoaded={setObjectLoaded}
+            position={[0, -3, 3]}
+            rotation={[0.2, 0.4, 0]}
           />
         </Suspense>
       </Canvas>
