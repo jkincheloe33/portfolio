@@ -161,7 +161,7 @@ const Contact = ({ icons }) => {
   return (
     <Wrapper ref={compRef}>
       <Title animate={animate}>
-        <span>Let's Party</span>
+        <span>Let's Chat</span>
       </Title>
       <Line animate={animate} />
       <Social>
