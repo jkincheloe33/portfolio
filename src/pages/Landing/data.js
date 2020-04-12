@@ -2,9 +2,9 @@ export default {
   about: {
     background: {
       titles: [
-        'Lorem Ipsum Solor. Lorem Ipsum Solor.',
-        'Lorem Ipsum Solor. Lorem Ipsum Solor.',
-        'Lorem Ipsum Solor. Lorem Ipsum Solor.'
+        'Josh Kincheloe. Josh Kincheloe.',
+        'Interactive Developer. Interactive Developer.',
+        'Josh Kincheloe. Josh Kincheloe.'
       ]
     },
     details: {
