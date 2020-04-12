@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useRef, useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
 import { H1, media, shadeOf, theme } from '../../../global';
@@ -68,12 +68,6 @@ const Wrapper = styled.div`
 const Hero = () => {
   const [animating, setAnimating] = useState(true);
   const [objectLoaded, setObjectLoaded] = useState(false);
-  const mouse = useRef([0, 0]);
-  const onMouseMove = useCallback(
-    ({ clientX: x, clientY: y }) =>
-      (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
-    []
-  );
 
   return (
     <Wrapper>
@@ -83,15 +77,10 @@ const Hero = () => {
         setAnimating={setAnimating}
       />
       <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
-      <Canvas
-        animating={animating}
-        camera={{ position: [0, 0, 100] }}
-        onMouseMove={onMouseMove}
-      >
+      <Canvas animating={animating} camera={{ position: [0, 0, 100] }}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
-            mouse={mouse}
             objectLoaded={objectLoaded}
             setAnimating={setAnimating}
             setObjectLoaded={setObjectLoaded}

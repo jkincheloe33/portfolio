@@ -1,44 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Image, ImageType } from '../../../components';
 import { H1, media, theme } from '../../../global';
+import Anchor, { AnchorType } from './Anchor';
 
 const { color, easing } = theme;
-
-const Anchor = styled.a`
-  margin-right: 50px;
-
-  &:last-of-type {
-    margin-left: 50px;
-    margin-right: 0;
-  }
-
-  ${media.down.lg`
-    margin-right: 25px;
-
-    &:last-of-type {
-      margin-left: 25px;
-      margin-right: 0;
-    }
-  `}
-`;
-
-const Icon = styled(Image)`
-  background-color: ${color.yellow};
-  border-radius: 50%;
-  transform: scale(1);
-  transition: transform 500ms ${easing.easeIn};
-  width: 150px;
-
-  &:hover {
-    transform: scale(1.25);
-  }
-
-  ${media.down.lg`
-    width: 90px;
-  `}
-`;
 
 const Line = styled.div`
   margin: 60px 0;
@@ -166,9 +132,7 @@ const Contact = ({ icons }) => {
       <Line animate={animate} />
       <Social>
         {icons.map((icon, i) => (
-          <Anchor href={icon.link} key={i} target="_blank">
-            <Icon {...icon.image} />
-          </Anchor>
+          <Anchor {...icon} key={i} />
         ))}
       </Social>
     </Wrapper>
@@ -176,7 +140,7 @@ const Contact = ({ icons }) => {
 };
 
 Contact.propTypes = {
-  icons: PropTypes.arrayOf(PropTypes.shape(ImageType)).isRequired
+  icons: PropTypes.arrayOf(PropTypes.shape(AnchorType)).isRequired
 };
 
 export default Contact;

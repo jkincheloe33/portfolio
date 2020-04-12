@@ -4,13 +4,7 @@ import lerp from 'lerp';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Model = ({
-  objectLoaded,
-  mouse,
-  setAnimating,
-  setObjectLoaded,
-  ...props
-}) => {
+const Model = ({ objectLoaded, setAnimating, setObjectLoaded, ...props }) => {
   const [ready, setReady] = useState(false);
   const [model, setModel] = useState();
   const [scroll, setScroll] = useState(false);
