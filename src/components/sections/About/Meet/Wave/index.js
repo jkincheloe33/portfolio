@@ -18,7 +18,7 @@ const Wave = () => {
 
   return (
     <mesh>
-      <planeGeometry attach="geometry" args={[6, 4, 16, 16]} />
+      <planeGeometry attach="geometry" args={[6, 4, 5, 5]} />
       <shaderMaterial
         attach="material"
         args={[

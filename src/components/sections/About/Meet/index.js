@@ -11,7 +11,7 @@ import {
   setColumnSpanSize,
   theme
 } from '../../../../global';
-import { Image, ImageType } from '../../../elements';
+import { ImageType } from '../../../elements';
 import { setPayload } from '../utils';
 import Wave from './Wave';
 
@@ -26,7 +26,7 @@ const Content = styled.div`
   top: 140px;
   transform: translateX(-${offset}%);
   width: 100%;
-  z-index: 1;
+  z-index: 2;
 
   @media only screen and (max-width: 1272px) {
     max-width: ${getColumnSpanSize(7)}px;
@@ -73,12 +73,12 @@ const Copy = styled(P)`
 
 // prettier-ignore
 const ImageWrapper = styled.div`
-  height: 400px;
+  height: 43vw;
   max-width: ${setColumnSpanSize(8)};
   position: relative;
   width: 100%;
 
-  /* &::before {
+  &::before {
     background-color: ${color.black};
     content: '';
     height: 100%;
@@ -87,12 +87,13 @@ const ImageWrapper = styled.div`
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 1;
   }
 
   ${media.down.md`
     max-width: none;
     transform: translateY(-10vw);
-  `} */
+  `}
 `;
 
 const Title = styled(H2)`
@@ -246,9 +247,7 @@ const Meet = ({ copy, image, setRefs, title }) => {
         <Copy dangerouslySetInnerHTML={parseContent(copy)} ref={refs[2].ref} />
       </Content>
       <ImageWrapper ref={refs[3].ref}>
-        {/* <Image {...image} /> */}
-        <Canvas>
-          {/* <ambientLight /> */}
+        <Canvas camera={{ position: [0, 0, 3.1] }}>
           <Suspense fallback={null}>
             <Wave />
           </Suspense>
