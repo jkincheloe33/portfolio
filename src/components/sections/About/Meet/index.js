@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
+import { Canvas } from 'react-three-fiber';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
@@ -12,6 +13,7 @@ import {
 } from '../../../../global';
 import { Image, ImageType } from '../../../elements';
 import { setPayload } from '../utils';
+import Wave from './Wave';
 
 const { color, easing } = theme;
 
@@ -71,10 +73,12 @@ const Copy = styled(P)`
 
 // prettier-ignore
 const ImageWrapper = styled.div`
+  height: 400px;
   max-width: ${setColumnSpanSize(8)};
   position: relative;
+  width: 100%;
 
-  &::before {
+  /* &::before {
     background-color: ${color.black};
     content: '';
     height: 100%;
@@ -88,7 +92,7 @@ const ImageWrapper = styled.div`
   ${media.down.md`
     max-width: none;
     transform: translateY(-10vw);
-  `}
+  `} */
 `;
 
 const Title = styled(H2)`
@@ -145,7 +149,7 @@ export const meetHandler = (meetRefs, desktop) => {
   const compRef = meetRefs[meetEnum.COMP_REF].ref.current;
   const contentRef = meetRefs[meetEnum.CONTENT].ref.current;
   const copyRef = meetRefs[meetEnum.COPY].ref.current;
-  const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
+  // const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
   const width = window.innerWidth;
 
   const height = compRef.getBoundingClientRect().height;
@@ -158,7 +162,7 @@ export const meetHandler = (meetRefs, desktop) => {
       contentRef.style.transform = `translateX(${-offset + percentage}%)`;
 
       // image animation
-      imageRef.style.opacity = (height - scroll) / (height * 0.75);
+      // imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
       // paragraph text animation
       if (scroll < height / 2) {
@@ -177,7 +181,7 @@ export const meetHandler = (meetRefs, desktop) => {
       }
 
       // image animation
-      imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
+      // imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
 
       // paragraph text animation
       if (scroll < mobileHeight / 1.15) {
@@ -198,7 +202,7 @@ export const meetHandler = (meetRefs, desktop) => {
       }
 
       // image animation
-      imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
+      // imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
 
       // paragraph text animation
       if (scroll < mobileHeight / 2) {
@@ -242,7 +246,13 @@ const Meet = ({ copy, image, setRefs, title }) => {
         <Copy dangerouslySetInnerHTML={parseContent(copy)} ref={refs[2].ref} />
       </Content>
       <ImageWrapper ref={refs[3].ref}>
-        <Image {...image} />
+        {/* <Image {...image} /> */}
+        <Canvas>
+          {/* <ambientLight /> */}
+          <Suspense fallback={null}>
+            <Wave />
+          </Suspense>
+        </Canvas>
       </ImageWrapper>
     </Wrapper>
   );
