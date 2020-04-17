@@ -1,20 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import * as THREE from 'three';
-import { useFrame, useLoader, useThree } from 'react-three-fiber';
+import { useLoader } from 'react-three-fiber';
 import { fragmentShader, vertexShader } from '../../utils';
 
-const Wave = () => {
-  const [texture] = useLoader(THREE.TextureLoader, ['./img/me.jpg']);
-  const { clock } = useThree();
+const Wave = ({ uniforms, url }) => {
+  const [texture] = useLoader(THREE.TextureLoader, [url]);
 
-  const uniforms = {
-    uTime: { value: 0.0 },
-    uTexture: { value: texture }
-  };
-
-  useFrame(() => {
-    uniforms.uTime.value = clock.elapsedTime / 1.5;
-  });
+  useEffect(() => {
+    uniforms.uTexture = { value: texture };
+  }, [texture, uniforms.uTexture]);
 
   return (
     <mesh>
@@ -32,6 +27,11 @@ const Wave = () => {
       />
     </mesh>
   );
+};
+
+Wave.propTypes = {
+  uniforms: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default Wave;

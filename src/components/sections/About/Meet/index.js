@@ -216,7 +216,7 @@ export const meetHandler = (meetRefs, desktop) => {
   }
 };
 
-const Meet = ({ copy, image, setRefs, title }) => {
+const Meet = ({ copy, image, setRefs, title, uniforms }) => {
   const refs = [
     {
       comp: 'Meet',
@@ -250,7 +250,7 @@ const Meet = ({ copy, image, setRefs, title }) => {
       <ImageWrapper ref={refs[3].ref}>
         <Canvas camera={{ position: [0, 0, 4] }}>
           <Suspense fallback={null}>
-            <Wave />
+            <Wave uniforms={uniforms} url={image.src} />
           </Suspense>
         </Canvas>
       </ImageWrapper>
@@ -266,7 +266,8 @@ export const MeetType = {
 
 Meet.propTypes = {
   ...MeetType,
-  setRefs: PropTypes.func.isRequired
+  setRefs: PropTypes.func.isRequired,
+  uniforms: PropTypes.object
 };
 
 export default Meet;

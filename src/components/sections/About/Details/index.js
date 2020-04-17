@@ -40,9 +40,6 @@ const Copy = styled(P)`
 `;
 
 const ImageWrapper = styled.div`
-  /* background-image: url(${p => p.url});
-  background-position: center center;
-  background-size: cover; */
   height: 30vw;
   max-width: ${setColumnSpanSize(5)};
   opacity: 0.95;
@@ -65,14 +62,14 @@ const Wrapper = styled.div`
   `}
 `;
 
-const Details = ({ copy, image, setRefs }) => (
+const Details = ({ copy, image, setRefs, uniforms }) => (
   <Wrapper>
     <ImageWrapper>
-      {/* <Canvas camera={{ position: [0, 0, 4] }}>
+      <Canvas camera={{ position: [0, 0, 4] }}>
         <Suspense fallback={null}>
-          <Wave url={image} />
+          <Wave uniforms={uniforms} url={image} />
         </Suspense>
-      </Canvas> */}
+      </Canvas>
     </ImageWrapper>
     <Copy dangerouslySetInnerHTML={parseContent(copy)} />
   </Wrapper>
@@ -85,7 +82,8 @@ export const DetailsType = {
 
 Details.propTypes = {
   ...DetailsType,
-  setRefs: PropTypes.func
+  setRefs: PropTypes.func,
+  uniforms: PropTypes.object
 };
 
 export default Details;

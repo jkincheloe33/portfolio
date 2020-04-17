@@ -11,11 +11,28 @@ const Container = styled(ContainerBase)`
 `;
 
 const About = ({ background, details, meet, setRefs }) => {
+  const uniforms = {
+    details: {
+      uTime: { value: 0.0 }
+    },
+    meet: {
+      uTime: { value: 0.0 }
+    }
+  };
+
+  const handleUniforms = () => {
+    uniforms.details.uTime.value += 0.01;
+    uniforms.meet.uTime.value += 0.01;
+    requestAnimationFrame(handleUniforms);
+  };
+
+  handleUniforms();
+
   return (
     <Container>
       <Background {...background} setRefs={setRefs} />
-      <Meet {...meet} setRefs={setRefs} />
-      <Details {...details} setRefs={setRefs} />
+      <Meet {...meet} setRefs={setRefs} uniforms={uniforms.meet} />
+      <Details {...details} uniforms={uniforms.details} setRefs={setRefs} />
     </Container>
   );
 };
