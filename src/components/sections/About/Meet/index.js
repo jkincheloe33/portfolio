@@ -150,7 +150,7 @@ export const meetHandler = (meetRefs, desktop) => {
   const compRef = meetRefs[meetEnum.COMP_REF].ref.current;
   const contentRef = meetRefs[meetEnum.CONTENT].ref.current;
   const copyRef = meetRefs[meetEnum.COPY].ref.current;
-  // const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
+  const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
   const width = window.innerWidth;
 
   const height = compRef.getBoundingClientRect().height;
@@ -163,7 +163,7 @@ export const meetHandler = (meetRefs, desktop) => {
       contentRef.style.transform = `translateX(${-offset + percentage}%)`;
 
       // image animation
-      // imageRef.style.opacity = (height - scroll) / (height * 0.75);
+      imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
       // paragraph text animation
       if (scroll < height / 2) {
@@ -247,7 +247,7 @@ const Meet = ({ copy, image, setRefs, title }) => {
         <Copy dangerouslySetInnerHTML={parseContent(copy)} ref={refs[2].ref} />
       </Content>
       <ImageWrapper ref={refs[3].ref}>
-        <Canvas camera={{ position: [0, 0, 3.1] }}>
+        <Canvas camera={{ position: [0, 0, 4] }}>
           <Suspense fallback={null}>
             <Wave />
           </Suspense>

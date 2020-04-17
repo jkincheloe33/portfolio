@@ -2,10 +2,15 @@ export const fragmentShader = `
   precision mediump float;
 
   varying vec2 vUv;
+  varying float vWave;
   uniform sampler2D uTexture;
 
   void main() {
-    vec3 texture = texture2D(uTexture, vUv).rgb;
+    float wave = vWave * 0.25;
+    float r = texture2D(uTexture, vUv).r;
+    float g = texture2D(uTexture, vUv).g;
+    float b = texture2D(uTexture, vUv + wave).b;
+    vec3 texture = vec3(r, g, b);
     gl_FragColor = vec4(texture, 1.);
   }
 `;
@@ -14,9 +19,9 @@ export const vertexShader = `
   precision mediump float;
 
   varying vec2 vUv;
+  varying float vWave;
   uniform float uTime;
 
-  //
   // Description : Array and textureless GLSL 2D/3D/4D simplex
   //               noise functions.
   //      Author : Ian McEwan, Ashima Arts.
@@ -25,7 +30,6 @@ export const vertexShader = `
   //     License : Copyright (C) 2011 Ashima Arts. All rights reserved.
   //               Distributed under the MIT License. See LICENSE file.
   //               https://github.com/ashima/webgl-noise
-  //
 
   vec3 mod289(vec3 x) {
     return x - floor(x * (1.0 / 289.0)) * 289.0;
@@ -126,6 +130,7 @@ export const vertexShader = `
     float noiseAmp = 0.15; 
     vec3 noisePos = vec3(pos.x * noiseFreq + uTime, pos.y, pos.z);
     pos.z += snoise(noisePos) * noiseAmp;
+    vWave = pos.z;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.);
   }
