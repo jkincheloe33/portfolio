@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as THREE from 'three';
 import { useFrame, useLoader, useThree } from 'react-three-fiber';
 import { fragmentShader, vertexShader } from '../../utils';
 
-const Wave = () => {
-  const [texture] = useLoader(THREE.TextureLoader, ['./img/me.jpg']);
+const Wave = ({ url }) => {
+  const [texture] = useLoader(THREE.TextureLoader, [url]);
   const { clock } = useThree();
 
   const uniforms = {
@@ -18,7 +19,7 @@ const Wave = () => {
 
   return (
     <mesh>
-      <planeGeometry attach="geometry" args={[8.08, 5.61, 5, 5]} />
+      <planeGeometry attach="geometry" args={[5, 6, 5, 5]} />
       <shaderMaterial
         attach="material"
         args={[
@@ -32,6 +33,10 @@ const Wave = () => {
       />
     </mesh>
   );
+};
+
+Wave.propTypes = {
+  url: PropTypes.string
 };
 
 export default Wave;

@@ -150,28 +150,29 @@ export const meetHandler = (meetRefs, desktop) => {
   const compRef = meetRefs[meetEnum.COMP_REF].ref.current;
   const contentRef = meetRefs[meetEnum.CONTENT].ref.current;
   const copyRef = meetRefs[meetEnum.COPY].ref.current;
-  const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
+  // const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
   const width = window.innerWidth;
 
   const height = compRef.getBoundingClientRect().height;
   const scroll = compRef.getBoundingClientRect().top;
 
   if (scroll > 0) {
-    if (width > 1272 && scroll < height) {
-      const percentage = ((height - scroll) / (height * 3)) * 100;
-      // content container scroll animation
-      contentRef.style.transform = `translateX(${-offset + percentage}%)`;
+    // if (width > 1272 && scroll < height) {
+    //   const percentage = ((height - scroll) / (height * 3)) * 100;
+    //   // content container scroll animation
+    //   contentRef.style.transform = `translateX(${-offset + percentage}%)`;
 
-      // image animation
-      imageRef.style.opacity = (height - scroll) / (height * 0.75);
+    //   // image animation
+    //   // imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
-      // paragraph text animation
-      if (scroll < height / 2) {
-        copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
-      } else {
-        copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
-      }
-    } else if (width < 768) {
+    //   // paragraph text animation
+    //   if (scroll < height / 2) {
+    //     copyRef.style.cssText += `opacity: 1; transform: translateY(0);`;
+    //   } else {
+    //     copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
+    //   }
+    // } else
+    if (width < 768) {
       const mobileHeight = height - 100;
 
       // content container scroll animation

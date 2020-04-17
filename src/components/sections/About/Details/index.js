@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Canvas } from 'react-three-fiber';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import {
@@ -8,6 +9,7 @@ import {
   setColumnSpanSize,
   theme
 } from '../../../../global';
+import Wave from './Wave';
 
 const { color } = theme;
 
@@ -38,9 +40,9 @@ const Copy = styled(P)`
 `;
 
 const ImageWrapper = styled.div`
-  background-image: url(${p => p.url});
+  /* background-image: url(${p => p.url});
   background-position: center center;
-  background-size: cover;
+  background-size: cover; */
   height: 30vw;
   max-width: ${setColumnSpanSize(5)};
   opacity: 0.95;
@@ -65,7 +67,13 @@ const Wrapper = styled.div`
 
 const Details = ({ copy, image, setRefs }) => (
   <Wrapper>
-    <ImageWrapper url={image} />
+    <ImageWrapper>
+      {/* <Canvas camera={{ position: [0, 0, 4] }}>
+        <Suspense fallback={null}>
+          <Wave url={image} />
+        </Suspense>
+      </Canvas> */}
+    </ImageWrapper>
     <Copy dangerouslySetInnerHTML={parseContent(copy)} />
   </Wrapper>
 );
