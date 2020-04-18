@@ -40,7 +40,7 @@ const Title = styled(H1)`
       top: 0;
       transform: ${p =>
         p.objectLoaded ? 'translateX(100%)' : 'translateX(-101%)'};
-      transition: transform 1500ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
+      transition: transform 1000ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
       width: 100%;
     }
 

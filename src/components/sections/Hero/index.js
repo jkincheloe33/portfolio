@@ -77,7 +77,7 @@ const Hero = () => {
         setAnimating={setAnimating}
       />
       <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
-      {/* <Canvas animating={animating} camera={{ position: [0, 0, 100] }}>
+      <Canvas animating={animating} camera={{ position: [0, 0, 100] }}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
@@ -88,7 +88,7 @@ const Hero = () => {
             rotation={[0.2, 0.4, 0]}
           />
         </Suspense>
-      </Canvas> */}
+      </Canvas>
     </Wrapper>
   );
 };
