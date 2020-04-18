@@ -40,7 +40,7 @@ const Copy = styled(P)`
 `;
 
 const ImageWrapper = styled.div`
-  height: 30vw;
+  height: 22vw;
   max-width: ${setColumnSpanSize(5)};
   opacity: 0.95;
   position: relative;

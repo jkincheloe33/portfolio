@@ -13,7 +13,7 @@ const Wave = ({ uniforms, url }) => {
 
   return (
     <mesh>
-      <planeGeometry attach="geometry" args={[5, 6, 5, 5]} />
+      <planeGeometry attach="geometry" args={[9, 6, 5, 5]} />
       <shaderMaterial
         attach="material"
         args={[
