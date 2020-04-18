@@ -71,18 +71,14 @@ const Title = styled(H1)`
     }
   }
 
-  ${p =>
-    p.loaded &&
-    `
+  ${p => p.loaded && `
     span {
       opacity: 1;
       transform: rotateZ(0) translateY(0);
     }
   `}
 
-  ${p =>
-    p.objectLoaded &&
-    `
+  ${p => p.objectLoaded && `
     span {
       animation-play-state: paused;
     }
