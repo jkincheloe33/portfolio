@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { H1, media, theme } from '../../../global';
+import { H1, media, setPayload, theme } from '../../../global';
 import Anchor, { AnchorType } from './Anchor';
 
 const { color, easing } = theme;
@@ -19,11 +19,14 @@ const Line = styled.div`
     left: 50%;
     position: absolute;
     top: 0;
-    transform: ${p =>
-      p.animate ? 'translate(-50%, 0)' : 'translate(-50%, 100%)'};
+    transform: translate(-50%, 100%);
     transition: transform 1000ms ${easing.easeIn};
     transition-delay: 2000ms;
     width: 50%;
+  }
+
+  &.animate::before {
+    transform: translate(-50%, 0);
   }
 
   ${media.down.lg`
@@ -41,7 +44,8 @@ const Social = styled.div`
 
 // prettier-ignore
 const Title = styled(H1)`
-  color: ${p => p.animate ? color.yellow : color.white};
+  /* color: ${p => (p.animate ? color.yellow : color.white)}; */
+  color: ${color.white};
   display: flex;
   justify-content: center;
   margin-bottom: 50px;
@@ -65,7 +69,7 @@ const Title = styled(H1)`
       left: 0%;
       position: absolute;
       top: 0%;
-      transform: ${p => (p.animate ? 'translateY(-200%)' : 'translateY(100%)')};
+      transform: translateY(100%);
       transition: transform 1500ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
       transition-delay: 1000ms;
       width: 100%;
@@ -73,17 +77,15 @@ const Title = styled(H1)`
 
     &::after {
       background-color: ${color.black};
-      transform: ${p => (p.animate ? 'translateY(-100%)' : 'translateY(200%)')};
+      transform: translateY(200%);
     }
   }
 
-  ${p =>
-    p.animate &&
-    `
-    span {
-      transform: translateY(0) rotateZ(0);
-    }
-  `}
+  span.animate {
+    transform: translateY(0) rotateZ(0);
+    &::before { transform: translateY(-200%); }
+    &::after { transform: translateY(-100%); }    
+  }
 
   ${media.up.lg`
     font-size: 200px;
@@ -97,39 +99,58 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const Contact = ({ icons }) => {
-  const [animate, setAnimate] = useState(false);
-  const compRef = useRef(null);
+const contactEnum = {
+  COMP_REF: 0,
+  LINE_REF: 2,
+  TITLE_REF: 1
+};
+
+// eslint-disable-next-line react-hooks/exhaustive-deps
+export const contactHandler = refs => {
+  const compRef = refs[contactEnum.COMP_REF].ref.current;
+  const lineRef = refs[contactEnum.LINE_REF].ref.current;
+  const titleRef = refs[contactEnum.TITLE_REF].ref.current;
+  const titleChildren = titleRef.children;
+  const scroll = compRef.getBoundingClientRect().top;
+
+  if (scroll < 800) {
+    titleRef.style.color = color.yellow;
+    titleChildren[0].classList.add('animate');
+    lineRef.classList.add('animate');
+  } else {
+    titleRef.style.color = color.white;
+    titleChildren[0].classList.remove('animate');
+    lineRef.classList.remove('animate');
+  }
+};
+
+const Contact = ({ icons, setRefs }) => {
+  const refs = [
+    {
+      comp: 'Contact',
+      ref: useRef(null)
+    },
+    {
+      comp: 'Contact',
+      ref: useRef(null)
+    },
+    {
+      comp: 'Contact',
+      ref: useRef(null)
+    }
+  ];
 
   useEffect(() => {
-    handleScroll();
-    window.addEventListener('resize', handleScroll());
-    return () => {
-      window.removeEventListener('resize', handleScroll());
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setPayload(refs, setRefs);
+    // eslint-disable-next-line
   }, []);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleScroll = () => {
-    if (compRef.current) {
-      document.addEventListener('scroll', () => {
-        const ref = compRef.current;
-        const scroll = ref.getBoundingClientRect().top;
-
-        if (!animate && scroll < 800) {
-          setAnimate(true);
-        }
-      });
-    }
-  };
-
   return (
-    <Wrapper ref={compRef}>
-      <Title animate={animate}>
+    <Wrapper ref={refs[0].ref}>
+      <Title ref={refs[1].ref}>
         <span>Let's Chat</span>
       </Title>
-      <Line animate={animate} />
+      <Line ref={refs[2].ref} />
       <Social>
         {icons.map((icon, i) => (
           <Anchor {...icon} key={i} />
@@ -140,7 +161,8 @@ const Contact = ({ icons }) => {
 };
 
 Contact.propTypes = {
-  icons: PropTypes.arrayOf(PropTypes.shape(AnchorType)).isRequired
+  icons: PropTypes.arrayOf(PropTypes.shape(AnchorType)).isRequired,
+  setRefs: PropTypes.func.isRequired
 };
 
 export default Contact;

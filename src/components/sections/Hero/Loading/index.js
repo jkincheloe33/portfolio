@@ -40,7 +40,7 @@ const Title = styled(H1)`
       top: 0;
       transform: ${p =>
         p.objectLoaded ? 'translateX(100%)' : 'translateX(-101%)'};
-      transition: transform 1500ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
+      transition: transform 1000ms cubic-bezier(0.95, 0.02, 0.52, 0.82);
       width: 100%;
     }
 
@@ -71,18 +71,14 @@ const Title = styled(H1)`
     }
   }
 
-  ${p =>
-    p.loaded &&
-    `
+  ${p => p.loaded && `
     span {
       opacity: 1;
       transform: rotateZ(0) translateY(0);
     }
   `}
 
-  ${p =>
-    p.objectLoaded &&
-    `
+  ${p => p.objectLoaded && `
     span {
       animation-play-state: paused;
     }
