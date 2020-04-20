@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Container as ContainerBase } from '../../blocks';
@@ -11,6 +11,8 @@ const Container = styled(ContainerBase)`
 `;
 
 const About = ({ background, details, meet, setRefs }) => {
+  const [isIOSMobile, setIsIOSMobile] = useState(false);
+
   const uniforms = {
     details: {
       uTime: { value: 0.0 }
@@ -28,11 +30,27 @@ const About = ({ background, details, meet, setRefs }) => {
 
   handleUniforms();
 
+  useEffect(() => {
+    const ua = window.navigator.userAgent;
+    const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    setIsIOSMobile(iOS);
+  }, []);
+
   return (
     <Container>
       <Background {...background} setRefs={setRefs} />
-      <Meet {...meet} setRefs={setRefs} uniforms={uniforms.meet} />
-      <Details {...details} uniforms={uniforms.details} setRefs={setRefs} />
+      <Meet
+        {...meet}
+        isIOSMobile={isIOSMobile}
+        setRefs={setRefs}
+        uniforms={uniforms.meet}
+      />
+      <Details
+        {...details}
+        isIOSMobile={isIOSMobile}
+        uniforms={uniforms.details}
+        setRefs={setRefs}
+      />
     </Container>
   );
 };

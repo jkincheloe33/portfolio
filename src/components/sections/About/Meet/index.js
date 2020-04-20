@@ -11,7 +11,7 @@ import {
   setColumnSpanSize,
   theme
 } from '../../../../global';
-import { ImageType } from '../../../elements';
+import { Image, ImageType } from '../../../elements';
 import { setPayload } from '../utils';
 import Wave from './Wave';
 
@@ -73,7 +73,7 @@ const Copy = styled(P)`
 
 // prettier-ignore
 const ImageWrapper = styled.div`
-  height: 40vw;
+  height: ${p => p.isIOSMobile ? 'auto' : '40vw'};
   max-width: ${setColumnSpanSize(8)};
   position: relative;
   width: 100%;
@@ -203,7 +203,7 @@ export const meetHandler = (meetRefs, desktop) => {
   }
 };
 
-const Meet = ({ copy, image, setRefs, title, uniforms }) => {
+const Meet = ({ copy, image, isIOSMobile, setRefs, title, uniforms }) => {
   const refs = [
     {
       comp: 'Meet',
@@ -234,12 +234,16 @@ const Meet = ({ copy, image, setRefs, title, uniforms }) => {
         <Title>{title}</Title>
         <Copy dangerouslySetInnerHTML={parseContent(copy)} ref={refs[2].ref} />
       </Content>
-      <ImageWrapper ref={refs[3].ref}>
-        <Canvas camera={{ position: [0, 0, 4] }}>
-          <Suspense fallback={null}>
-            <Wave uniforms={uniforms} url={image.src} />
-          </Suspense>
-        </Canvas>
+      <ImageWrapper isIOSMobile={isIOSMobile} ref={refs[3].ref}>
+        {isIOSMobile ? (
+          <Image {...image} />
+        ) : (
+          <Canvas camera={{ position: [0, 0, 4] }}>
+            <Suspense fallback={null}>
+              <Wave uniforms={uniforms} url={image.src} />
+            </Suspense>
+          </Canvas>
+        )}
       </ImageWrapper>
     </Wrapper>
   );
@@ -253,6 +257,7 @@ export const MeetType = {
 
 Meet.propTypes = {
   ...MeetType,
+  isIOSMobile: PropTypes.bool,
   setRefs: PropTypes.func.isRequired,
   uniforms: PropTypes.object
 };

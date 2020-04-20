@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Canvas } from 'react-three-fiber';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Image, ImageType } from '../../../../components';
 import {
   media,
   P,
@@ -40,7 +41,7 @@ const Copy = styled(P)`
 `;
 
 const ImageWrapper = styled.div`
-  height: 22vw;
+  height: ${p => (p.isIOSMobile ? 'auto' : '22vw')};
   max-width: ${setColumnSpanSize(5)};
   opacity: 0.95;
   position: relative;
@@ -62,14 +63,18 @@ const Wrapper = styled.div`
   `}
 `;
 
-const Details = ({ copy, image, setRefs, uniforms }) => (
+const Details = ({ copy, image, isIOSMobile, setRefs, uniforms }) => (
   <Wrapper>
-    <ImageWrapper>
-      <Canvas camera={{ position: [0, 0, 4] }}>
-        <Suspense fallback={null}>
-          <Wave uniforms={uniforms} url={image} />
-        </Suspense>
-      </Canvas>
+    <ImageWrapper isIOSMobile={isIOSMobile}>
+      {isIOSMobile ? (
+        <Image {...image} />
+      ) : (
+        <Canvas camera={{ position: [0, 0, 4] }}>
+          <Suspense fallback={null}>
+            <Wave uniforms={uniforms} url={image.src} />
+          </Suspense>
+        </Canvas>
+      )}
     </ImageWrapper>
     <Copy dangerouslySetInnerHTML={parseContent(copy)} />
   </Wrapper>
@@ -77,11 +82,12 @@ const Details = ({ copy, image, setRefs, uniforms }) => (
 
 export const DetailsType = {
   copy: PropTypes.string,
-  image: PropTypes.string.isRequired
+  image: PropTypes.shape(ImageType).isRequired
 };
 
 Details.propTypes = {
   ...DetailsType,
+  isIOSMobile: PropTypes.bool,
   setRefs: PropTypes.func,
   uniforms: PropTypes.object
 };
