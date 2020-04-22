@@ -7,7 +7,7 @@ import { meetHandler } from '../../components/sections/About/Meet';
 import { contactHandler } from '../../components/sections/Contact';
 import data from './data';
 
-const { about, contact } = data;
+const { about, contact, hero } = data;
 
 const { color } = theme;
 
@@ -21,12 +21,6 @@ const Landing = () => {
 
   useEffect(() => {
     handleScroll(refs);
-
-    // window.addEventListener('resize', handleScroll(refs));
-    // return () => {
-    //   window.removeEventListener('resize', handleScroll(refs));
-    // };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs]);
 
   const handleScroll = refs => {
@@ -62,7 +56,7 @@ const Landing = () => {
 
   return (
     <Wrapper>
-      <Hero />
+      <Hero {...hero} />
       <About {...about} setRefs={setRefs} />
       <Contact {...contact} setRefs={setRefs} />
     </Wrapper>

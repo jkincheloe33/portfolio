@@ -40,5 +40,8 @@ export default {
         link: 'https://www.linkedin.com/in/joshkincheloe/'
       }
     ]
+  },
+  hero: {
+    title: 'Josh Kincheloe<br /><span>interactive developer</span><br /><div />'
   }
 };

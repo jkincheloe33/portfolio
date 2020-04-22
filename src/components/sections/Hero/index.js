@@ -1,15 +1,16 @@
 import React, { Suspense, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
-import { H1, media, shadeOf, theme } from '../../../global';
+import { H1, media, parseContent, theme } from '../../../global';
 import Loading from './Loading';
 import Model from './Model';
 
-const { color, easing } = theme;
+const { color, easing, fontWeight } = theme;
 
-const fadeIn = keyframes`
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+const scroll = keyframes`
+  0% { transform: translateY(0); }
+  90% { transform: translateY(15px); }
+  100% { transform: translateY(0); }
 `;
 
 const Canvas = styled(CanvasBase)`
@@ -20,23 +21,62 @@ const Canvas = styled(CanvasBase)`
 
 // prettier-ignore
 const Title = styled(H1)`
-  animation: ${fadeIn} 4000ms 1 forwards;
-  animation-delay: 4s;
-  animation-play-state: paused;
-  color: ${shadeOf(color.yellow, 0.9)};
+  color: #ddd;
+  font-size: 100px;
+  font-weight: ${fontWeight.bold};
   left: 0;
-  letter-spacing: 2vw;
-  opacity: 0;
+  letter-spacing: 1.3vw;
+  opacity: ${p => (p.objectLoaded ? 0.85 : 0)};
   position: absolute;
   text-align: center;
+  text-shadow: 0 0 5px ${color.black};
   text-transform: lowercase;
   top: 50%;
   transform: translateY(-50%);
+  transition: opacity 4000ms;
+  transition-delay: 4000ms;
   width: 100%;
   z-index: 1;
 
-  ${p => p.objectLoaded && `
-    animation-play-state: running;
+  span {
+    color: ${color.yellow};
+    font-size: 32px;
+    font-weight: ${fontWeight.regular};
+  }
+
+  div {
+    animation: ${scroll} 2000ms infinite;
+    position: relative;
+
+    &::before,
+    &::after {
+      background-color: ${color.yellow};
+      bottom: -100px;
+      content: '';
+      height: 8px;
+      left: calc(50% - 25px);
+      position: absolute;
+      transform: rotateZ(45deg) translateX(-50%);
+      width: 50px;
+    }
+
+    &::after {
+      bottom: -65px;
+      left: calc(50% + 6px);
+      transform: rotateZ(-45deg) translateX(-50%);
+    }
+  }
+
+  ${media.down.lg`
+    font-size: 70px;
+
+    span {
+      font-size: 25px;
+    }
+
+    div {
+      padding: 0;
+    }
   `}
 `;
 
@@ -65,7 +105,7 @@ const Wrapper = styled.div`
   `}
 `;
 
-const Hero = () => {
+const Hero = ({ title }) => {
   const [animating, setAnimating] = useState(true);
   const [objectLoaded, setObjectLoaded] = useState(false);
 
@@ -76,7 +116,10 @@ const Hero = () => {
         objectLoaded={objectLoaded}
         setAnimating={setAnimating}
       />
-      <Title objectLoaded={objectLoaded}>Josh Kincheloe</Title>
+      <Title
+        dangerouslySetInnerHTML={parseContent(title)}
+        objectLoaded={objectLoaded}
+      />
       <Canvas animating={animating} camera={{ position: [0, 0, 100] }}>
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
