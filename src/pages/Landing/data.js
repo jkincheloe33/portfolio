@@ -42,6 +42,6 @@ export default {
     ]
   },
   hero: {
-    title: 'Josh Kincheloe<br /><span>interactive developer</span><br /><div />'
+    title: '<span>interactive developer</span><br />Josh Kincheloe<br /><div />'
   }
 };

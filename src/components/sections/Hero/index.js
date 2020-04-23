@@ -8,9 +8,9 @@ import Model from './Model';
 const { color, easing, fontWeight } = theme;
 
 const scroll = keyframes`
-  0% { transform: translateY(0); }
-  90% { transform: translateY(15px); }
-  100% { transform: translateY(0); }
+  0% { transform: translateY(100px); }
+  50% { transform: translateY(115px); }
+  100% { transform: translateY(100px); }
 `;
 
 const Canvas = styled(CanvasBase)`
@@ -25,7 +25,7 @@ const Title = styled(H1)`
   font-size: 100px;
   font-weight: ${fontWeight.bold};
   left: 0;
-  letter-spacing: 1.3vw;
+  letter-spacing: 0.3vw;
   opacity: ${p => (p.objectLoaded ? 0.85 : 0)};
   position: absolute;
   text-align: center;
@@ -40,8 +40,7 @@ const Title = styled(H1)`
 
   span {
     color: ${color.yellow};
-    font-size: 32px;
-    font-weight: ${fontWeight.regular};
+    font-size: 24px;
   }
 
   div {
@@ -75,7 +74,7 @@ const Title = styled(H1)`
     font-size: 70px;
 
     span {
-      font-size: 25px;
+      font-size: 20px;
     }
 
     div {
