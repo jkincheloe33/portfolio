@@ -46,23 +46,27 @@ const Title = styled(H1)`
 
   div {
     animation: ${scroll} 2000ms infinite;
+    background-color: ${color.yellow};
+    height: 100px;
+    margin: 0 auto;
     position: relative;
+    width: 2px;
 
     &::before,
     &::after {
       background-color: ${color.yellow};
-      bottom: -100px;
+      bottom: -1px;
       content: '';
-      height: 8px;
-      left: calc(50% - 25px);
+      height: 2px;
+      left: calc(50% - 12px);
       position: absolute;
       transform: rotateZ(45deg) translateX(-50%);
-      width: 50px;
+      width: 24px;
     }
 
     &::after {
-      bottom: -65px;
-      left: calc(50% + 6px);
+      bottom: 16px;
+      left: calc(50% + 4px);
       transform: rotateZ(-45deg) translateX(-50%);
     }
   }
