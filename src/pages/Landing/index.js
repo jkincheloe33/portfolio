@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import styled from 'styled-components';
-import { About, Contact, Hero } from '../../components';
+import { About, Callout, Contact, Hero } from '../../components';
 import { theme } from '../../global';
 import { backgroundHandler } from '../../components/sections/About/Background';
 import { meetHandler } from '../../components/sections/About/Meet';
@@ -59,6 +59,7 @@ const Landing = () => {
       <Hero {...hero} />
       <About {...about} setRefs={setRefs} />
       <Contact {...contact} setRefs={setRefs} />
+      <Callout />
     </Wrapper>
   );
 };
