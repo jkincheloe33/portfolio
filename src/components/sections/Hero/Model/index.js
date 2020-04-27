@@ -52,7 +52,7 @@ const Model = ({
       camera.position.z = lerp(camera.position.z, window.scrollY / 150, 0.025);
       model.scene.position.x = lerp(
         model.scene.position.x,
-        mouse.current[0] / aspect / 300,
+        mouse.current[0] / aspect / 600,
         0.01
       );
     }
