@@ -4,11 +4,18 @@ import lerp from 'lerp';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const Model = ({ objectLoaded, setAnimating, setObjectLoaded, ...props }) => {
+const Model = ({
+  mouse,
+  objectLoaded,
+  setAnimating,
+  setObjectLoaded,
+  ...props
+}) => {
   const [ready, setReady] = useState(false);
   const [model, setModel] = useState();
   const [scroll, setScroll] = useState(false);
-  const { camera } = useThree();
+  const { camera, size, viewport } = useThree();
+  const aspect = size.width / viewport.width;
   const manager = new THREE.LoadingManager();
 
   useEffect(() => {
@@ -43,6 +50,11 @@ const Model = ({ objectLoaded, setAnimating, setObjectLoaded, ...props }) => {
 
     if (scroll) {
       camera.position.z = lerp(camera.position.z, window.scrollY / 150, 0.025);
+      model.scene.position.x = lerp(
+        model.scene.position.x,
+        mouse.current[0] / aspect / 300,
+        0.01
+      );
     }
   });
 

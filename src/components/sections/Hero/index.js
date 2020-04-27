@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useCallback, useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
 import { H1, media, parseContent, theme } from '../../../global';
@@ -27,6 +27,7 @@ const Title = styled(H1)`
   left: 0;
   letter-spacing: 0.3vw;
   opacity: ${p => (p.objectLoaded ? 0.85 : 0)};
+  pointer-events: none;
   position: absolute;
   text-align: center;
   text-shadow: 0 0 5px ${color.black};
@@ -111,6 +112,12 @@ const Wrapper = styled.div`
 const Hero = ({ title }) => {
   const [animating, setAnimating] = useState(true);
   const [objectLoaded, setObjectLoaded] = useState(false);
+  const mouse = useRef([0, 0]);
+  const onMouseMove = useCallback(
+    ({ clientX: x, clientY: y }) =>
+      (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]),
+    []
+  );
 
   return (
     <Wrapper>
@@ -123,10 +130,15 @@ const Hero = ({ title }) => {
         dangerouslySetInnerHTML={parseContent(title)}
         objectLoaded={objectLoaded}
       />
-      <Canvas animating={animating} camera={{ position: [0, 0, 100] }}>
+      <Canvas
+        animating={animating}
+        camera={{ position: [0, 0, 100] }}
+        onMouseMove={onMouseMove}
+      >
         <ambientLight intensity={0.1} />
         <Suspense fallback={null}>
           <Model
+            mouse={mouse}
             objectLoaded={objectLoaded}
             setAnimating={setAnimating}
             setObjectLoaded={setObjectLoaded}
