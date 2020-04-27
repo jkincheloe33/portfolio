@@ -7,15 +7,15 @@ import Anchor, { AnchorType } from './Anchor';
 const { color, easing } = theme;
 
 const Line = styled.div`
-  margin: 60px 0;
+  margin: 0 0 60px 0;
   overflow: hidden;
-  padding-top: 20px;
+  padding-top: 4px;
   position: relative;
 
   &::before {
     background-color: ${color.white};
     content: '';
-    height: 20px;
+    height: 4px;
     left: 50%;
     position: absolute;
     top: 0;
@@ -48,7 +48,7 @@ const Title = styled(H1)`
   color: ${color.white};
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   overflow: hidden;
   position: relative;
   text-align: center;
