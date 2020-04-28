@@ -100,7 +100,7 @@ const Wrapper = styled.div`
     left: 0;
     position: absolute;
     right: 0;
-    transition: background-image 4000ms ${easing.easeIn};
+    transition: background-image ${timing.colorMode} ${easing.easeIn};
   }
 
   ${p => p.lightMode && `

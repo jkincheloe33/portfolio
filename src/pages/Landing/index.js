@@ -9,12 +9,12 @@ import data from './data';
 
 const { about, contact, hero } = data;
 
-const { color, easing } = theme;
+const { color, easing, timing } = theme;
 
 const Wrapper = styled.div`
   background-color: ${p => (p.lightMode ? color.white : color.black)};
   overflow: hidden;
-  transition: background-color 3000ms ${easing.easeIn};
+  transition: background-color ${timing.colorMode} ${easing.easeIn};
 `;
 
 const Landing = () => {
