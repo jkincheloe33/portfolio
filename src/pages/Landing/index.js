@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import styled from 'styled-components';
-import { About, Callout, Contact, Hero } from '../../components';
+import { About, Callout, Contact, LightDark, Hero } from '../../components';
 import { theme } from '../../global';
 import { backgroundHandler } from '../../components/sections/About/Background';
 import { meetHandler } from '../../components/sections/About/Meet';
@@ -10,16 +10,6 @@ import data from './data';
 const { about, contact, hero } = data;
 
 const { color, easing } = theme;
-
-const LightDark = styled.div`
-  background: pink;
-  bottom: 50px;
-  height: 50px;
-  position: fixed;
-  right: 50px;
-  width: 100px;
-  z-index: 10;
-`;
 
 const Wrapper = styled.div`
   background-color: ${p => (p.lightMode ? color.white : color.black)};
@@ -68,7 +58,10 @@ const Landing = () => {
 
   return (
     <Wrapper lightMode={lightMode}>
-      <LightDark onClick={() => setLightMode(lightMode => !lightMode)} />
+      <LightDark
+        lightMode={lightMode}
+        setLightMode={() => setLightMode(lightMode => !lightMode)}
+      />
       <Hero {...hero} lightMode={lightMode} />
       <About {...about} lightMode={lightMode} setRefs={setRefs} />
       <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
