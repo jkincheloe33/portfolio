@@ -75,18 +75,19 @@ const Model = ({
         mouse.current[0] / aspect / 600,
         0.01
       );
-
-      // const color = material.color;
-      // color.r = lerp(color.r, 0, 0.05);
-      // color.g = lerp(color.g, 0.50196, 0.05);
-      // color.b = lerp(color.b, 0, 0.05);
     }
 
-    if (lightMode) {
+    if (material) {
       const color = material.color;
-      color.r = lerp(color.r, 0, 0.05);
-      color.g = lerp(color.g, 0, 0.05);
-      color.b = lerp(color.b, 0, 0.05);
+      if (lightMode) {
+        color.r = lerp(color.r, 0, 0.05);
+        color.g = lerp(color.g, 0, 0.05);
+        color.b = lerp(color.b, 0, 0.05);
+      } else {
+        color.r = lerp(color.r, 1, 0.05);
+        color.g = lerp(color.g, 1, 0.05);
+        color.b = lerp(color.b, 1, 0.05);
+      }
     }
   });
 

@@ -11,6 +11,16 @@ const { about, contact, hero } = data;
 
 const { color, easing } = theme;
 
+const LightDark = styled.div`
+  background: pink;
+  bottom: 50px;
+  height: 50px;
+  position: fixed;
+  right: 50px;
+  width: 100px;
+  z-index: 10;
+`;
+
 const Wrapper = styled.div`
   background-color: ${p => (p.lightMode ? color.white : color.black)};
   overflow: hidden;
@@ -56,12 +66,9 @@ const Landing = () => {
     }
   }
 
-  setTimeout(() => {
-    setLightMode(true);
-  }, 10000);
-
   return (
     <Wrapper lightMode={lightMode}>
+      <LightDark onClick={() => setLightMode(lightMode => !lightMode)} />
       <Hero {...hero} lightMode={lightMode} />
       <About {...about} setRefs={setRefs} />
       <Contact {...contact} setRefs={setRefs} />
