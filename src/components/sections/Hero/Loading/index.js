@@ -128,10 +128,10 @@ const Loading = ({ animating, objectLoaded }) => {
   return (
     <Wrapper animating={animating}>
       <Title loaded={loaded} objectLoaded={objectLoaded}>
-        <span>Welcome.</span>
+        <span>Welcome!</span>
       </Title>
       <Title loaded={loaded} objectLoaded={objectLoaded}>
-        <span>Page</span>
+        <span>Page Is</span>
       </Title>
       <Title loaded={loaded} objectLoaded={objectLoaded}>
         <span>Loading...</span>
