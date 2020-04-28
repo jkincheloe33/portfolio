@@ -84,6 +84,7 @@ const Title = styled(H1)`
   `}
 `;
 
+// prettier-ignore
 const Wrapper = styled.div`
   min-height: 100vh;
   margin-bottom: 200px;
@@ -98,7 +99,14 @@ const Wrapper = styled.div`
     left: 0;
     position: absolute;
     right: 0;
+    transition: background-image 4000ms ${easing.easeIn};
   }
+
+  ${p => p.lightMode && `
+    &::after {
+      background: linear-gradient(transparent, white);
+    }
+  `}
 
   @media only screen and (max-width: 1272px) {
     margin-bottom: 100px;
@@ -120,7 +128,7 @@ const Hero = ({ lightMode, title }) => {
   );
 
   return (
-    <Wrapper>
+    <Wrapper lightMode={lightMode}>
       <Loading
         animating={animating}
         objectLoaded={objectLoaded}
