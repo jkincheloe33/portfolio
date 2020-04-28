@@ -45,7 +45,7 @@ const Wrapper = styled.div`
   transition: background-color ${timing.colorMode} ${easing.easeIn};
 `;
 
-const data = `Developed by me in React. Design by me + Jake Pierce. You can check out this site in more detail on my <a href="https://github.com/jkincheloe33/portfolio" target="_blank>Github</a>`;
+const data = `Developed by me in React. Design by me + Jake Pierce. You can check out this site in more detail on my <a href="https://github.com/jkincheloe33/portfolio" target="_blank">Github</a>`;
 
 const Callout = ({ lightMode }) => (
   <Wrapper lightMode={lightMode}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { theme } from '../../../global';
+import { media, theme } from '../../../global';
 
 const { color, easing } = theme;
 
@@ -31,6 +31,13 @@ const Icons = styled.div`
       transform: translate(100%, -50%);
     }
   `}
+
+  ${media.down.sm`
+    &::before {
+      height: 25px;
+      width: 25px;
+    }
+  `}
 `;
 
 const Wrapper = styled.div`
@@ -44,6 +51,13 @@ const Wrapper = styled.div`
   transition: background-color 1000ms ${easing.easeIn};
   width: 70px;
   z-index: 10;
+
+  ${media.down.sm`
+    bottom: 20px;
+    height: 20px;
+    right: 20px;
+    width: 50px;
+  `}
 `;
 
 const LightDark = ({ lightMode, setLightMode }) => (
