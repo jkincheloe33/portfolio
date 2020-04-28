@@ -5,12 +5,14 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const Model = ({
+  lightMode,
   mouse,
   objectLoaded,
   setAnimating,
   setObjectLoaded,
   ...props
 }) => {
+  const [material, setMaterial] = useState();
   const [ready, setReady] = useState(false);
   const [model, setModel] = useState();
   const [scroll, setScroll] = useState(false);
@@ -38,6 +40,23 @@ const Model = ({
     if (!ready) document.body.style += 'overflow-y: hidden; position: fixed;';
   }, [ready]);
 
+  useEffect(() => {
+    if (model) {
+      model.scene.traverse(child => {
+        if (child.material) {
+          setMaterial(child.material);
+        }
+      });
+    }
+  }, [model]);
+
+  useEffect(() => {
+    if (model) {
+      model.scene.rotation.y = -0.595;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lightMode]);
+
   useFrame(() => {
     if (objectLoaded && ready && camera && !scroll) {
       camera.position.z = lerp(camera.position.z, 0, 0.03);
@@ -47,6 +66,7 @@ const Model = ({
     }
 
     if (!scroll && camera.position.z < 0.5) setScroll(true);
+    if (model) console.log(model.scene.rotation.y);
 
     if (scroll) {
       camera.position.z = lerp(camera.position.z, window.scrollY / 150, 0.025);
@@ -55,6 +75,18 @@ const Model = ({
         mouse.current[0] / aspect / 600,
         0.01
       );
+
+      // const color = material.color;
+      // color.r = lerp(color.r, 0, 0.05);
+      // color.g = lerp(color.g, 0.50196, 0.05);
+      // color.b = lerp(color.b, 0, 0.05);
+    }
+
+    if (lightMode) {
+      const color = material.color;
+      color.r = lerp(color.r, 0, 0.05);
+      color.g = lerp(color.g, 0, 0.05);
+      color.b = lerp(color.b, 0, 0.05);
     }
   });
 

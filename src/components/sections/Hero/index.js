@@ -109,7 +109,7 @@ const Wrapper = styled.div`
   `}
 `;
 
-const Hero = ({ title }) => {
+const Hero = ({ lightMode, title }) => {
   const [animating, setAnimating] = useState(true);
   const [objectLoaded, setObjectLoaded] = useState(false);
   const mouse = useRef([0, 0]);
@@ -135,9 +135,10 @@ const Hero = ({ title }) => {
         camera={{ position: [0, 0, 100] }}
         onMouseMove={onMouseMove}
       >
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={1} />
         <Suspense fallback={null}>
           <Model
+            lightMode={lightMode}
             mouse={mouse}
             objectLoaded={objectLoaded}
             setAnimating={setAnimating}

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import styled from 'styled-components';
 import { About, Callout, Contact, Hero } from '../../components';
 import { theme } from '../../global';
@@ -9,14 +9,16 @@ import data from './data';
 
 const { about, contact, hero } = data;
 
-const { color } = theme;
+const { color, easing } = theme;
 
 const Wrapper = styled.div`
-  background-color: ${color.black};
+  background-color: ${p => (p.lightMode ? color.white : color.black)};
   overflow: hidden;
+  transition: background-color 3000ms ${easing.easeIn};
 `;
 
 const Landing = () => {
+  const [lightMode, setLightMode] = useState(false);
   const [refs, setRefs] = useReducer(selectedReducer, []);
 
   useEffect(() => {
@@ -54,9 +56,13 @@ const Landing = () => {
     }
   }
 
+  setTimeout(() => {
+    setLightMode(true);
+  }, 10000);
+
   return (
-    <Wrapper>
-      <Hero {...hero} />
+    <Wrapper lightMode={lightMode}>
+      <Hero {...hero} lightMode={lightMode} />
       <About {...about} setRefs={setRefs} />
       <Contact {...contact} setRefs={setRefs} />
       <Callout />
