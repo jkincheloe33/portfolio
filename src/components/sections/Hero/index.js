@@ -5,7 +5,7 @@ import { H1, media, parseContent, theme } from '../../../global';
 import Loading from './Loading';
 import Model from './Model';
 
-const { color, easing, fontWeight } = theme;
+const { color, easing, fontWeight, timing } = theme;
 
 const scroll = keyframes`
   0% { transform: translateY(100px); }
@@ -21,7 +21,7 @@ const Canvas = styled(CanvasBase)`
 
 // prettier-ignore
 const Title = styled(H1)`
-  color: #ddd;
+  color: ${p => (p.lightMode ? color.yellow : '#ddd')};
   font-size: 100px;
   font-weight: ${fontWeight.bold};
   left: 0;
@@ -34,14 +34,15 @@ const Title = styled(H1)`
   text-transform: lowercase;
   top: 50%;
   transform: translateY(-50%);
-  transition: opacity 4000ms;
-  transition-delay: 4000ms;
+  transition: color ${timing.colorMode} ${easing.easeIn},
+    opacity 4000ms ease 4000ms;
   width: 100%;
   z-index: 1;
 
   span {
-    color: ${color.yellow};
+    color: ${p => (p.lightMode ? color.white : color.yellow)};
     font-size: 24px;
+    transition: color ${timing.colorMode} ${easing.easeIn};
   }
 
   div {
@@ -84,6 +85,7 @@ const Title = styled(H1)`
   `}
 `;
 
+// prettier-ignore
 const Wrapper = styled.div`
   min-height: 100vh;
   margin-bottom: 200px;
@@ -98,7 +100,14 @@ const Wrapper = styled.div`
     left: 0;
     position: absolute;
     right: 0;
+    transition: background-image ${timing.colorMode} ${easing.easeIn};
   }
+
+  ${p => p.lightMode && `
+    &::after {
+      background: linear-gradient(transparent, white);
+    }
+  `}
 
   @media only screen and (max-width: 1272px) {
     margin-bottom: 100px;
@@ -109,7 +118,7 @@ const Wrapper = styled.div`
   `}
 `;
 
-const Hero = ({ title }) => {
+const Hero = ({ lightMode, title }) => {
   const [animating, setAnimating] = useState(true);
   const [objectLoaded, setObjectLoaded] = useState(false);
   const mouse = useRef([0, 0]);
@@ -120,7 +129,7 @@ const Hero = ({ title }) => {
   );
 
   return (
-    <Wrapper>
+    <Wrapper lightMode={lightMode}>
       <Loading
         animating={animating}
         objectLoaded={objectLoaded}
@@ -128,6 +137,7 @@ const Hero = ({ title }) => {
       />
       <Title
         dangerouslySetInnerHTML={parseContent(title)}
+        lightMode={lightMode}
         objectLoaded={objectLoaded}
       />
       <Canvas
@@ -135,9 +145,10 @@ const Hero = ({ title }) => {
         camera={{ position: [0, 0, 100] }}
         onMouseMove={onMouseMove}
       >
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={1} />
         <Suspense fallback={null}>
           <Model
+            lightMode={lightMode}
             mouse={mouse}
             objectLoaded={objectLoaded}
             setAnimating={setAnimating}

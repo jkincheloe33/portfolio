@@ -7,4 +7,5 @@ export { default as Image, ImageType } from './elements/Image';
 export { default as About } from './sections/About';
 export { default as Callout } from './sections/Callout';
 export { default as Contact } from './sections/Contact';
+export { default as LightDark } from './sections/LightDark';
 export { default as Hero } from './sections/Hero';

@@ -120,5 +120,8 @@ export default {
     h6: 'uppercase',
     label: 'uppercase',
     p: 'none'
+  },
+  timing: {
+    colorMode: '3000ms'
   }
 };

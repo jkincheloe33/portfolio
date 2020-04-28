@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { H1, media, setPayload, theme } from '../../../global';
 import Anchor, { AnchorType } from './Anchor';
 
-const { color, easing } = theme;
+const { color, easing, timing } = theme;
 
 const Line = styled.div`
   margin: 0 0 60px 0;
@@ -13,15 +13,15 @@ const Line = styled.div`
   position: relative;
 
   &::before {
-    background-color: ${color.white};
+    background-color: ${p => (p.lightMode ? color.black : color.white)};
     content: '';
     height: 4px;
     left: 50%;
     position: absolute;
     top: 0;
-    transform: translate(-50%, 100%);
-    transition: transform 1000ms ${easing.easeIn};
-    transition-delay: 2000ms;
+    transform: translate(-50%, 205%);
+    transition: background-color ${timing.colorMode} ${easing.easeIn},
+      transform 1000ms ${easing.easeIn} 2000ms;
     width: 50%;
   }
 
@@ -44,8 +44,7 @@ const Social = styled.div`
 
 // prettier-ignore
 const Title = styled(H1)`
-  /* color: ${p => (p.animate ? color.yellow : color.white)}; */
-  color: ${color.white};
+  color: ${p => p.lightMode ? color.black : color.white};
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
@@ -76,9 +75,13 @@ const Title = styled(H1)`
     }
 
     &::after {
-      background-color: ${color.black};
+      background-color: ${p => p.lightMode ? color.white : color.black};
       transform: translateY(200%);
     }
+  }
+
+  &.animate {
+    color: ${color.yellow};
   }
 
   span.animate {
@@ -114,17 +117,19 @@ export const contactHandler = refs => {
   const scroll = compRef.getBoundingClientRect().top;
 
   if (scroll < 800) {
-    titleRef.style.color = color.yellow;
+    // titleRef.style.color = color.yellow;
+    titleRef.classList.add('animate');
     titleChildren[0].classList.add('animate');
     lineRef.classList.add('animate');
   } else {
-    titleRef.style.color = color.white;
+    // titleRef.style.color = color.white;
+    titleRef.classList.remove('animate');
     titleChildren[0].classList.remove('animate');
     lineRef.classList.remove('animate');
   }
 };
 
-const Contact = ({ icons, setRefs }) => {
+const Contact = ({ icons, lightMode, setRefs }) => {
   const refs = [
     {
       comp: 'Contact',
@@ -147,10 +152,10 @@ const Contact = ({ icons, setRefs }) => {
 
   return (
     <Wrapper ref={refs[0].ref}>
-      <Title ref={refs[1].ref}>
-        <span>Let's Chat</span>
+      <Title lightMode={lightMode} ref={refs[1].ref}>
+        <span lightMode={lightMode}>Let's Chat</span>
       </Title>
-      <Line ref={refs[2].ref} />
+      <Line lightMode={lightMode} ref={refs[2].ref} />
       <Social>
         {icons.map((icon, i) => (
           <Anchor {...icon} key={i} />
@@ -162,6 +167,7 @@ const Contact = ({ icons, setRefs }) => {
 
 Contact.propTypes = {
   icons: PropTypes.arrayOf(PropTypes.shape(AnchorType)).isRequired,
+  lightMode: PropTypes.bool,
   setRefs: PropTypes.func.isRequired
 };
 
