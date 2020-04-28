@@ -70,9 +70,9 @@ const Landing = () => {
     <Wrapper lightMode={lightMode}>
       <LightDark onClick={() => setLightMode(lightMode => !lightMode)} />
       <Hero {...hero} lightMode={lightMode} />
-      <About {...about} setRefs={setRefs} />
-      <Contact {...contact} setRefs={setRefs} />
-      <Callout />
+      <About {...about} lightMode={lightMode} setRefs={setRefs} />
+      <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
+      <Callout lightMode={lightMode} />
     </Wrapper>
   );
 };

@@ -3,6 +3,9 @@ import { useFrame, useThree } from 'react-three-fiber';
 import lerp from 'lerp';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { theme } from '../../../../global';
+
+const { color } = theme;
 
 const Model = ({
   lightMode,
@@ -19,6 +22,7 @@ const Model = ({
   const { camera, size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   const manager = new THREE.LoadingManager();
+  const colorLight = new THREE.Color(color.yellow);
 
   useEffect(() => {
     new GLTFLoader(manager).load('./obj/cloud/scene.gltf', setModel);
@@ -66,7 +70,6 @@ const Model = ({
     }
 
     if (!scroll && camera.position.z < 0.5) setScroll(true);
-    if (model) console.log(model.scene.rotation.y);
 
     if (scroll) {
       camera.position.z = lerp(camera.position.z, window.scrollY / 150, 0.025);
@@ -78,15 +81,15 @@ const Model = ({
     }
 
     if (material) {
-      const color = material.color;
+      const mColor = material.color;
       if (lightMode) {
-        color.r = lerp(color.r, 0, 0.05);
-        color.g = lerp(color.g, 0, 0.05);
-        color.b = lerp(color.b, 0, 0.05);
+        mColor.r = lerp(mColor.r, colorLight.r, 0.05);
+        mColor.g = lerp(mColor.g, colorLight.g, 0.05);
+        mColor.b = lerp(mColor.b, colorLight.b, 0.05);
       } else {
-        color.r = lerp(color.r, 1, 0.05);
-        color.g = lerp(color.g, 1, 0.05);
-        color.b = lerp(color.b, 1, 0.05);
+        mColor.r = lerp(mColor.r, 1, 0.05);
+        mColor.g = lerp(mColor.g, 1, 0.05);
+        mColor.b = lerp(mColor.b, 1, 0.05);
       }
     }
   });

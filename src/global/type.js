@@ -86,7 +86,7 @@ export const H6 = styled.h6`
 
 // prettier-ignore
 export const P = styled.p`
-  color: ${color.white};
+  color: ${p => p.lightMode ? color.black : color.white};
   font-family: ${fontFamily.poppins};
   font-size: ${fontSize.p};
   font-style: ${fontStyle.normal};

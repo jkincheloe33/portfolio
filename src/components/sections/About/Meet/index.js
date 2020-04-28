@@ -15,7 +15,7 @@ import { Image, ImageType } from '../../../elements';
 import { setPayload } from '../utils';
 import Wave from './Wave';
 
-const { color, easing } = theme;
+const { color, easing, timing } = theme;
 
 const offset = 20;
 
@@ -43,11 +43,13 @@ const Content = styled.div`
 `;
 
 const Copy = styled(P)`
-  color: ${color.white};
+  /* color: ${color.white}; */
   opacity: 0;
   padding-right: 50px;
   transform: translateY(${offset}px);
-  transition: all 2000ms ${easing.easeIn};
+  transition: opacity 2000ms ${easing.easeIn},
+    transform 2000ms ${easing.easeIn},
+    color ${timing.colorMode} ${easing.easeIn};
 
   span {
     position: relative;
@@ -85,7 +87,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Title = styled(H2)`
-  color: ${color.white};
+  color: ${p => (p.lightMode ? color.black : color.white)};
   display: inline-block;
   font-style: italic;
   line-height: 60px;
@@ -93,14 +95,16 @@ const Title = styled(H2)`
   padding: 0 50px 30px 0;
   position: relative;
   text-transform: lowercase;
+  transition: color ${timing.colorMode} ${easing.easeIn};
 
   &::before {
-    background-color: ${color.white};
+    background-color: ${p => (p.lightMode ? color.black : color.white)};
     bottom: 0;
     content: '';
     height: 2px;
     left: 0;
     position: absolute;
+    transition: background-color ${timing.colorMode} ${easing.easeIn};
     width: 100%;
   }
 
@@ -203,7 +207,15 @@ export const meetHandler = (meetRefs, desktop) => {
   }
 };
 
-const Meet = ({ copy, image, isIOSMobile, setRefs, title, uniforms }) => {
+const Meet = ({
+  copy,
+  image,
+  isIOSMobile,
+  lightMode,
+  setRefs,
+  title,
+  uniforms
+}) => {
   const refs = [
     {
       comp: 'Meet',
@@ -231,8 +243,12 @@ const Meet = ({ copy, image, isIOSMobile, setRefs, title, uniforms }) => {
   return (
     <Wrapper ref={refs[0].ref}>
       <Content ref={refs[1].ref}>
-        <Title>{title}</Title>
-        <Copy dangerouslySetInnerHTML={parseContent(copy)} ref={refs[2].ref} />
+        <Title lightMode={lightMode}>{title}</Title>
+        <Copy
+          dangerouslySetInnerHTML={parseContent(copy)}
+          lightMode={lightMode}
+          ref={refs[2].ref}
+        />
       </Content>
       <ImageWrapper isIOSMobile={isIOSMobile} ref={refs[3].ref}>
         {isIOSMobile ? (
@@ -258,6 +274,7 @@ export const MeetType = {
 Meet.propTypes = {
   ...MeetType,
   isIOSMobile: PropTypes.bool,
+  lightMode: PropTypes.bool,
   setRefs: PropTypes.func.isRequired,
   uniforms: PropTypes.object
 };

@@ -4,16 +4,22 @@ import styled from 'styled-components';
 import { H1, media, theme } from '../../../../global';
 import { setPayload } from '../utils';
 
-const { color } = theme;
+const { color, easing, timing } = theme;
 
 const offset = 50;
 
+// prettier-ignore
 const Title = styled(H1)`
   color: ${p => (p.even ? color.white : color.yellow)};
   font-size: 100px;
   line-height: 85px;
   transform: ${p => (p.even ? `translateX(-${offset}%)` : `translateX(0)`)};
+  transition: color ${timing.colorMode} ${easing.easeIn};
   white-space: nowrap;
+
+  ${p => (p.lightMode && p.even) ? `
+    color: ${color.black};
+  ` : ``}
 
   ${media.up.lg`
     font-size: 200px;
@@ -60,7 +66,7 @@ export const backgroundHandler = refs => {
   }
 };
 
-const Background = ({ setRefs, titles }) => {
+const Background = ({ lightMode, setRefs, titles }) => {
   const refs = [
     {
       comp: 'Background',
@@ -88,7 +94,7 @@ const Background = ({ setRefs, titles }) => {
   return (
     <Wrapper ref={refs[0].ref}>
       {titles.map((title, i) => (
-        <Title even={i % 2} key={i} ref={refs[i + 1].ref}>
+        <Title even={i % 2} key={i} lightMode={lightMode} ref={refs[i + 1].ref}>
           {title}
         </Title>
       ))}
@@ -102,6 +108,7 @@ export const BackgroundType = {
 
 Background.propTypes = {
   ...BackgroundType,
+  lightMode: PropTypes.bool,
   setRefs: PropTypes.func
 };
 

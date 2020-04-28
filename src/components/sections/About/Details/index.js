@@ -12,21 +12,23 @@ import {
 } from '../../../../global';
 import Wave from './Wave';
 
-const { color } = theme;
+const { color, easing, timing } = theme;
 
 const Copy = styled(P)`
   margin-left: 30px;
   max-width: ${setColumnSpanSize(6)};
   padding-top: 20px;
   position: relative;
+  transition: color ${timing.colorMode} ${easing.easeIn};
 
   &::before {
-    background-color: ${color.white};
+    background-color: ${p => (p.lightMode ? color.black : color.white)};
     content: '';
     height: 1px;
     left: 0;
     position: absolute;
     top: 0;
+    transition: background-color ${timing.colorMode} ${easing.easeIn};
     width: 100%;
   }
 
@@ -63,7 +65,14 @@ const Wrapper = styled.div`
   `}
 `;
 
-const Details = ({ copy, image, isIOSMobile, setRefs, uniforms }) => (
+const Details = ({
+  copy,
+  image,
+  isIOSMobile,
+  lightMode,
+  setRefs,
+  uniforms
+}) => (
   <Wrapper>
     <ImageWrapper isIOSMobile={isIOSMobile}>
       {isIOSMobile ? (
@@ -76,7 +85,7 @@ const Details = ({ copy, image, isIOSMobile, setRefs, uniforms }) => (
         </Canvas>
       )}
     </ImageWrapper>
-    <Copy dangerouslySetInnerHTML={parseContent(copy)} />
+    <Copy dangerouslySetInnerHTML={parseContent(copy)} lightMode={lightMode} />
   </Wrapper>
 );
 
@@ -88,6 +97,7 @@ export const DetailsType = {
 Details.propTypes = {
   ...DetailsType,
   isIOSMobile: PropTypes.bool,
+  lightMode: PropTypes.bool,
   setRefs: PropTypes.func,
   uniforms: PropTypes.object
 };

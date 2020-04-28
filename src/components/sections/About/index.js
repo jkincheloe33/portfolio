@@ -10,7 +10,7 @@ const Container = styled(ContainerBase)`
   position: relative;
 `;
 
-const About = ({ background, details, meet, setRefs }) => {
+const About = ({ background, details, lightMode, meet, setRefs }) => {
   const [isIOSMobile, setIsIOSMobile] = useState(false);
 
   const uniforms = {
@@ -38,16 +38,18 @@ const About = ({ background, details, meet, setRefs }) => {
 
   return (
     <Container>
-      <Background {...background} setRefs={setRefs} />
+      <Background {...background} lightMode={lightMode} setRefs={setRefs} />
       <Meet
         {...meet}
         isIOSMobile={isIOSMobile}
+        lightMode={lightMode}
         setRefs={setRefs}
         uniforms={uniforms.meet}
       />
       <Details
         {...details}
         isIOSMobile={isIOSMobile}
+        lightMode={lightMode}
         uniforms={uniforms.details}
         setRefs={setRefs}
       />
@@ -58,6 +60,7 @@ const About = ({ background, details, meet, setRefs }) => {
 About.propTypes = {
   background: PropTypes.shape(BackgroundType).isRequired,
   details: PropTypes.shape(DetailsType).isRequired,
+  lightMode: PropTypes.bool,
   meet: PropTypes.shape(MeetType).isRequired,
   setRefs: PropTypes.func.isRequired
 };
