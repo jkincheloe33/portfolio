@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import styled from 'styled-components';
-import { About, Callout, Contact, Hero } from '../../components';
+import { About, Callout, Contact, LightDark, Hero } from '../../components';
 import { theme } from '../../global';
 import { backgroundHandler } from '../../components/sections/About/Background';
 import { meetHandler } from '../../components/sections/About/Meet';
@@ -9,14 +9,16 @@ import data from './data';
 
 const { about, contact, hero } = data;
 
-const { color } = theme;
+const { color, easing, timing } = theme;
 
 const Wrapper = styled.div`
-  background-color: ${color.black};
+  background-color: ${p => (p.lightMode ? color.white : color.black)};
   overflow: hidden;
+  transition: background-color ${timing.colorMode} ${easing.easeIn};
 `;
 
 const Landing = () => {
+  const [lightMode, setLightMode] = useState(false);
   const [refs, setRefs] = useReducer(selectedReducer, []);
 
   useEffect(() => {
@@ -55,11 +57,15 @@ const Landing = () => {
   }
 
   return (
-    <Wrapper>
-      <Hero {...hero} />
-      <About {...about} setRefs={setRefs} />
-      <Contact {...contact} setRefs={setRefs} />
-      <Callout />
+    <Wrapper lightMode={lightMode}>
+      <LightDark
+        lightMode={lightMode}
+        setLightMode={() => setLightMode(lightMode => !lightMode)}
+      />
+      <Hero {...hero} lightMode={lightMode} />
+      <About {...about} lightMode={lightMode} setRefs={setRefs} />
+      <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
+      <Callout lightMode={lightMode} />
     </Wrapper>
   );
 };
