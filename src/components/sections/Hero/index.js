@@ -88,7 +88,6 @@ const Title = styled(H1)`
 // prettier-ignore
 const Wrapper = styled.div`
   min-height: 100vh;
-  margin-bottom: 200px;
   position: relative;
   width: 100%;
 
@@ -112,10 +111,6 @@ const Wrapper = styled.div`
   @media only screen and (max-width: 1272px) {
     margin-bottom: 100px;
   }
-
-  ${media.down.md`
-    margin-bottom: 50px;
-  `}
 `;
 
 const Hero = ({ lightMode, title }) => {
