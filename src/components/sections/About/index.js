@@ -1,13 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { media, theme } from '../../../global';
 import { Container as ContainerBase } from '../../blocks';
 import Background, { BackgroundType } from './Background';
 import Details, { DetailsType } from './Details';
 import Meet, { MeetType } from './Meet';
 
+const { easing, timing } = theme;
+
 const Container = styled(ContainerBase)`
   position: relative;
+`;
+
+// prettier-ignore
+const Wrapper = styled.div`
+  padding-top: 200px;
+  position: relative;
+
+  &::after {
+    background: linear-gradient(black, transparent);
+    content: '';
+    height: 200px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: background-image ${timing.colorMode} ${easing.easeIn};
+  }
+
+  ${p => p.lightMode && `
+    &::after {
+      background: linear-gradient(white, transparent);
+    }
+  `}
+
+  @media only screen and (max-width: 1272px) {
+    padding-top: 100px;
+  }
+
+  ${media.down.md`
+    padding-top: 50px;
+  `}
 `;
 
 const About = ({ background, details, lightMode, meet, setRefs }) => {
@@ -37,23 +71,25 @@ const About = ({ background, details, lightMode, meet, setRefs }) => {
   }, []);
 
   return (
-    <Container>
-      <Background {...background} lightMode={lightMode} setRefs={setRefs} />
-      <Meet
-        {...meet}
-        isIOSMobile={isIOSMobile}
-        lightMode={lightMode}
-        setRefs={setRefs}
-        uniforms={uniforms.meet}
-      />
-      <Details
-        {...details}
-        isIOSMobile={isIOSMobile}
-        lightMode={lightMode}
-        uniforms={uniforms.details}
-        setRefs={setRefs}
-      />
-    </Container>
+    <Wrapper lightMode={lightMode}>
+      <Container>
+        <Background {...background} lightMode={lightMode} setRefs={setRefs} />
+        <Meet
+          {...meet}
+          isIOSMobile={isIOSMobile}
+          lightMode={lightMode}
+          setRefs={setRefs}
+          uniforms={uniforms.meet}
+        />
+        <Details
+          {...details}
+          isIOSMobile={isIOSMobile}
+          lightMode={lightMode}
+          uniforms={uniforms.details}
+          setRefs={setRefs}
+        />
+      </Container>
+    </Wrapper>
   );
 };
 

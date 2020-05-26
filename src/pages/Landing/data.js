@@ -18,7 +18,7 @@ export default {
       copy: `Josh here. I'm a musician & developer currently <span>living</span> quarantining in Nashville. Married and father of two cats. I enjoy music, travel and the ocassional face mask. On a more technical note, I enjoy all things frontend, and love to create fun interactive experiences that bring pages to life.`,
       image: {
         alt: 'Josh in a bathtub with a wine glass',
-        src: './img/me.jpg'
+        src: './img/me3.jpg'
       },
       title: 'Hello, It Me.'
     }
