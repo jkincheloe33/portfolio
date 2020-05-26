@@ -107,10 +107,6 @@ const Wrapper = styled.div`
       background: linear-gradient(transparent, white);
     }
   `}
-
-  @media only screen and (max-width: 1272px) {
-    margin-bottom: 100px;
-  }
 `;
 
 const Hero = ({ lightMode, title }) => {

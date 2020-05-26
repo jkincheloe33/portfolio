@@ -35,6 +35,10 @@ const Wrapper = styled.div`
     }
   `}
 
+  @media only screen and (max-width: 1272px) {
+    padding-top: 100px;
+  }
+
   ${media.down.md`
     padding-top: 50px;
   `}
