@@ -104,7 +104,7 @@ const Wrapper = styled.div`
 
   ${p => p.lightMode && `
     &::after {
-      background: linear-gradient(transparent, white);
+      background: linear-gradient(rgba(255, 255, 255, 0.001), white);
     }
   `}
 `;
