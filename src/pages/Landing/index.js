@@ -1,6 +1,13 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import styled from 'styled-components';
-import { About, Callout, Contact, LightDark, Hero } from '../../components';
+import {
+  About,
+  Callout,
+  CaseStudies,
+  Contact,
+  LightDark,
+  Hero
+} from '../../components';
 import { theme } from '../../global';
 import { backgroundHandler } from '../../components/sections/About/Background';
 import { meetHandler } from '../../components/sections/About/Meet';
@@ -64,6 +71,7 @@ const Landing = () => {
       />
       <Hero {...hero} lightMode={lightMode} />
       <About {...about} lightMode={lightMode} setRefs={setRefs} />
+      <CaseStudies />
       <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
       <Callout lightMode={lightMode} />
     </Wrapper>
