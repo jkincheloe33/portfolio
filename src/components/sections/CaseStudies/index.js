@@ -1,7 +1,7 @@
 import React from 'react';
 import { Canvas } from 'react-three-fiber';
 import styled from 'styled-components';
-import Model from './Model';
+import { Controls, Model } from './Model';
 
 const Wrapper = styled.div``;
 
@@ -11,6 +11,7 @@ function CaseStudies() {
       <Canvas>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
+        <Controls />
         <Model />
       </Canvas>
     </Wrapper>
