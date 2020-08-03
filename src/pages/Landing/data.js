@@ -23,6 +23,16 @@ export default {
       title: 'Hello, It Me.'
     }
   },
+  caseStudies: {
+    images: [
+      './img/color-picker.png',
+      './img/mcgp.png',
+      './img/me2.JPG',
+      './img/me2.JPG',
+      './img/me2.JPG',
+      './img/salata.png'
+    ]
+  },
   contact: {
     icons: [
       {

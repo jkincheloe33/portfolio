@@ -1,18 +1,10 @@
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { extend, useFrame, useThree } from 'react-three-fiber';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 extend({ OrbitControls });
-
-const images = [
-  './img/me3.jpg',
-  './img/me3.jpg',
-  './img/me3.jpg',
-  './img/me3.jpg',
-  './img/me3.jpg',
-  './img/me3.jpg'
-];
 
 export function Controls() {
   const { camera, gl } = useThree();
@@ -25,18 +17,18 @@ export function Controls() {
   return (
     <orbitControls
       args={[camera, gl.domElement]}
-      // autoRotate
+      autoRotate
       enableZoom={false}
       ref={orbitRef}
     />
   );
 }
 
-export function Model({ ...props }) {
+export function Model({ images, ...props }) {
   const loader = new THREE.TextureLoader();
   const meshRef = useRef(null);
-  const textures = images.map(image => loader.load(image));
   const raycaster = new THREE.Raycaster();
+  const textures = images.map(image => loader.load(image));
   const { camera } = useThree();
 
   function handleClick(e) {
@@ -60,8 +52,12 @@ export function Model({ ...props }) {
     <mesh {...props} onClick={handleClick} ref={meshRef}>
       <boxBufferGeometry attach="geometry" args={[3, 3, 3]} />
       {textures.map((texture, i) => (
-        <meshStandardMaterial attach="material" key={i} map={texture} />
+        <meshStandardMaterial attachArray="material" key={i} map={texture} />
       ))}
     </mesh>
   );
 }
+
+Model.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired
+};

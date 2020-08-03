@@ -14,7 +14,7 @@ import { meetHandler } from '../../components/sections/About/Meet';
 import { contactHandler } from '../../components/sections/Contact';
 import data from './data';
 
-const { about, contact, hero } = data;
+const { about, caseStudies, contact, hero } = data;
 
 const { color, easing, timing } = theme;
 
@@ -71,7 +71,7 @@ const Landing = () => {
       />
       <Hero {...hero} lightMode={lightMode} />
       <About {...about} lightMode={lightMode} setRefs={setRefs} />
-      <CaseStudies />
+      <CaseStudies {...caseStudies} />
       <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
       <Callout lightMode={lightMode} />
     </Wrapper>
