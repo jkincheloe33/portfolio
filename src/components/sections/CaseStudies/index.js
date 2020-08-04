@@ -20,7 +20,7 @@ const Scene = styled.div`
 `;
 
 const Wrapper = styled(Container)`
-  align-items: stretch;
+  align-items: center;
   display: flex;
 `;
 

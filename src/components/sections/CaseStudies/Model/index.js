@@ -38,8 +38,8 @@ export function Model({ handleActive, images, ...props }) {
 
   function handleClick(e) {
     const vector = new THREE.Vector3(
-      (e.clientX / size.width) * 2 - 1,
-      -(e.clientY / size.height) * 2 + 1,
+      (e.clientX / size.width) * 2 - 1.4,
+      -(e.clientY / size.height) * 2 + 1.4,
       0.5
     );
     vector.unproject(camera);
@@ -54,7 +54,7 @@ export function Model({ handleActive, images, ...props }) {
 
   return (
     <mesh {...props} onClick={handleClick} ref={meshRef}>
-      <boxBufferGeometry attach="geometry" args={[4, 4, 4]} />
+      <boxBufferGeometry attach="geometry" args={[3.5, 3.5, 3.5]} />
       {textures.map((texture, i) => (
         <meshLambertMaterial attachArray="material" key={i} map={texture} />
       ))}

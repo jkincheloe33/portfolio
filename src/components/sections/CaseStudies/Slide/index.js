@@ -14,7 +14,10 @@ const Wrapper = styled.div`
 function Slide({ active }) {
   return (
     <Wrapper>
-      <h1>Base {active}</h1>
+      <h1>Slide #: {active}</h1>
+      <h1>This</h1>
+      <h1>is a</h1>
+      <h1>Test</h1>
     </Wrapper>
   );
 }
