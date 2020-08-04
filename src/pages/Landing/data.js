@@ -26,11 +26,11 @@ export default {
   caseStudies: {
     images: [
       './img/me2.JPG',
-      './img/color-picker.png',
-      './img/mcgp.png',
+      './img/lpcorp.JPG',
+      './img/mcgp.JPG',
       './img/creeps.png',
-      './img/nutrition-builder.png',
-      './img/salata.png'
+      './img/nutrition-builder.JPG',
+      './img/salata.JPG'
     ],
     slides: [
       {

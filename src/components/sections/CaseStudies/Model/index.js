@@ -1,6 +1,7 @@
 import lerp from 'lerp';
 import PropTypes from 'prop-types';
 import React, { memo, useRef } from 'react';
+import { a, useSpring } from 'react-spring/three';
 import { extend, useFrame, useThree } from 'react-three-fiber';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -30,10 +31,13 @@ export function Controls({ animating }) {
   );
 }
 
-export const Model = memo(({ handleActive, images }) => {
+export const Model = memo(({ animating, handleActive, images }) => {
   const loader = new THREE.TextureLoader();
   const meshRef = useRef(null);
   const mouse = new THREE.Vector2();
+  const props = useSpring({
+    scale: animating ? [1, 1, 1] : [3.5, 3.5, 3.5]
+  });
   const textures = images.map(image => loader.load(image));
   const raycaster = new THREE.Raycaster();
   // const video = document.getElementById('video');
@@ -59,12 +63,12 @@ export const Model = memo(({ handleActive, images }) => {
   }
 
   return (
-    <mesh onClick={handleClick} ref={meshRef}>
-      <boxBufferGeometry attach="geometry" args={[3.5, 3.5, 3.5]} />
+    <a.mesh onClick={handleClick} ref={meshRef} scale={props.scale}>
+      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
       {textures.map((texture, i) => (
         <meshLambertMaterial attachArray="material" key={i} map={texture} />
       ))}
-    </mesh>
+    </a.mesh>
   );
 });
 
@@ -73,6 +77,7 @@ Controls.propTypes = {
 };
 
 Model.propTypes = {
+  animating: PropTypes.bool,
   handleActive: PropTypes.func,
   images: PropTypes.arrayOf(PropTypes.string).isRequired
 };

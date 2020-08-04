@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import { Canvas } from 'react-three-fiber';
+import { Canvas as CanvasBase } from 'react-three-fiber';
 import styled from 'styled-components';
 import { Container } from '../../blocks';
 import { Controls, Model } from './Model';
@@ -10,15 +10,17 @@ import Slide, { SlideType } from './Slide';
 //   display: none;
 // `;
 
+const Canvas = styled(CanvasBase)`
+  min-height: 500px;
+  height: 100%;
+  width: 100%;
+`;
+
 const Scene = styled.div`
   cursor: pointer;
   flex: 0 0 40%;
   max-width: 40%;
-
-  canvas {
-    height: 100%;
-    width: 100%;
-  }
+  min-height: 500px;
 `;
 
 const Wrapper = styled(Container)`
@@ -48,7 +50,11 @@ function CaseStudies({ images, slides }) {
         <Canvas id="cubeCanvas">
           <ambientLight />
           <Controls animating={animating} />
-          <Model images={images} handleActive={handleActive} />
+          <Model
+            animating={animating}
+            images={images}
+            handleActive={handleActive}
+          />
         </Canvas>
       </Scene>
       <Slide {...slides[active]} animating={animating} />
