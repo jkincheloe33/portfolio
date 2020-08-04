@@ -25,7 +25,6 @@ const Title = styled(H2)`
 
 const Wrapper = styled.div`
   flex: 0 0 60%;
-  padding: 300px 0;
 
   span {
     display: block;

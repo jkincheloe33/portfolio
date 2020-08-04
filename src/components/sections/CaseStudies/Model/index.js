@@ -17,7 +17,7 @@ export function Controls({ animating }) {
     if (animating)
       speed.autoRotateSpeed = lerp(speed.autoRotateSpeed, 300, 0.04);
     if (!animating)
-      speed.autoRotateSpeed = lerp(speed.autoRotateSpeed, 5, 0.04);
+      speed.autoRotateSpeed = lerp(speed.autoRotateSpeed, 2, 0.04);
     orbitRef.current.update();
   });
 
