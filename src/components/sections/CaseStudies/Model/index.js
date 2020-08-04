@@ -40,11 +40,6 @@ export const Model = memo(({ animating, handleActive, images }) => {
   });
   const textures = images.map(image => loader.load(image));
   const raycaster = new THREE.Raycaster();
-  // const video = document.getElementById('video');
-  // const textureTest = new THREE.VideoTexture(video);
-  // textureTest.minFilter = THREE.LinearFilter;
-  // textureTest.magFilter = THREE.LinearFilter;
-  // textureTest.format = THREE.RGBFormat;
   const { camera } = useThree();
 
   function handleClick(e) {

@@ -6,10 +6,6 @@ import { Container } from '../../blocks';
 import { Controls, Model } from './Model';
 import Slide, { SlideType } from './Slide';
 
-// const Video = styled.video`
-//   display: none;
-// `;
-
 const Canvas = styled(CanvasBase)`
   min-height: 500px;
   height: 100%;
@@ -22,11 +18,6 @@ const Scene = styled.div`
   margin: -91px auto 0;
   max-width: 730px;
   min-height: 600px;
-`;
-
-const Wrapper = styled(Container)`
-  // align-items: center;
-  // display: flex;
 `;
 
 function CaseStudies({ images, slides }) {
@@ -46,7 +37,7 @@ function CaseStudies({ images, slides }) {
   );
 
   return (
-    <Wrapper>
+    <Container>
       <Slide {...slides[active]} animating={animating} />
       <Scene>
         <Canvas id="cubeCanvas">
@@ -59,10 +50,7 @@ function CaseStudies({ images, slides }) {
           />
         </Canvas>
       </Scene>
-      {/* <Video crossOrigin="anonymous" id="video" loop playsinline>
-        <source src="./img/creeps.mp4" type="video/mp4" />
-      </Video> */}
-    </Wrapper>
+    </Container>
   );
 }
 
