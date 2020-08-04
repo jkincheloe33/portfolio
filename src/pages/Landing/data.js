@@ -28,7 +28,7 @@ export default {
       './img/me2.JPG',
       './img/color-picker.png',
       './img/mcgp.png',
-      './img/creeps.gif',
+      './img/creeps.png',
       './img/nutrition-builder.png',
       './img/salata.png'
     ],

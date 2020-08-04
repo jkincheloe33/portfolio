@@ -1,16 +1,22 @@
+import lerp from 'lerp';
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import { extend, useFrame, useThree } from 'react-three-fiber';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 extend({ OrbitControls });
 
-export function Controls() {
+export function Controls({ animating }) {
   const { camera, gl } = useThree();
   const orbitRef = useRef(null);
 
   useFrame(() => {
+    const speed = orbitRef.current;
+    if (animating)
+      speed.autoRotateSpeed = lerp(speed.autoRotateSpeed, 300, 0.04);
+    if (!animating)
+      speed.autoRotateSpeed = lerp(speed.autoRotateSpeed, 5, 0.04);
     orbitRef.current.update();
   });
 
@@ -24,7 +30,7 @@ export function Controls() {
   );
 }
 
-export function Model({ handleActive, images, ...props }) {
+export const Model = memo(({ handleActive, images }) => {
   const loader = new THREE.TextureLoader();
   const meshRef = useRef(null);
   const textures = images.map(image => loader.load(image));
@@ -53,14 +59,18 @@ export function Model({ handleActive, images, ...props }) {
   }
 
   return (
-    <mesh {...props} onClick={handleClick} ref={meshRef}>
+    <mesh onClick={handleClick} ref={meshRef}>
       <boxBufferGeometry attach="geometry" args={[3.5, 3.5, 3.5]} />
       {textures.map((texture, i) => (
         <meshLambertMaterial attachArray="material" key={i} map={texture} />
       ))}
     </mesh>
   );
-}
+});
+
+Controls.propTypes = {
+  animating: PropTypes.bool
+};
 
 Model.propTypes = {
   handleActive: PropTypes.func,
