@@ -23,6 +23,48 @@ export default {
       title: 'Hello, It Me.'
     }
   },
+  caseStudies: {
+    images: [
+      './img/me2.JPG',
+      './img/lpcorp.JPG',
+      './img/mcgp.JPG',
+      './img/creeps.png',
+      './img/nutrition-builder.JPG',
+      './img/salata.JPG'
+    ],
+    slides: [
+      {
+        copy:
+          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        title: 'Case Studies'
+      },
+      {
+        copy:
+          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        title: 'LP Corp'
+      },
+      {
+        copy:
+          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        title: 'Music City Grand Prix'
+      },
+      {
+        copy:
+          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        title: 'Glasslands'
+      },
+      {
+        copy:
+          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        title: 'Nutrition Builder'
+      },
+      {
+        copy:
+          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        title: 'Salata'
+      }
+    ]
+  },
   contact: {
     icons: [
       {
