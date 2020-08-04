@@ -8,13 +8,16 @@ const EASE = 'cubic-bezier(.85,.02,.09,.99)';
 const TIMING = 400;
 
 const Copy = styled(P)`
+  font-weight: bold;
   line-height: 25px;
   overflow: hidden;
 `;
 
 const Title = styled(H2)`
   color: ${color.white};
-  line-height: 60px;
+  font-size: 100px;
+  line-height: 100px;
+  margin-bottom: 15px;
   overflow: hidden;
   position: relative;
   text-transform: lowercase;
@@ -25,6 +28,10 @@ const Title = styled(H2)`
 
 const Wrapper = styled.div`
   flex: 0 0 60%;
+  margin: 0 auto;
+  max-width: 850px;
+  position: relative;
+  z-index: 1;
 
   span {
     display: block;

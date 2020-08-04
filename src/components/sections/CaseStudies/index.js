@@ -18,14 +18,15 @@ const Canvas = styled(CanvasBase)`
 
 const Scene = styled.div`
   cursor: pointer;
-  flex: 0 0 40%;
-  max-width: 40%;
-  min-height: 500px;
+  // flex: 0 0 40%;
+  margin: -91px auto 0;
+  max-width: 730px;
+  min-height: 600px;
 `;
 
 const Wrapper = styled(Container)`
-  align-items: center;
-  display: flex;
+  // align-items: center;
+  // display: flex;
 `;
 
 function CaseStudies({ images, slides }) {
@@ -46,6 +47,7 @@ function CaseStudies({ images, slides }) {
 
   return (
     <Wrapper>
+      <Slide {...slides[active]} animating={animating} />
       <Scene>
         <Canvas id="cubeCanvas">
           <ambientLight />
@@ -57,7 +59,6 @@ function CaseStudies({ images, slides }) {
           />
         </Canvas>
       </Scene>
-      <Slide {...slides[active]} animating={animating} />
       {/* <Video crossOrigin="anonymous" id="video" loop playsinline>
         <source src="./img/creeps.mp4" type="video/mp4" />
       </Video> */}
