@@ -1,6 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
+import { H2, theme } from '../../../../global';
+
+const { color } = theme;
+
+const Title = styled(H2)`
+  color: ${color.white};
+  font-style: italic;
+  line-height: 60px;
+  position: relative;
+  text-transform: lowercase;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: ${color.yellow};
+`;
 
 const Wrapper = styled.div`
   flex: 0 0 60%;
@@ -11,10 +25,10 @@ const Wrapper = styled.div`
   }
 `;
 
-function Slide({ active }) {
+function Slide({ title }) {
   return (
     <Wrapper>
-      <h1>Slide #: {active}</h1>
+      <Title>{title}</Title>
       <h1>This</h1>
       <h1>is a</h1>
       <h1>Test</h1>
@@ -23,7 +37,7 @@ function Slide({ active }) {
 }
 
 Slide.propTypes = {
-  active: PropTypes.number.isRequired
+  title: PropTypes.string
 };
 
 export default Slide;

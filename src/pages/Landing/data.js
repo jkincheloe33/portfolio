@@ -25,12 +25,32 @@ export default {
   },
   caseStudies: {
     images: [
+      './img/me2.JPG',
       './img/color-picker.png',
       './img/mcgp.png',
-      './img/me2.JPG',
       './img/creeps.gif',
       './img/nutrition-builder.png',
       './img/salata.png'
+    ],
+    slides: [
+      {
+        title: 'Case Studies'
+      },
+      {
+        title: 'LP Corp'
+      },
+      {
+        title: 'Music City Grand Prix'
+      },
+      {
+        title: 'Glasslands'
+      },
+      {
+        title: 'Nutrition Builder'
+      },
+      {
+        title: 'Salata'
+      }
     ]
   },
   contact: {

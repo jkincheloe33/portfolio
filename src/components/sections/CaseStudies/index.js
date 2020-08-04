@@ -24,7 +24,7 @@ const Wrapper = styled(Container)`
   display: flex;
 `;
 
-function CaseStudies({ images }) {
+function CaseStudies({ images, slides }) {
   const [active, setActive] = useState(0);
 
   function handleActive(index) {
@@ -40,7 +40,7 @@ function CaseStudies({ images }) {
           <Model images={images} handleActive={handleActive} />
         </Canvas>
       </Scene>
-      <Slide active={active} />
+      <Slide {...slides[active]} />
       {/* <Video crossOrigin="anonymous" id="video" loop playsinline>
         <source src="./img/creeps.mp4" type="video/mp4" />
       </Video> */}
@@ -49,7 +49,8 @@ function CaseStudies({ images }) {
 }
 
 CaseStudies.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  slides: PropTypes.array
 };
 
 export default CaseStudies;
