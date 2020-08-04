@@ -4,7 +4,7 @@ import { Canvas } from 'react-three-fiber';
 import styled from 'styled-components';
 import { Container } from '../../blocks';
 import { Controls, Model } from './Model';
-import Slide from './Slide';
+import Slide, { SlideType } from './Slide';
 
 // const Video = styled.video`
 //   display: none;
@@ -12,6 +12,7 @@ import Slide from './Slide';
 
 const Scene = styled.div`
   flex: 0 0 40%;
+  max-width: 40%;
 
   canvas {
     height: 100%;
@@ -26,9 +27,14 @@ const Wrapper = styled(Container)`
 
 function CaseStudies({ images, slides }) {
   const [active, setActive] = useState(0);
+  const [animating, setAnimating] = useState(false);
 
   function handleActive(index) {
-    setActive(index);
+    setAnimating(true);
+    setTimeout(() => {
+      setActive(index);
+      setAnimating(false);
+    }, 1000);
   }
 
   return (
@@ -40,7 +46,7 @@ function CaseStudies({ images, slides }) {
           <Model images={images} handleActive={handleActive} />
         </Canvas>
       </Scene>
-      <Slide {...slides[active]} />
+      <Slide {...slides[active]} animating={animating} />
       {/* <Video crossOrigin="anonymous" id="video" loop playsinline>
         <source src="./img/creeps.mp4" type="video/mp4" />
       </Video> */}
@@ -50,7 +56,7 @@ function CaseStudies({ images, slides }) {
 
 CaseStudies.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  slides: PropTypes.array
+  slides: PropTypes.arrayOf(PropTypes.shape(SlideType)).isRequired
 };
 
 export default CaseStudies;

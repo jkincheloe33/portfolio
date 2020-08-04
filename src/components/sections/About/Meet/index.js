@@ -43,12 +43,10 @@ const Content = styled.div`
 `;
 
 const Copy = styled(P)`
-  /* color: ${color.white}; */
   opacity: 0;
   padding-right: 50px;
   transform: translateY(${offset}px);
-  transition: opacity 2000ms ${easing.easeIn},
-    transform 2000ms ${easing.easeIn},
+  transition: opacity 2000ms ${easing.easeIn}, transform 2000ms ${easing.easeIn},
     color ${timing.colorMode} ${easing.easeIn};
 
   span {
