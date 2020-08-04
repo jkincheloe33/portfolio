@@ -45,7 +45,7 @@ function CaseStudies({ images, slides }) {
   return (
     <Wrapper>
       <Scene>
-        <Canvas>
+        <Canvas id="cubeCanvas">
           <ambientLight />
           <Controls animating={animating} />
           <Model images={images} handleActive={handleActive} />

@@ -33,6 +33,7 @@ export function Controls({ animating }) {
 export const Model = memo(({ handleActive, images }) => {
   const loader = new THREE.TextureLoader();
   const meshRef = useRef(null);
+  const mouse = new THREE.Vector2();
   const textures = images.map(image => loader.load(image));
   const raycaster = new THREE.Raycaster();
   // const video = document.getElementById('video');
@@ -40,16 +41,15 @@ export const Model = memo(({ handleActive, images }) => {
   // textureTest.minFilter = THREE.LinearFilter;
   // textureTest.magFilter = THREE.LinearFilter;
   // textureTest.format = THREE.RGBFormat;
-  const { camera, size } = useThree();
+  const { camera } = useThree();
 
   function handleClick(e) {
-    const vector = new THREE.Vector3(
-      (e.clientX / size.width) * 2 - 1.4,
-      -(e.clientY / size.height) * 2 + 1.4,
-      0.5
-    );
-    vector.unproject(camera);
-    raycaster.set(camera.position, vector.sub(camera.position).normalize());
+    const rect = document.getElementById('cubeCanvas').getBoundingClientRect();
+
+    mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+
     const intersects = raycaster.intersectObject(meshRef.current);
 
     if (intersects.length > 0) {
