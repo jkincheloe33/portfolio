@@ -28,8 +28,8 @@ export default {
       './img/color-picker.png',
       './img/mcgp.png',
       './img/me2.JPG',
-      './img/me2.JPG',
-      './img/me2.JPG',
+      './img/creeps.gif',
+      './img/nutrition-builder.png',
       './img/salata.png'
     ]
   },

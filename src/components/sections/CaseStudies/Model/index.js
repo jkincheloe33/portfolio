@@ -24,40 +24,45 @@ export function Controls() {
   );
 }
 
-export function Model({ images, ...props }) {
+export function Model({ handleActive, images, ...props }) {
   const loader = new THREE.TextureLoader();
   const meshRef = useRef(null);
-  const raycaster = new THREE.Raycaster();
   const textures = images.map(image => loader.load(image));
-  const { camera } = useThree();
+  const raycaster = new THREE.Raycaster();
+  // const video = document.getElementById('video');
+  // const textureTest = new THREE.VideoTexture(video);
+  // textureTest.minFilter = THREE.LinearFilter;
+  // textureTest.magFilter = THREE.LinearFilter;
+  // textureTest.format = THREE.RGBFormat;
+  const { camera, size } = useThree();
 
   function handleClick(e) {
     const vector = new THREE.Vector3(
-      (e.clientX / window.innerWidth) * 2 - 1,
-      -(e.clientY / window.innerHeight) * 2 + 1,
+      (e.clientX / size.width) * 2 - 1,
+      -(e.clientY / size.height) * 2 + 1,
       0.5
     );
     vector.unproject(camera);
     raycaster.set(camera.position, vector.sub(camera.position).normalize());
-
     const intersects = raycaster.intersectObject(meshRef.current);
 
     if (intersects.length > 0) {
       const index = Math.floor(intersects[0].faceIndex / 2);
-      console.log(index);
+      handleActive(index);
     }
   }
 
   return (
     <mesh {...props} onClick={handleClick} ref={meshRef}>
-      <boxBufferGeometry attach="geometry" args={[3, 3, 3]} />
+      <boxBufferGeometry attach="geometry" args={[4, 4, 4]} />
       {textures.map((texture, i) => (
-        <meshStandardMaterial attachArray="material" key={i} map={texture} />
+        <meshLambertMaterial attachArray="material" key={i} map={texture} />
       ))}
     </mesh>
   );
 }
 
 Model.propTypes = {
+  handleActive: PropTypes.func,
   images: PropTypes.arrayOf(PropTypes.string).isRequired
 };
