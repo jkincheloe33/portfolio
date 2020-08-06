@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { H2, P, theme } from '../../../../global';
+import { H2, media, P, theme } from '../../../../global';
 
 const { color } = theme;
 const EASE = 'cubic-bezier(.85,.02,.09,.99)';
@@ -24,6 +24,11 @@ const Title = styled(H2)`
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: ${color.yellow};
+
+  ${media.down.sm`
+    font-size: 64px;
+    line-height: 64px;
+  `}
 `;
 
 const Wrapper = styled.div`

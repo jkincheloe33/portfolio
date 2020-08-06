@@ -140,7 +140,6 @@ export const meetHandler = (meetRefs, desktop) => {
   const compRef = meetRefs[meetEnum.COMP_REF].ref.current;
   const contentRef = meetRefs[meetEnum.CONTENT].ref.current;
   const copyRef = meetRefs[meetEnum.COPY].ref.current;
-  // const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
   const width = window.innerWidth;
 
   const height = compRef.getBoundingClientRect().height;
@@ -151,9 +150,6 @@ export const meetHandler = (meetRefs, desktop) => {
       const percentage = ((height - scroll) / (height * 3)) * 100;
       // content container scroll animation
       contentRef.style.transform = `translateX(${-offset + percentage}%)`;
-
-      // image animation
-      // imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
       // paragraph text animation
       if (scroll < height / 2) {
@@ -170,9 +166,6 @@ export const meetHandler = (meetRefs, desktop) => {
       } else if (scroll > mobileHeight) {
         contentRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
       }
-
-      // image animation
-      // imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
 
       // paragraph text animation
       if (scroll < mobileHeight / 1.15) {
@@ -191,9 +184,6 @@ export const meetHandler = (meetRefs, desktop) => {
           offset * 2
         }%);`;
       }
-
-      // image animation
-      // imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
 
       // paragraph text animation
       if (scroll < mobileHeight / 2) {
