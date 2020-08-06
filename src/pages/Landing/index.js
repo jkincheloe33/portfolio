@@ -69,7 +69,7 @@ const Landing = () => {
         lightMode={lightMode}
         setLightMode={() => setLightMode(lightMode => !lightMode)}
       />
-      <Hero {...hero} lightMode={lightMode} />
+      {/* <Hero {...hero} lightMode={lightMode} /> */}
       <About {...about} lightMode={lightMode} setRefs={setRefs} />
       <CaseStudies {...caseStudies} />
       <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />

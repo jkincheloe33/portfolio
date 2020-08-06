@@ -44,7 +44,7 @@ const CaseStudies = memo(({ images, slides }) => {
     <Container>
       <Slide {...slides[active]} animating={animating} />
       <Scene>
-        <Canvas camera={{ position: [0, 0, 7], near: 1 }} id="cubeCanvas">
+        <Canvas camera={{ near: 1 }} id="cubeCanvas">
           <ambientLight />
           <Controls animating={animating} />
           <Suspense fallback={null}>
