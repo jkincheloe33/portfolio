@@ -61,7 +61,7 @@ function Slide({ animating, copy, title }) {
         <span>{title}</span>
       </Title>
       <Copy animating={animating}>
-        <span>{copy}</span>
+        <span dangerouslySetInnerHTML={{ __html: copy }} />
       </Copy>
     </Wrapper>
   );
