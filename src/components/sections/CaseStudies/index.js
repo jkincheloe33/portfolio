@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useCallback, useState } from 'react';
+import React, { memo, Suspense, useCallback, useState } from 'react';
 import { Canvas as CanvasBase } from 'react-three-fiber';
 import styled from 'styled-components';
+import { media } from '../../../global';
 import { Container } from '../../blocks';
 import { Controls, Model } from './Model';
 import Slide, { SlideType } from './Slide';
@@ -14,13 +15,16 @@ const Canvas = styled(CanvasBase)`
 
 const Scene = styled.div`
   cursor: pointer;
-  // flex: 0 0 40%;
-  margin: -91px auto 0;
+  margin: -138px auto 0;
   max-width: 730px;
-  min-height: 600px;
+
+  ${media.up.sm`
+    margin-top: -91px;
+    min-height: 600px;
+  `}
 `;
 
-function CaseStudies({ images, slides }) {
+const CaseStudies = memo(({ images, slides }) => {
   const [active, setActive] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -40,19 +44,21 @@ function CaseStudies({ images, slides }) {
     <Container>
       <Slide {...slides[active]} animating={animating} />
       <Scene>
-        <Canvas id="cubeCanvas">
+        <Canvas camera={{ near: 1 }} id="cubeCanvas">
           <ambientLight />
           <Controls animating={animating} />
-          <Model
-            animating={animating}
-            images={images}
-            handleActive={handleActive}
-          />
+          <Suspense fallback={null}>
+            <Model
+              animating={animating}
+              images={images}
+              handleActive={handleActive}
+            />
+          </Suspense>
         </Canvas>
       </Scene>
     </Container>
   );
-}
+});
 
 CaseStudies.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,

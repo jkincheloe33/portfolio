@@ -10,14 +10,14 @@ export default {
     details: {
       copy: `I won't sit here and recite keywords like <span>responsive design</span> | <span>problem solver</span> | <span>attention to detail</span> etc etc. Those should all go without saying. Instead, I built this page to showcase some of the things I'm capable of. (Also why are we still talking about responsive design in 2020 like it's a feature and optional...)`,
       image: {
-        alt: 'Picture of Josh',
+        alt: 'Josh overlooking Chicago skyline',
         src: './img/me2.JPG'
       }
     },
     meet: {
       copy: `Josh here. I'm a musician & developer currently <span>living</span> quarantining in Nashville. Married and father of two cats. I enjoy music, travel and the ocassional face mask. On a more technical note, I enjoy all things frontend, and love to create fun interactive experiences that bring pages to life.`,
       image: {
-        alt: 'Josh in a bathtub with a wine glass',
+        alt: 'Josh in Chicago',
         src: './img/me3.jpg'
       },
       title: 'Hello, It Me.'
@@ -34,33 +34,40 @@ export default {
     ],
     slides: [
       {
-        copy:
-          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        copy: `
+          Here you can see some of the projects I've worked on and features I've built.<br />
+          To navigate through the case studies, rotate and click the different sides of the cube below.
+        `,
         title: 'Case Studies'
       },
       {
-        copy:
-          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        copy: `
+          This Color Picker feature I made was designed to help users see the what the different paint color options would look like on a piece of siding. The subtle amounts of interaction and animation is just enough to give the page some life and modernity, but it's not over the top for a primarily B to B company website.
+        `,
         title: 'LP Corp'
       },
       {
-        copy:
-          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        copy: `
+          This website needed to be flashy but still very user friendly. I built much of the front end including the forms, 3D components, more complex layouts and more. Collaborated heavily with UX to come up with impactful animations that made the user feel engaged. The site isn't live yet, but will be sharing the link shortly once it's officially launched.
+        `,
         title: 'Music City Grand Prix'
       },
       {
-        copy:
-          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        copy: `
+          A release page I built for Nashville based artists, Glasslands. It features a simple line of text fading in and out with a "flashlight" cursor that reveals hidden pieces of information in the background.
+        `,
         title: 'Glasslands'
       },
       {
-        copy:
-          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        copy: `
+          This mini web application for Salata allows users to build their own custom salad and see the nutritional output from their selection. All ingredients used by Salata are represented here with their corresponding nutritional data. Once a user is finished building their salad, they can print or email their totals.
+        `,
         title: 'Nutrition Builder'
       },
       {
-        copy:
-          'Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet. Lorem ipsum solor di amet.',
+        copy: `
+          Lead Developer for chipotle style salad chain, Salata, rebrand and launch. Brand new custom site built using a headless Wordpress CMS with a React frontend.
+        `,
         title: 'Salata'
       }
     ]
