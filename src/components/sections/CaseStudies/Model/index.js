@@ -52,7 +52,7 @@ export const Model = memo(({ animating, handleActive, images }) => {
   }
 
   return (
-    <a.mesh onClick={handleClick} ref={meshRef} scale={props.scale}>
+    <a.mesh onPointerUp={handleClick} ref={meshRef} scale={props.scale}>
       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
       {textures.map((texture, i) => (
         <meshLambertMaterial attachArray="material" key={i} map={texture} />
