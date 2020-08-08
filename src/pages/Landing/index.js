@@ -71,7 +71,7 @@ const Landing = () => {
       />
       <Hero {...hero} lightMode={lightMode} />
       <About {...about} lightMode={lightMode} setRefs={setRefs} />
-      <CaseStudies {...caseStudies} />
+      <CaseStudies {...caseStudies} lightMode={lightMode} />
       <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
       <Callout lightMode={lightMode} />
     </Wrapper>

@@ -24,7 +24,7 @@ const Scene = styled.div`
   `}
 `;
 
-const CaseStudies = memo(({ images, slides }) => {
+const CaseStudies = memo(({ images, lightMode, slides }) => {
   const [active, setActive] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -39,10 +39,11 @@ const CaseStudies = memo(({ images, slides }) => {
     },
     [active]
   );
+  console.log(lightMode);
 
   return (
     <Container>
-      <Slide {...slides[active]} animating={animating} />
+      <Slide {...slides[active]} animating={animating} lightMode={lightMode} />
       <Scene>
         <Canvas camera={{ near: 1 }} id="cubeCanvas">
           <ambientLight />
@@ -62,6 +63,7 @@ const CaseStudies = memo(({ images, slides }) => {
 
 CaseStudies.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  lightMode: PropTypes.bool,
   slides: PropTypes.arrayOf(PropTypes.shape(SlideType)).isRequired
 };
 

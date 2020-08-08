@@ -7,10 +7,15 @@ const { color } = theme;
 const EASE = 'cubic-bezier(.85,.02,.09,.99)';
 const TIMING = 400;
 
+// prettier-ignore
 const Copy = styled(P)`
   font-weight: bold;
   line-height: 25px;
   overflow: hidden;
+
+  ${p => p.lightMode && `
+    color: ${color.black};
+  `}
 `;
 
 const Title = styled(H2)`
@@ -54,13 +59,13 @@ const Wrapper = styled.div`
   }
 `;
 
-function Slide({ animating, copy, title }) {
+function Slide({ animating, copy, lightMode, title }) {
   return (
     <Wrapper animating={animating}>
       <Title animating={animating}>
         <span>{title}</span>
       </Title>
-      <Copy animating={animating}>
+      <Copy animating={animating} lightMode={lightMode}>
         <span dangerouslySetInnerHTML={{ __html: copy }} />
       </Copy>
     </Wrapper>
@@ -74,7 +79,8 @@ export const SlideType = {
 
 Slide.propTypes = {
   ...SlideType,
-  animating: PropTypes.bool
+  animating: PropTypes.bool,
+  lightMode: PropTypes.bool
 };
 
 export default Slide;
