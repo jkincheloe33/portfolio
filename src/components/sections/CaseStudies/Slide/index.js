@@ -1,16 +1,48 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
-import { H2, media, P, theme } from '../../../../global';
+import { H2, media, P, shadeOf, theme } from '../../../../global';
 
 const { color } = theme;
 const EASE = 'cubic-bezier(.85,.02,.09,.99)';
 const TIMING = 400;
 
+// prettier-ignore
 const Copy = styled(P)`
   font-weight: bold;
   line-height: 25px;
   overflow: hidden;
+
+  ${p => p.lightMode && `
+    color: ${color.black};
+  `}
+
+  a {
+    color: ${color.yellow};
+    display: inline-block;
+    font-style: italic;
+    margin-top: 5px;
+    position: relative;
+    text-decoration: none;
+
+    &::before {
+      background-color: ${shadeOf(color.white, 0.8)};
+      bottom: 5px;
+      content: '';
+      height: 6px;
+      left: 0;
+      position: absolute;
+      transform: translateX(-101%);
+      transition: transform 500ms ${EASE};
+      width: 100%;
+    }
+
+    &:hover {
+      &::before {
+        transform: translateX(0);
+      }
+    }
+  }
 `;
 
 const Title = styled(H2)`
@@ -54,13 +86,13 @@ const Wrapper = styled.div`
   }
 `;
 
-function Slide({ animating, copy, title }) {
+function Slide({ animating, copy, lightMode, title }) {
   return (
     <Wrapper animating={animating}>
-      <Title animating={animating}>
+      <Title>
         <span>{title}</span>
       </Title>
-      <Copy animating={animating}>
+      <Copy lightMode={lightMode}>
         <span dangerouslySetInnerHTML={{ __html: copy }} />
       </Copy>
     </Wrapper>
@@ -74,7 +106,8 @@ export const SlideType = {
 
 Slide.propTypes = {
   ...SlideType,
-  animating: PropTypes.bool
+  animating: PropTypes.bool,
+  lightMode: PropTypes.bool
 };
 
 export default Slide;

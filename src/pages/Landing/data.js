@@ -42,7 +42,8 @@ export default {
       },
       {
         copy: `
-          This Color Picker feature I made was designed to help users see the what the different paint color options would look like on a piece of siding. The subtle amounts of interaction and animation is just enough to give the page some life and modernity, but it's not over the top for a primarily B to B company website.
+          This Color Picker feature I made was designed to help users see the what the different paint color options would look like on a piece of siding. The subtle amounts of interaction and animation is just enough to give the page some life and modernity, but it's not over the top for a primarily B to B company website.<br />
+          <a href="https://lpcorp.com/products/exterior/siding-trim/products/overview" target="_blank">LpCorp.com</a>
         `,
         title: 'LP Corp'
       },
@@ -54,19 +55,22 @@ export default {
       },
       {
         copy: `
-          A release page I built for Nashville based artists, Glasslands. It features a simple line of text fading in and out with a "flashlight" cursor that reveals hidden pieces of information in the background.
+          A release page I built for Nashville based artists, Glasslands. It features a simple line of text fading in and out with a "flashlight" cursor that reveals hidden pieces of information in the background.<br />
+          <a href="https://Glasslands.co/creeps" target="_blank">Glasslands.co</a>
         `,
         title: 'Glasslands'
       },
       {
         copy: `
-          This mini web application for Salata allows users to build their own custom salad and see the nutritional output from their selection. All ingredients used by Salata are represented here with their corresponding nutritional data. Once a user is finished building their salad, they can print or email their totals.
+          This mini web application for Salata allows users to build their own custom salad and see the nutritional output from their selection. All ingredients used by Salata are represented here with their corresponding nutritional data. Once a user is finished building their salad, they can print or email their totals.<br />
+          <a href="https://salata.com/nutrition" target="_blank">Nutrition Builder</a>
         `,
         title: 'Nutrition Builder'
       },
       {
         copy: `
-          Lead Developer for chipotle style salad chain, Salata, rebrand and launch. Brand new custom site built using a headless Wordpress CMS with a React frontend.
+          Lead Developer for chipotle style salad chain, Salata, rebrand and launch. Brand new custom site built using a headless Wordpress CMS with a React frontend.<br />
+          <a href="https://salata.com" target="_blank">Salata.com</a>
         `,
         title: 'Salata'
       }
