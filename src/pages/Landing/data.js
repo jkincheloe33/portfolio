@@ -27,7 +27,7 @@ export default {
     images: [
       './img/casestudies.png',
       './img/lpcorp.JPG',
-      './img/mcgp.JPG',
+      './img/joshkincheloe.png',
       './img/creeps.png',
       './img/nutrition-builder.JPG',
       './img/salata.JPG'
@@ -49,9 +49,9 @@ export default {
       },
       {
         copy: `
-          This website needed to be flashy but still very user friendly. I built much of the front end including the forms, 3D components, more complex layouts and more. Collaborated heavily with UX to come up with impactful animations that made the user feel engaged. The site isn't live yet, but will be sharing the link shortly once it's officially launched.
+          A React build showcasing some of my WebGL and interactive animation capabilities. This one page portfolio site was a lot of fun to create and continute to iterate off of.
         `,
-        title: 'Music City Grand Prix'
+        title: 'Josh Kincheloe'
       },
       {
         copy: `
