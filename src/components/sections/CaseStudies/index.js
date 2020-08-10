@@ -39,7 +39,6 @@ const CaseStudies = memo(({ images, lightMode, slides }) => {
     },
     [active]
   );
-  console.log(lightMode);
 
   return (
     <Container>

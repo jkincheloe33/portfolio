@@ -25,7 +25,7 @@ export default {
   },
   caseStudies: {
     images: [
-      './img/me2.JPG',
+      './img/casestudies.png',
       './img/lpcorp.JPG',
       './img/mcgp.JPG',
       './img/creeps.png',
