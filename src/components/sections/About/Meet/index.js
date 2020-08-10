@@ -43,12 +43,10 @@ const Content = styled.div`
 `;
 
 const Copy = styled(P)`
-  /* color: ${color.white}; */
   opacity: 0;
   padding-right: 50px;
   transform: translateY(${offset}px);
-  transition: opacity 2000ms ${easing.easeIn},
-    transform 2000ms ${easing.easeIn},
+  transition: opacity 2000ms ${easing.easeIn}, transform 2000ms ${easing.easeIn},
     color ${timing.colorMode} ${easing.easeIn};
 
   span {
@@ -142,7 +140,6 @@ export const meetHandler = (meetRefs, desktop) => {
   const compRef = meetRefs[meetEnum.COMP_REF].ref.current;
   const contentRef = meetRefs[meetEnum.CONTENT].ref.current;
   const copyRef = meetRefs[meetEnum.COPY].ref.current;
-  // const imageRef = meetRefs[meetEnum.IMAGE].ref.current;
   const width = window.innerWidth;
 
   const height = compRef.getBoundingClientRect().height;
@@ -153,9 +150,6 @@ export const meetHandler = (meetRefs, desktop) => {
       const percentage = ((height - scroll) / (height * 3)) * 100;
       // content container scroll animation
       contentRef.style.transform = `translateX(${-offset + percentage}%)`;
-
-      // image animation
-      // imageRef.style.opacity = (height - scroll) / (height * 0.75);
 
       // paragraph text animation
       if (scroll < height / 2) {
@@ -172,9 +166,6 @@ export const meetHandler = (meetRefs, desktop) => {
       } else if (scroll > mobileHeight) {
         contentRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`;
       }
-
-      // image animation
-      // imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
 
       // paragraph text animation
       if (scroll < mobileHeight / 1.15) {
@@ -193,9 +184,6 @@ export const meetHandler = (meetRefs, desktop) => {
           offset * 2
         }%);`;
       }
-
-      // image animation
-      // imageRef.style.opacity = (mobileHeight - scroll) / (mobileHeight * 0.75);
 
       // paragraph text animation
       if (scroll < mobileHeight / 2) {

@@ -63,6 +63,10 @@ const Wrapper = styled.div`
     align-items: flex-end;
     display: flex;
   `}
+
+  ${media.down.sm`
+    padding-bottom: 50px;
+  `}
 `;
 
 const Details = ({

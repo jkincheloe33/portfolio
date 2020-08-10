@@ -57,7 +57,9 @@ export const backgroundHandler = refs => {
   titleOne.style.transform = `translateX(calc(${scrolled}px - ${offset}%))`;
   titleTwo.style.transform = `translateX(-${scrolled}px)`;
   titleThree.style.transform = `translateX(calc(${scrolled}px - ${offset}%))`;
-  if (width < 768) {
+  if (width < 667) {
+    compRef.style.transform = `translateY(-${scrolled / 3}px) rotateZ(-5deg)`;
+  } else if (width < 768) {
     compRef.style.transform = `translateY(-${scrolled}px) rotateZ(-5deg)`;
   } else if (width < 959) {
     compRef.style.transform = `translateY(-${scrolled + 150}px) rotateZ(-5deg)`;
