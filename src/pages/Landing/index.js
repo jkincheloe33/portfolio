@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import styled from 'styled-components';
 import {
   About,
@@ -69,7 +69,7 @@ const Landing = () => {
         lightMode={lightMode}
         setLightMode={() => setLightMode(lightMode => !lightMode)}
       />
-      <Hero {...hero} lightMode={lightMode} />
+      {/* <Hero {...hero} lightMode={lightMode} /> */}
       <About {...about} lightMode={lightMode} setRefs={setRefs} />
       <CaseStudies {...caseStudies} lightMode={lightMode} />
       <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
