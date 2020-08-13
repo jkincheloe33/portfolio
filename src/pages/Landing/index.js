@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import {
   About,
@@ -25,7 +25,6 @@ const Wrapper = styled.div`
 `;
 
 const Landing = () => {
-  // const [lightMode, setLightMode] = useState(false);
   const { lightMode } = useContext(LightModeContext);
   const [refs, setRefs] = useReducer(selectedReducer, []);
 
@@ -67,10 +66,10 @@ const Landing = () => {
   return (
     <Wrapper lightMode={lightMode}>
       <LightDark />
-      {/* <Hero {...hero} lightMode={lightMode} /> */}
-      <About {...about} lightMode={lightMode} setRefs={setRefs} />
-      <CaseStudies {...caseStudies} lightMode={lightMode} />
-      <Contact {...contact} lightMode={lightMode} setRefs={setRefs} />
+      <Hero {...hero} />
+      <About {...about} setRefs={setRefs} />
+      <CaseStudies {...caseStudies} />
+      <Contact {...contact} setRefs={setRefs} />
       <Callout lightMode={lightMode} />
     </Wrapper>
   );

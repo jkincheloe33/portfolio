@@ -1,7 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { H1, media, setPayload, theme } from '../../../global';
+import {
+  H1,
+  LightModeContext,
+  media,
+  setPayload,
+  theme
+} from '../../../global';
 import Anchor, { AnchorType } from './Anchor';
 
 const { color, easing, timing } = theme;
@@ -87,7 +93,7 @@ const Title = styled(H1)`
   span.animate {
     transform: translateY(0) rotateZ(0);
     &::before { transform: translateY(-200%); }
-    &::after { transform: translateY(-100%); }    
+    &::after { transform: translateY(-100%); }
   }
 
   ${media.up.lg`
@@ -129,7 +135,9 @@ export const contactHandler = refs => {
   }
 };
 
-const Contact = ({ icons, lightMode, setRefs }) => {
+const Contact = ({ icons, setRefs }) => {
+  const { lightMode } = useContext(LightModeContext);
+
   const refs = [
     {
       comp: 'Contact',
@@ -167,7 +175,6 @@ const Contact = ({ icons, lightMode, setRefs }) => {
 
 Contact.propTypes = {
   icons: PropTypes.arrayOf(PropTypes.shape(AnchorType)).isRequired,
-  lightMode: PropTypes.bool,
   setRefs: PropTypes.func.isRequired
 };
 

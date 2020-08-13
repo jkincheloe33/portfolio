@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../blocks';
-import { P, parseContent, theme } from '../../../global';
+import { LightModeContext, P, parseContent, theme } from '../../../global';
 
 const { color, easing, timing } = theme;
 
@@ -47,19 +46,19 @@ const Wrapper = styled.div`
 
 const data = `Developed by me in React. Design by me + Jake Pierce. You can check out this site in more detail on my <a href="https://github.com/jkincheloe33/portfolio" target="_blank">Github</a>`;
 
-const Callout = ({ lightMode }) => (
-  <Wrapper lightMode={lightMode}>
-    <Container>
-      <Copy
-        dangerouslySetInnerHTML={parseContent(data)}
-        lightMode={lightMode}
-      />
-    </Container>
-  </Wrapper>
-);
+const Callout = () => {
+  const { lightMode } = useContext(LightModeContext);
 
-Callout.propTypes = {
-  lightMode: PropTypes.bool
+  return (
+    <Wrapper lightMode={lightMode}>
+      <Container>
+        <Copy
+          dangerouslySetInnerHTML={parseContent(data)}
+          lightMode={lightMode}
+        />
+      </Container>
+    </Wrapper>
+  );
 };
 
 export default Callout;

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { media, theme } from '../../../global';
+import { LightModeContext, media, theme } from '../../../global';
 import { Container as ContainerBase } from '../../blocks';
 import Background, { BackgroundType } from './Background';
 import Details, { DetailsType } from './Details';
@@ -44,8 +44,9 @@ const Wrapper = styled.div`
   `}
 `;
 
-const About = ({ background, details, lightMode, meet, setRefs }) => {
+const About = ({ background, details, meet, setRefs }) => {
   const [isIOSMobile, setIsIOSMobile] = useState(false);
+  const { lightMode } = useContext(LightModeContext);
 
   const uniforms = {
     details: {
@@ -66,6 +67,7 @@ const About = ({ background, details, lightMode, meet, setRefs }) => {
 
   useEffect(() => {
     const ua = window.navigator.userAgent;
+    // this check is due to uniforms not working on IOS Safari
     const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
     setIsIOSMobile(iOS);
   }, []);
@@ -96,7 +98,6 @@ const About = ({ background, details, lightMode, meet, setRefs }) => {
 About.propTypes = {
   background: PropTypes.shape(BackgroundType).isRequired,
   details: PropTypes.shape(DetailsType).isRequired,
-  lightMode: PropTypes.bool,
   meet: PropTypes.shape(MeetType).isRequired,
   setRefs: PropTypes.func.isRequired
 };
