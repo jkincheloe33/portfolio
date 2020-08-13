@@ -8,7 +8,7 @@ import {
   LightDark,
   Hero
 } from '../../components';
-import { theme } from '../../global';
+import { LightModeContext, theme } from '../../global';
 import { backgroundHandler } from '../../components/sections/About/Background';
 import { meetHandler } from '../../components/sections/About/Meet';
 import { contactHandler } from '../../components/sections/Contact';
@@ -25,7 +25,8 @@ const Wrapper = styled.div`
 `;
 
 const Landing = () => {
-  const [lightMode, setLightMode] = useState(false);
+  // const [lightMode, setLightMode] = useState(false);
+  const { lightMode } = useContext(LightModeContext);
   const [refs, setRefs] = useReducer(selectedReducer, []);
 
   useEffect(() => {
@@ -65,10 +66,7 @@ const Landing = () => {
 
   return (
     <Wrapper lightMode={lightMode}>
-      <LightDark
-        lightMode={lightMode}
-        setLightMode={() => setLightMode(lightMode => !lightMode)}
-      />
+      <LightDark />
       {/* <Hero {...hero} lightMode={lightMode} /> */}
       <About {...about} lightMode={lightMode} setRefs={setRefs} />
       <CaseStudies {...caseStudies} lightMode={lightMode} />

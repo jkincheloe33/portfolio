@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 
 export const LightModeContext = createContext();
 
-function LightModeProvider({ children }) {
+export function LightModeProvider({ children }) {
   const [lightMode, setLightMode] = useState(false);
 
   function handleLightMode() {
@@ -20,5 +20,3 @@ function LightModeProvider({ children }) {
     </LightModeContext.Provider>
   );
 }
-
-export default LightModeProvider;

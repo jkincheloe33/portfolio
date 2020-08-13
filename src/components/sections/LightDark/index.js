@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { media, theme } from '../../../global';
+import { LightModeContext, media, theme } from '../../../global';
 
 const { color, easing } = theme;
 
@@ -60,15 +59,14 @@ const Wrapper = styled.div`
   `}
 `;
 
-const LightDark = ({ lightMode, setLightMode }) => (
-  <Wrapper lightMode={lightMode} onClick={setLightMode}>
-    <Icons lightMode={lightMode} />
-  </Wrapper>
-);
+const LightDark = () => {
+  const { lightMode, handleLightMode } = useContext(LightModeContext);
 
-LightDark.propTypes = {
-  lightMode: PropTypes.bool,
-  setLightMode: PropTypes.func
+  return (
+    <Wrapper lightMode={lightMode} onClick={handleLightMode}>
+      <Icons lightMode={lightMode} />
+    </Wrapper>
+  );
 };
 
 export default LightDark;

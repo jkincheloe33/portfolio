@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { GlobalStyles } from './global';
+import { GlobalStyles, LightModeProvider } from './global';
 import { Landing } from './pages';
-import LightModeProvider from './global/Providers/LightMode';
 
 const App = () => (
   <Router>
