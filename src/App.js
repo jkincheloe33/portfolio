@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { GlobalStyles } from './global';
+import { GlobalStyles, LightModeProvider } from './global';
 import { Landing } from './pages';
 
 const App = () => (
@@ -8,7 +8,9 @@ const App = () => (
     <>
       <GlobalStyles />
       <Switch>
-        <Route exact path="/" component={Landing} />
+        <LightModeProvider>
+          <Route exact path="/" component={Landing} />
+        </LightModeProvider>
       </Switch>
     </>
   </Router>

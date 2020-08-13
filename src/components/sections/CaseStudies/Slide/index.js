@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { H2, media, P, shadeOf, theme } from '../../../../global';
+import {
+  H2,
+  LightModeContext,
+  media,
+  P,
+  shadeOf,
+  theme
+} from '../../../../global';
 
 const { color } = theme;
 const EASE = 'cubic-bezier(.85,.02,.09,.99)';
@@ -86,7 +93,9 @@ const Wrapper = styled.div`
   }
 `;
 
-function Slide({ animating, copy, lightMode, title }) {
+function Slide({ animating, copy, title }) {
+  const { lightMode } = useContext(LightModeContext);
+
   return (
     <Wrapper animating={animating}>
       <Title>
@@ -106,8 +115,7 @@ export const SlideType = {
 
 Slide.propTypes = {
   ...SlideType,
-  animating: PropTypes.bool,
-  lightMode: PropTypes.bool
+  animating: PropTypes.bool
 };
 
 export default Slide;

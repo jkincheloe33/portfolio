@@ -1,7 +1,19 @@
-import React, { Suspense, useCallback, useRef, useState } from 'react';
+import React, {
+  Suspense,
+  useCallback,
+  useContext,
+  useRef,
+  useState
+} from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Canvas as CanvasBase } from 'react-three-fiber';
-import { H1, media, parseContent, theme } from '../../../global';
+import {
+  H1,
+  LightModeContext,
+  media,
+  parseContent,
+  theme
+} from '../../../global';
 import Loading from './Loading';
 import Model from './Model';
 
@@ -109,9 +121,10 @@ const Wrapper = styled.div`
   `}
 `;
 
-const Hero = ({ lightMode, title }) => {
+const Hero = ({ title }) => {
   const [animating, setAnimating] = useState(true);
   const [objectLoaded, setObjectLoaded] = useState(false);
+  const { lightMode } = useContext(LightModeContext);
   const mouse = useRef([0, 0]);
   const onMouseMove = useCallback(
     ({ clientX: x, clientY: y }) =>
