@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from 'react'
+import { memo, useMemo, useRef, useState } from 'react'
 import lerp from 'lerp'
 import { a, useSpring } from '@react-spring/three'
 import { extend, useFrame, useLoader, useThree } from '@react-three/fiber'
@@ -38,19 +38,19 @@ interface Props {
 
 export const Model = memo(({ animating, handleActive, images }: Props) => {
   const meshRef = useRef(null)
+
   const props = useSpring({ scale: animating ? [1, 1, 1] : [3.5, 3.5, 3.5] })
   const textures = useLoader(THREE.TextureLoader, images)
+
+  const materials = useMemo(() => textures.map(texture => new THREE.MeshLambertMaterial({ map: texture })), [textures])
 
   function handleClick(e) {
     handleActive(Math.floor(e.faceIndex / 2))
   }
 
   return (
-    <a.mesh onPointerUp={handleClick} ref={meshRef} scale={props.scale as unknown as [number, number, number]}>
+    <a.mesh onPointerUp={handleClick} ref={meshRef} scale={props.scale as unknown as [number, number, number]} material={materials}>
       <boxGeometry attach='geometry' args={[1, 1, 1]} />
-      {textures.map((texture, i) => (
-        <meshLambertMaterial attach='material' key={i} map={texture} />
-      ))}
     </a.mesh>
   )
 })

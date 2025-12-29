@@ -34,22 +34,20 @@ export const About = ({ background, details, meet, setRefs }: Props) => {
     },
   }
 
-  // const handleUniforms = () => {
-  //   uniforms.details.uTime.value += 0.01
-  //   uniforms.meet.uTime.value += 0.01
-  //   requestAnimationFrame(handleUniforms)
-  // }
-
-  // handleUniforms()
-
   useEffect(() => {
+    let rafId: number
+
     const handleUniforms = () => {
       uniforms.details.uTime.value += 0.01
       uniforms.meet.uTime.value += 0.01
-      requestAnimationFrame(handleUniforms)
+      rafId = requestAnimationFrame(handleUniforms)
     }
 
-    handleUniforms()
+    rafId = requestAnimationFrame(handleUniforms)
+
+    return () => {
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   useEffect(() => {

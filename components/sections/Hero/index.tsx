@@ -52,11 +52,16 @@ const Canvas = styled(props => <CanvasBase {...props} />)<{ $animating: boolean 
   min-height: 100vh;
   opacity: ${p => (p.$animating ? 0 : 1)};
   transition: opacity 2000ms ${easing.easeIn};
+
+  canvas {
+    height: 100vh !important;
+    width: 100% !important;
+  }
 `
 
 // prettier-ignore
 const Title = styled(props => <H1 {...props} />)<{ $objectLoaded: boolean }>`
-  color: '#ddd';
+  color: #ddd;
   font-size: 100px;
   font-weight: ${fontWeight.bold};
   left: 0;

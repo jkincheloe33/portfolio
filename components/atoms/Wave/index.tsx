@@ -25,7 +25,7 @@ export const Wave = ({ args, uniforms, url }: Props) => {
         args={[
           {
             fragmentShader: fragmentShader,
-            uniforms: uniforms,
+            uniforms,
             vertexShader: vertexShader,
             wireframe: false,
           },

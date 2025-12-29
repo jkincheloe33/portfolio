@@ -48,6 +48,10 @@ const Canvas = styled(props => <CanvasBase {...props} />)`
   min-height: 500px;
   height: 100%;
   width: 100%;
+
+  canvas {
+    min-height: 500px;
+  }
 `
 
 const Scene = styled.div`
