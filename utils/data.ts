@@ -8,14 +8,14 @@ export const data = {
       ],
     },
     details: {
-      copy: `I won't sit here and recite keywords like <span>responsive design</span> | <span>problem solver</span> | <span>attention to detail</span> etc etc. Those should all go without saying. Instead, I built this page to showcase some of the things I'm capable of.`,
+      copy: "I won't sit here and recite keywords like <span>responsive design</span> | <span>problem solver</span> | <span>attention to detail</span> etc etc. Those should all go without saying. Instead, I built this page to showcase some of the things I'm capable of.",
       image: {
         alt: 'Josh overlooking Chicago skyline',
         src: './img/me2.jpeg',
       },
     },
     meet: {
-      copy: `Josh here. I'm a musician & developer currently living in Nashville. Married and father of one daughter and one cat. I enjoy music, travel and the ocassional face mask. On a more technical note, I'm full stack, but very much enjoy all things frontend. I love to create fun interactive experiences that bring pages to life.`,
+      copy: "Josh here. I'm a musician & developer currently living in Nashville. Married and father of one daughter and one cat. I enjoy music, travel and the ocassional face mask. On a more technical note, I'm full stack, but very much enjoy all things frontend. I love to create fun interactive experiences that bring pages to life.",
       image: {
         alt: 'Josh looking very serious in a Nashville coffee shop',
         src: './img/me3.jpeg',

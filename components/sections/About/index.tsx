@@ -54,6 +54,7 @@ export const About = ({ background, details, meet, setRefs }: Props) => {
     const ua = window.navigator.userAgent
     // this check is due to uniforms not working on IOS Safari
     const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsIOSMobile(iOS)
   }, [])
 
@@ -95,4 +96,4 @@ const Wrapper = styled.div`
   ${media.down.md`
     padding-top: 50px;
   `}
-`;
+`

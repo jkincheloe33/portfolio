@@ -18,4 +18,4 @@ export const AspectRatio = styled.div<{ max?: number; align?: 'left' | 'right'; 
   `}
 
   ${p => maintainRatio(p.width, p.height)}
-`;
+`

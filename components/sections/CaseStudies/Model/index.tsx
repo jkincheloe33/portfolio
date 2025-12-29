@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/immutability */
+// Disabling immutability rule for Three.js - direct object mutations are required for Three.js scene graph
 import { memo, useMemo, useRef, useState } from 'react'
 import lerp from 'lerp'
 import { a, useSpring } from '@react-spring/three'

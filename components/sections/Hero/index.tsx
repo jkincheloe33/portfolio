@@ -24,6 +24,7 @@ export const Hero = ({ title }) => {
   return (
     <Wrapper>
       <Loading animating={animating} objectLoaded={objectLoaded} />
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
       <Title dangerouslySetInnerHTML={parseContent(title)} $objectLoaded={objectLoaded} />
       <Canvas $animating={animating} camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={1} />
@@ -123,7 +124,7 @@ const Title = styled(props => <H1 {...props} />)<{ $objectLoaded: boolean }>`
       padding: 0;
     }
   `}
-`;
+`
 
 const Wrapper = styled.div`
   min-height: 100vh;

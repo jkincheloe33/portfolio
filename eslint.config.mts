@@ -5,7 +5,6 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import eslintReact from '@eslint-react/eslint-plugin'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import eslintPluginNext from '@next/eslint-plugin-next'
 
 export default defineConfig(
@@ -15,10 +14,9 @@ export default defineConfig(
   eslint.configs.recommended,
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat['recommended-latest'],
   eslintReact.configs['recommended-typescript'],
   jsxA11y.flatConfigs.recommended,
-  eslintPluginPrettierRecommended,
   {
     languageOptions: {
       globals: {
@@ -40,10 +38,11 @@ export default defineConfig(
       '@eslint-react/no-children-map': 'off',
 
       // React Hooks
+      'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'off',
 
       // Stylistic
-      quotes: ['error', 'single'],
+      quotes: ['error', 'single', { avoidEscape: true }],
       semi: ['error', 'never'],
 
       // TypeScript

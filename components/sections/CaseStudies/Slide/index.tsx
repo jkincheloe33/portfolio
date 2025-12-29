@@ -7,7 +7,7 @@ const { color } = theme
 const EASE = 'cubic-bezier(.85,.02,.09,.99)'
 const TIMING = 400
 
-export type SlideType = {
+export interface SlideType {
   copy?: string
   title?: string
 }
@@ -22,6 +22,7 @@ export const Slide = ({ animating, copy, title }: Props) => (
       <span>{title}</span>
     </Title>
     <Copy>
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
       <span dangerouslySetInnerHTML={{ __html: copy }} />
     </Copy>
   </Wrapper>
@@ -63,7 +64,7 @@ const Copy = styled(props => <P {...props} />)`
       }
     }
   }
-`;
+`
 
 const Title = styled(props => <H2 {...props} />)`
   color: ${color.white};

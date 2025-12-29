@@ -37,7 +37,7 @@ export const H2 = styled.h2<TypographyProps>`
     color: ${color.grey};
     line-height: 56px;
   `}
-`;
+`
 
 export const H3 = styled.h3<TypographyProps>`
   color: ${p => (p.inverted ? color.white : color.orange)};
@@ -98,4 +98,4 @@ export const P = styled.p<TypographyProps>`
     font-size: 32px;
     line-height: 56px;
   `}
-`;
+`

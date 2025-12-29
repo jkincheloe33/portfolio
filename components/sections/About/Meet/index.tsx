@@ -35,7 +35,7 @@ export const meetHandler = meetRefs => {
 
       // paragraph text animation
       if (scroll < height / 2) {
-        copyRef.style.cssText += `opacity: 1; transform: translateY(0);`
+        copyRef.style.cssText += 'opacity: 1; transform: translateY(0);'
       } else {
         copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`
       }
@@ -44,14 +44,14 @@ export const meetHandler = meetRefs => {
 
       // content container scroll animation
       if (scroll < mobileHeight) {
-        contentRef.style.cssText += `opacity: 1; transform: translateY(0);`
+        contentRef.style.cssText += 'opacity: 1; transform: translateY(0);'
       } else if (scroll > mobileHeight) {
         contentRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`
       }
 
       // paragraph text animation
       if (scroll < mobileHeight / 1.15) {
-        copyRef.style.cssText += `opacity: 1; transform: translateY(0);`
+        copyRef.style.cssText += 'opacity: 1; transform: translateY(0);'
       } else {
         copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`
       }
@@ -60,14 +60,14 @@ export const meetHandler = meetRefs => {
 
       // content container scroll animation
       if (scroll < mobileHeight) {
-        contentRef.style.cssText += `opacity: 1; transform: translateY(0);`
+        contentRef.style.cssText += 'opacity: 1; transform: translateY(0);'
       } else if (scroll > mobileHeight) {
         contentRef.style.cssText += `opacity: 0; transform: translateY(${offset * 2}%);`
       }
 
       // paragraph text animation
       if (scroll < mobileHeight / 2) {
-        copyRef.style.cssText += `opacity: 1; transform: translateY(0);`
+        copyRef.style.cssText += 'opacity: 1; transform: translateY(0);'
       } else {
         copyRef.style.cssText += `opacity: 0; transform: translateY(${offset}%);`
       }
@@ -75,7 +75,7 @@ export const meetHandler = meetRefs => {
   }
 }
 
-export type MeetType = {
+export interface MeetType {
   copy: string
   image: ImageType
   title: string
@@ -114,13 +114,13 @@ export const Meet = ({ copy, image, isIOSMobile, setRefs, title, uniforms }: Pro
 
   useEffect(() => {
     setPayload(refs, setRefs)
-    // eslint-disable-next-line
   }, [])
 
   return (
     <Wrapper ref={wrapperRef}>
       <Content ref={contentRef}>
         <Title>{title}</Title>
+        {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
         <Copy dangerouslySetInnerHTML={parseContent(copy)} ref={copyRef} />
       </Content>
       <ImageWrapper $isIOSMobile={isIOSMobile} ref={imageRef}>

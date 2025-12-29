@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export type ImageType = {
+export interface ImageType {
   alt: string
   src: string
 }

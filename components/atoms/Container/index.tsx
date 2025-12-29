@@ -21,4 +21,4 @@ const Wrapper = styled.div<{ unContain?: boolean }>`
     max-width: 1264px;
     padding: 0 20px;
   `}
-`;
+`

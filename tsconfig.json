@@ -44,6 +44,7 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "next.config.mts",
+    "eslint.config.mts",
     "types/**/*.d.ts"
   ]
 }

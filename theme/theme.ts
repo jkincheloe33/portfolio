@@ -11,13 +11,13 @@ const gridWidth = columnWidth * columns + gutterWidth * (columns - 1) // 1224
 const breakPoints = [320, 375, 480, 667, 768, 960, 1024, 1440, 1950]
 
 // 8, 16, 24, 32, 40, 48, 56, 64, 72
-const fontSizes = Array.from({ length: baseValue + 1 }, (x, i) => (i + 1) * baseValue)
+const fontSizes = Array.from({ length: baseValue + 1 }, (_, i) => (i + 1) * baseValue)
 
 // 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128
-const spacing = Array.from({ length: baseValue * 2 }, (x, i) => (i + 1) * baseValue)
+const spacing = Array.from({ length: baseValue * 2 }, (_, i) => (i + 1) * baseValue)
 
 // setting up our size shorthands
-const sizing = Array.from({ length: baseValue + 1 }, (x, i) => ({
+const sizing = Array.from({ length: baseValue + 1 }, (_, i) => ({
   bp: breakPoints[i],
   fs: fontSizes[i],
   lh: fontSizes[i] * 1.5,

@@ -12,7 +12,6 @@ const contactEnum = {
   TITLE_REF: 1,
 }
 
-// eslint-disable-next-line react-hooks/exhaustive-deps
 export const contactHandler = refs => {
   const compRef = refs[contactEnum.COMP_REF].ref.current
   const lineRef = refs[contactEnum.LINE_REF].ref.current
@@ -60,7 +59,6 @@ export const Contact = ({ icons, setRefs }: Props) => {
 
   useEffect(() => {
     setPayload(refs, setRefs)
-    // eslint-disable-next-line
   }, [])
 
   return (
@@ -71,7 +69,7 @@ export const Contact = ({ icons, setRefs }: Props) => {
       <Line ref={lineRef} />
       <Social>
         {icons.map((icon, i) => (
-          <Anchor {...icon} key={i} />
+          <Anchor key={i} {...icon} />
         ))}
       </Social>
     </Wrapper>
@@ -165,7 +163,7 @@ const Title = styled(props => <H1 {...props} />)`
     font-size: 200px;
     line-height: 225px;
   `}
-`;
+`
 
 const Wrapper = styled.div`
   margin-bottom: 50px;

@@ -45,24 +45,24 @@ export const media: {
   up: MediaUp
 } = {
   down: Object.keys(sizes.down).reduce((accumulator, label) => {
-    const emSize = sizes.down[label as keyof typeof sizes.down] / 16;
+    const emSize = sizes.down[label as keyof typeof sizes.down] / 16
     accumulator[label as keyof typeof sizes.down] = (...args: Parameters<typeof css>) => css`
       @media (max-width: ${emSize}em) {
         ${css(...args)}
       }
-    `;
-    return accumulator;
+    `
+    return accumulator
   }, {} as MediaDown),
   up: Object.keys(sizes.up).reduce((accumulator, label) => {
-    const emSize = sizes.up[label as keyof typeof sizes.up] / 16;
+    const emSize = sizes.up[label as keyof typeof sizes.up] / 16
     accumulator[label as keyof typeof sizes.up] = (...args: Parameters<typeof css>) => css`
       @media (min-width: ${emSize}em) {
         ${css(...args)}
       }
-    `;
-    return accumulator;
+    `
+    return accumulator
   }, {} as MediaUp)
-};
+}
 
 /**
  * Based on the number of columns you want, this will determine the pixel size it takes up including the gutters.

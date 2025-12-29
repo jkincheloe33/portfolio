@@ -6,11 +6,13 @@ import { parseContent } from '@/utils'
 
 const { color, easing, timing } = theme
 
-const data = `Developed by me in Next JS. Design by me + Jake Pierce. You can check out this site in more detail on my <a href="https://github.com/jkincheloe33/portfolio" target="_blank">Github</a>`
+const data =
+  'Developed by me in Next JS. Design by me + Jake Pierce. You can check out this site in more detail on my <a href="https://github.com/jkincheloe33/portfolio" target="_blank">Github</a>'
 
 export const Callout = () => (
   <Wrapper>
     <Container>
+      {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
       <Copy dangerouslySetInnerHTML={parseContent(data)} />
     </Container>
   </Wrapper>

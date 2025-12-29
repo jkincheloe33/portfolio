@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/immutability */
+// Disabling immutability rule for Three.js - direct object mutations are required for Three.js scene graph
 import { useEffect, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import lerp from 'lerp'
@@ -26,7 +28,6 @@ export const Model = ({ mouse, objectLoaded, setAnimating, setObjectLoaded, ...p
 
   useEffect(() => {
     new GLTFLoader(manager).load('./obj/cloud/scene.gltf', setModel)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   manager.onProgress = function (_, objectLoaded, total) {
@@ -59,7 +60,6 @@ export const Model = ({ mouse, objectLoaded, setAnimating, setObjectLoaded, ...p
     if (model) {
       model.scene.rotation.y = -0.595
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useFrame(() => {

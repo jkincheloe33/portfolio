@@ -8,7 +8,7 @@ import { media } from '@/utils'
 
 const { color, easing } = theme
 
-export type AnchorType = {
+export interface AnchorType {
   link: string
   image: ImageType
 }

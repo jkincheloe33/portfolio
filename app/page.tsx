@@ -17,10 +17,6 @@ const { color, easing, timing } = theme
 export default function Home() {
   const [refs, setRefs] = useReducer(selectedReducer, [])
 
-  useEffect(() => {
-    handleScroll(refs)
-  }, [refs])
-
   const handleScroll = refs => {
     const backgroundRefs = refs.filter(ref => ref.comp === 'Background')
     const contactRefs = refs.filter(ref => ref.comp === 'Contact')
@@ -51,6 +47,10 @@ export default function Home() {
       }
     }
   }
+
+  useEffect(() => {
+    handleScroll(refs)
+  }, [refs])
 
   return (
     <Wrapper>

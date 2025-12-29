@@ -16,6 +16,7 @@ export const Loading = ({ animating, objectLoaded }: Props) => {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoaded(true)
   }, [])
 
@@ -122,7 +123,7 @@ const Title = styled(props => <H1 {...props} />)<{ $loaded: boolean, $objectLoad
     font-size: 200px;
     line-height: 225px;
   `}
-`;
+`
 
 const Wrapper = styled.div<{ $animating: boolean }>`
   background-color: ${color.black};

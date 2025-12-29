@@ -9,7 +9,7 @@ import { media, parseContent, setColumnSpanSize } from '@/utils'
 
 const { color, easing, timing } = theme
 
-export type DetailsType = {
+export interface DetailsType {
   copy: string
   image: ImageType
 }
@@ -32,6 +32,7 @@ export const Details = ({ copy, image, isIOSMobile, uniforms }: Props) => (
         </Canvas>
       )}
     </ImageWrapper>
+    {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
     <Copy dangerouslySetInnerHTML={parseContent(copy)} />
   </Wrapper>
 )

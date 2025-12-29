@@ -14,6 +14,7 @@ export const Wave = ({ args, uniforms, url }: Props) => {
   const [texture] = useLoader(THREE.TextureLoader, [url])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/immutability
     uniforms.uTexture = { value: texture }
   }, [texture, uniforms.uTexture])
 

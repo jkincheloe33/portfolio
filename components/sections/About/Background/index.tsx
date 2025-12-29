@@ -36,7 +36,7 @@ export const backgroundHandler = refs => {
   }
 }
 
-export type BackgroundType = {
+export interface BackgroundType {
   titles: string[]
 }
 
@@ -70,11 +70,11 @@ export const Background = ({ setRefs, titles }: Props) => {
 
   useEffect(() => {
     setPayload([{ comp: 'Background', ref }, ...refs.map(ref => ({ comp: 'Background', ref }))], setRefs)
-    // eslint-disable-next-line
   }, [])
 
   return (
     <Wrapper ref={ref}>
+      {/* eslint-disable-next-line react-hooks/refs */}
       {titles.map((title, i) => (
         <Title $even={!!(i % 2)} key={i} ref={refs[i]}>
           {title}
@@ -88,7 +88,7 @@ const Title = styled(props => <H1 {...props} />)<{ $even: boolean }>`
   color: ${p => (p.$even ? color.white : color.yellow)};
   font-size: 100px;
   line-height: 85px;
-  transform: ${p => (p.$even ? `translateX(-${offset}%)` : `translateX(0)`)};
+  transform: ${p => (p.$even ? `translateX(-${offset}%)` : 'translateX(0)')};
   transition: color ${timing.colorMode} ${easing.easeIn};
   white-space: nowrap;
 
