@@ -47,8 +47,9 @@ export const Model = ({ mouse, objectLoaded, setAnimating, setObjectLoaded, ...p
   useEffect(() => {
     if (model) {
       model.scene.traverse(child => {
-        if (child.material) {
-          setMaterial(child.material)
+        // Type guard for Mesh objects
+        if ((child as THREE.Mesh).material) {
+          setMaterial((child as THREE.Mesh).material as THREE.MeshStandardMaterial)
         }
       })
     }
