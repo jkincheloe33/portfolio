@@ -1,17 +1,26 @@
 import { useEffect } from 'react'
 import * as THREE from 'three'
-import { useLoader } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber'
 
 import { fragmentShader, vertexShader } from './shaders'
 
 interface Props {
   args: [number, number, number, number]
-  uniforms: { uTexture: { value: THREE.Texture } }
   url: string
 }
 
-export const Wave = ({ args, uniforms, url }: Props) => {
+export const Wave = ({ args, url }: Props) => {
   const [texture] = useLoader(THREE.TextureLoader, [url])
+
+  const uniforms = {
+    uTexture: { value: null },
+    uTime: { value: 0.0 },
+  }
+
+  useFrame(() => {
+    uniforms.uTime.value += 0.01
+    uniforms.uTime.value += 0.01
+  })
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/immutability
@@ -25,9 +34,9 @@ export const Wave = ({ args, uniforms, url }: Props) => {
         attach='material'
         args={[
           {
-            fragmentShader: fragmentShader,
+            fragmentShader,
             uniforms,
-            vertexShader: vertexShader,
+            vertexShader,
             wireframe: false,
           },
         ]}

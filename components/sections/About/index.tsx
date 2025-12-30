@@ -23,33 +23,6 @@ interface Props {
 export const About = ({ background, details, meet, setRefs }: Props) => {
   const [isIOSMobile, setIsIOSMobile] = useState(false)
 
-  const uniforms = {
-    details: {
-      uTexture: { value: null },
-      uTime: { value: 0.0 },
-    },
-    meet: {
-      uTexture: { value: null },
-      uTime: { value: 0.0 },
-    },
-  }
-
-  useEffect(() => {
-    let rafId: number
-
-    const handleUniforms = () => {
-      uniforms.details.uTime.value += 0.01
-      uniforms.meet.uTime.value += 0.01
-      rafId = requestAnimationFrame(handleUniforms)
-    }
-
-    rafId = requestAnimationFrame(handleUniforms)
-
-    return () => {
-      cancelAnimationFrame(rafId)
-    }
-  }, [])
-
   useEffect(() => {
     const ua = window.navigator.userAgent
     // this check is due to uniforms not working on IOS Safari
@@ -62,8 +35,8 @@ export const About = ({ background, details, meet, setRefs }: Props) => {
     <Wrapper>
       <Container>
         <Background {...background} setRefs={setRefs} />
-        <Meet {...meet} isIOSMobile={isIOSMobile} setRefs={setRefs} uniforms={uniforms.meet} />
-        <Details {...details} isIOSMobile={isIOSMobile} uniforms={uniforms.details} />
+        <Meet {...meet} isIOSMobile={isIOSMobile} setRefs={setRefs} />
+        <Details {...details} isIOSMobile={isIOSMobile} />
       </Container>
     </Wrapper>
   )

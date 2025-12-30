@@ -1,5 +1,4 @@
 import { Suspense, useEffect, useRef } from 'react'
-import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
 import styled from 'styled-components'
 
@@ -84,10 +83,9 @@ export interface MeetType {
 interface Props extends MeetType {
   isIOSMobile?: boolean
   setRefs?: (refs: React.RefObject<HTMLDivElement>[]) => void
-  uniforms?: { uTexture: { value: THREE.Texture } }
 }
 
-export const Meet = ({ copy, image, isIOSMobile, setRefs, title, uniforms }: Props) => {
+export const Meet = ({ copy, image, isIOSMobile, setRefs, title }: Props) => {
   const contentRef = useRef<HTMLDivElement>(null)
   const copyRef = useRef<HTMLParagraphElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
@@ -129,7 +127,7 @@ export const Meet = ({ copy, image, isIOSMobile, setRefs, title, uniforms }: Pro
         ) : (
           <Canvas camera={{ position: [0, 0, 4] }}>
             <Suspense fallback={null}>
-              <Wave args={[8.08, 5.61, 5, 5]} uniforms={uniforms} url={image.src} />
+              <Wave args={[8.08, 5.61, 5, 5]} url={image.src} />
             </Suspense>
           </Canvas>
         )}

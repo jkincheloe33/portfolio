@@ -1,7 +1,6 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import styled from 'styled-components'
-import * as THREE from 'three'
 
 import { Image, ImageType, Wave } from '@/components'
 import { P, theme } from '@/theme'
@@ -16,10 +15,9 @@ export interface DetailsType {
 
 interface Props extends DetailsType {
   isIOSMobile: boolean
-  uniforms: { uTexture: { value: THREE.Texture } }
 }
 
-export const Details = ({ copy, image, isIOSMobile, uniforms }: Props) => (
+export const Details = ({ copy, image, isIOSMobile }: Props) => (
   <Wrapper>
     <ImageWrapper $isIOSMobile={isIOSMobile}>
       {isIOSMobile ? (
@@ -27,7 +25,7 @@ export const Details = ({ copy, image, isIOSMobile, uniforms }: Props) => (
       ) : (
         <Canvas camera={{ position: [0, 0, 4] }}>
           <Suspense fallback={null}>
-            <Wave args={[9, 6, 5, 5]} uniforms={uniforms} url={image.src} />
+            <Wave args={[9, 6, 5, 5]} url={image.src} />
           </Suspense>
         </Canvas>
       )}
