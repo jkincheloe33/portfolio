@@ -18,8 +18,8 @@ export const Wave = ({ args, url }: Props) => {
   }
 
   useFrame(() => {
-    uniforms.uTime.value += 0.01
-    uniforms.uTime.value += 0.01
+    uniforms.uTime.value += 0.005
+    uniforms.uTime.value += 0.005
   })
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import lerp from 'lerp'
 import * as THREE from 'three'
 import { GLTFLoader, GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js'
 
 interface Props {
   mouse: React.RefObject<[number, number]>
@@ -27,7 +28,26 @@ export const Model = ({ mouse, objectLoaded, setAnimating, setObjectLoaded, ...p
   const manager = new THREE.LoadingManager()
 
   useEffect(() => {
-    new GLTFLoader(manager).load('./obj/cloud/scene.gltf', setModel)
+    async function loadModel() {
+      // Wait for MeshOpt decoder to be ready
+      await MeshoptDecoder.ready
+
+      const loader = new GLTFLoader(manager)
+      loader.setMeshoptDecoder(MeshoptDecoder)
+
+      loader.load(
+        './obj/cloud/scene.gltf',
+        gltf => {
+          setModel(gltf)
+        },
+        undefined,
+        error => {
+          console.error('Error loading GLTF:', error)
+        }
+      )
+    }
+
+    loadModel()
   }, [])
 
   manager.onProgress = function (_, objectLoaded, total) {
