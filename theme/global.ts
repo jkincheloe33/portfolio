@@ -12,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
       font-family: 'Poppins', sans-serif;
     }
   }
+
   body,
   html {
     background-color: black !important;
@@ -23,5 +24,6 @@ export const GlobalStyles = createGlobalStyle`
     height: 100%;
     width: 100%;
   }
+  
   ${resetCSS}
 `

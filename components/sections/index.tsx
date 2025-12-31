@@ -1,4 +1,5 @@
 export * from './About'
+export * from './Blob'
 export * from './Hero'
 export * from './CaseStudies'
 export * from './Contact'

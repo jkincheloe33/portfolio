@@ -65,7 +65,14 @@ export const Anchor = ({ image, link }: AnchorType) => {
   }, [hover, mouse])
 
   return (
-    <Wrapper href={link} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onMouseMove={onMouseMove} ref={compRef}>
+    <Wrapper
+      href={link}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onMouseMove={onMouseMove}
+      ref={compRef}
+      target='_blank'
+    >
       <div ref={imageRef}>
         <Icon {...image} />
       </div>

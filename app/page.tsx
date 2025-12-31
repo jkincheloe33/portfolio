@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useReducer } from 'react'
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
 import styled from 'styled-components'
 
-import { About, Callout, CaseStudies, Contact, Hero } from '@/components'
+import { About, Blob, Callout, CaseStudies, Contact, Hero } from '@/components'
 import { theme } from '@/theme'
 import { data } from '@/utils'
 
@@ -14,8 +14,16 @@ import { contactHandler } from '@/components/sections/Contact'
 const { about, caseStudies, contact, hero } = data
 const { color, easing, timing } = theme
 
+interface Mouse {
+  clientX: number
+  clientY: number
+}
+
 export default function Home() {
+  const [heroLoaded, setHeroLoaded] = useState(false)
+
   const [refs, setRefs] = useReducer(selectedReducer, [])
+  const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
 
   const handleScroll = refs => {
     const backgroundRefs = refs.filter(ref => ref.comp === 'Background')
@@ -36,6 +44,8 @@ export default function Home() {
     }
   }
 
+  const onMouseMove = useCallback(({ clientX: x, clientY: y }: Mouse) => (mouse.current = { x, y }), [])
+
   function selectedReducer(state, action) {
     switch (action.type) {
       case 'create': {
@@ -53,9 +63,10 @@ export default function Home() {
   }, [refs])
 
   return (
-    <Wrapper>
-      <Hero {...hero} />
+    <Wrapper onMouseMove={onMouseMove}>
+      <Hero {...hero} heroLoaded={heroLoaded} setHeroLoaded={setHeroLoaded} />
       <About {...about} setRefs={setRefs} />
+      <Blob heroLoaded={heroLoaded} mouse={mouse} />
       <CaseStudies {...caseStudies} />
       <Contact {...contact} setRefs={setRefs} />
       <Callout />
