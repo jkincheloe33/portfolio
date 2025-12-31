@@ -1,4 +1,4 @@
-import { Suspense, useCallback, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, Suspense, useCallback, useRef, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Canvas as CanvasBase } from '@react-three/fiber'
 
@@ -10,9 +10,14 @@ import { Model } from './Model'
 
 const { color, easing, fontWeight, timing } = theme
 
-export const Hero = ({ title }) => {
+interface Props {
+  title: string
+  heroLoaded: boolean
+  setHeroLoaded: Dispatch<SetStateAction<boolean>>
+}
+
+export const Hero = ({ title, heroLoaded, setHeroLoaded }: Props) => {
   const [animating, setAnimating] = useState(true)
-  const [objectLoaded, setObjectLoaded] = useState(false)
 
   const mouse = useRef<[number, number]>([0, 0])
 
@@ -23,17 +28,17 @@ export const Hero = ({ title }) => {
 
   return (
     <Wrapper>
-      <Loading animating={animating} objectLoaded={objectLoaded} />
+      <Loading animating={animating} objectLoaded={heroLoaded} />
       {/* eslint-disable-next-line @eslint-react/dom/no-dangerously-set-innerhtml */}
-      <Title dangerouslySetInnerHTML={parseContent(title)} $objectLoaded={objectLoaded} />
+      <Title dangerouslySetInnerHTML={parseContent(title)} $objectLoaded={heroLoaded} />
       <Canvas $animating={animating} camera={{ position: [0, 0, 100] }} onMouseMove={onMouseMove}>
         <ambientLight intensity={1} />
         <Suspense fallback={null}>
           <Model
             mouse={mouse}
-            objectLoaded={objectLoaded}
+            objectLoaded={heroLoaded}
             setAnimating={setAnimating}
-            setObjectLoaded={setObjectLoaded}
+            setObjectLoaded={setHeroLoaded}
             position={[0, -3, 3]}
             rotation={[0.2, 0.4, 0]}
           />
